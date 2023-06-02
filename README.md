@@ -1,6 +1,8 @@
 # Dumpling-Manatee-Simulation
 
-If you are a developer or plan on opening the project with Unity, [read this section on setting up the project for the first time](#setting-up-the-project-for-developmentbuilding).
+If you are a developer or plan on opening the project with Unity, please read the following sections:
+- [First time setup](#setting-up-the-project-for-developmentbuilding)
+- 
 
 # Setting up the project for development/building
 
@@ -54,3 +56,7 @@ If you are prompted to update the Oculus Utilities plugin, click **Yes**.
 If you are prompted to use the OpenXR backend, click **Yes**.
 
 When prompted to clean up assets, click **Show Assets** and then **Clean Up**.
+
+
+# Other
+Please make sure that you are always developing on a branch that is not `main`, then make a pull request to `main` when it is working. Afterwards, delete the branch you made, and create a new branch for the next feature.
