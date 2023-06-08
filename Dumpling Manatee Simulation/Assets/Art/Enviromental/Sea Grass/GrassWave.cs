@@ -47,19 +47,50 @@ public class GrassWave : MonoBehaviour
 
     int ShapeKeyRotation(GameObject target)
     {
-        int tempRotation = ((int)((target.transform.eulerAngles.y) / 90) % 4);
-        Debug.Log(target);
-        Debug.Log(tempRotation);
-        if (tempRotation == 0)
+        float tempRotation = target.transform.eulerAngles.y;
+        if (tempRotation <= 45)
+        {
+            Debug.Log(tempRotation);
+            Debug.Log("Rotatiion: 0");
             return 0;
-        else if (tempRotation == 1)
+        }
+        else if (target.transform.eulerAngles.y <= 135)
+        {
+            Debug.Log(tempRotation);
+            Debug.Log("Rotatiion: 2");
             return 2;
-        else if (tempRotation == 2)
+        }
+        else if (target.transform.eulerAngles.y <= 225)
+        {
+            Debug.Log(tempRotation);
+            Debug.Log("Rotatiion: 1");
             return 1;
-        else if (tempRotation == 3)
+        }
+        else if (target.transform.eulerAngles.y <= 315)
+        {
+            Debug.Log(tempRotation);
+            Debug.Log("Rotatiion: 3");
             return 3;
+        }
         else
-            throw new System.Exception("bad grass rotation");
+        {
+            Debug.Log(tempRotation);
+            Debug.Log("default Rotation");
+            return 0;
+        }
+        /*int tempRotation = ((int)((target.transform.eulerAngles.y) / 90) % 4);
+Debug.Log(target);
+Debug.Log(target.transform.eulerAngles.z);
+if (tempRotation == 0)
+   return 0;
+else if (tempRotation == 1)
+   return 2;
+else if (tempRotation == 2)
+   return 1;
+else if (tempRotation == 3)
+   return 3;
+else
+   throw new System.Exception("bad grass rotation");*/
     }
     int invertRotation(int rotationToBeInverted)
     {
