@@ -7,6 +7,7 @@ public class GrassWave : MonoBehaviour
     GameObject[] grasses;
     int[] grassRotations;
     float x;
+    float y;
     float timer;
     [SerializeField]
     float bendSpeedMultiplier;
@@ -29,6 +30,7 @@ public class GrassWave : MonoBehaviour
     {
         timer += Time.deltaTime;
         x = bendForceMultiplier * (Mathf.Sin(timer * bendSpeedMultiplier));
+        y = bendForceMultiplier * ((Mathf.Sin((4*timer * bendSpeedMultiplier)-(Mathf.PI/2)) + 1)/2);
         for (int i = 0; i < grasses.Length; i++)
         {
             if (x < 0)
@@ -39,6 +41,7 @@ public class GrassWave : MonoBehaviour
             {
                 grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(grassRotations[i], x);
             }
+            grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, y);
         }
     }
 
