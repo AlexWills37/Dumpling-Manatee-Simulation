@@ -6,8 +6,8 @@ public class GrassWave : MonoBehaviour
 {
     GameObject[] grasses;
     int[] grassRotations;
-    float x;
-    float y;
+    float SideBlendAmount;
+    float VerticalBlendAmount;
     float timer;
     [SerializeField]
     float bendSpeedMultiplier;
@@ -29,35 +29,35 @@ public class GrassWave : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        x = bendForceMultiplier * (Mathf.Sin(timer * bendSpeedMultiplier));
-        y = bendForceMultiplier * ((Mathf.Sin((4*timer * bendSpeedMultiplier)-(Mathf.PI/2)) + 1)/2);
+        SideBlendAmount = bendForceMultiplier * (Mathf.Sin(timer * bendSpeedMultiplier));
+        VerticalBlendAmount = bendForceMultiplier * ((Mathf.Sin((4 * timer * bendSpeedMultiplier) - (Mathf.PI / 2)) + 1) / 2);
         for (int i = 0; i < grasses.Length; i++)
         {
-            if (x < 0)
+            if (SideBlendAmount < 0)
             {
-                grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(invertRotation(grassRotations[i]), -x);
+                grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(invertRotation(grassRotations[i]), -SideBlendAmount);
             }
             else
             {
-                grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(grassRotations[i], x);
+                grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(grassRotations[i], SideBlendAmount);
             }
-            grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, y);
+            grasses[i].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, VerticalBlendAmount);
         }
     }
 
     int ShapeKeyRotation(GameObject target)
     {
-        var tempRotation = (((target.transform.rotation.z) / 90) % 4);
+        int tempRotation = ((int)((target.transform.eulerAngles.y) / 90) % 4);
         Debug.Log(target);
         Debug.Log(tempRotation);
         if (tempRotation == 0)
             return 0;
         else if (tempRotation == 1)
-            return 3;
-        else if (tempRotation == 2) 
+            return 2;
+        else if (tempRotation == 2)
             return 1;
         else if (tempRotation == 3)
-            return 4;
+            return 3;
         else
             throw new System.Exception("bad grass rotation");
     }
