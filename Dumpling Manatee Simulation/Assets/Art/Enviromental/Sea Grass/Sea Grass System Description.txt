@@ -24,7 +24,7 @@ The grass meshes were set up as follows:
 			1) A lattice modifier is assigned to a collection of grass blades
 			2) The lattice is asigned a defaul shape key, then positioned to bend the grass blades along each axis, with each being given its own 
 				shape key in the lattice
-			3) Each lattice shape key is applied as a shape key to the grass mesh (modifiers>lattice>apply as shape key). The shape keys should 
+			3) Each lattice shape key is saved as a shape key to the grass mesh (modifiers>lattice>save as shape key). The shape keys should 
 				come in the following order (if they are not setup in the corrct order they will animate incorrectly): 
 				0: X deformation
 				1: -x deformation
