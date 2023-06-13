@@ -15,10 +15,10 @@ using UnityEngine;
 /// </summary>
 
 
-public class PlayerScript : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     [Tooltip("Maximum health for the player")]
-	public float maxHealth = 100;
+	[SerializeField] private float maxHealth = 100;
 
     [Tooltip("Player's current health")]
     public static float currentHealth;
@@ -36,10 +36,10 @@ public class PlayerScript : MonoBehaviour
     public static float currentBreath;
 
     [Tooltip("Bar to display the player's health")]
-    public HealthBar healthBar;
+    [SerializeField] private ScoreBar healthBar;
 
     [Tooltip("Bar to display the player's breath")]
-    public HealthBar breathBar;
+    [SerializeField] private ScoreBar breathBar;
 
     [Tooltip("Whether the breath meter should decrease over time")]
     public bool breathDecreasing = true;

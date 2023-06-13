@@ -9,16 +9,39 @@ using UnityEngine.UI;
 /// accessed from another script.
 ///
 /// @author Sami Cemek
+/// @author Alex Wills
 /// Updated: 08/20/21
+/// Updated: 06/12/2023
 /// 
 /// </summary>
 
-public class HealthBar : MonoBehaviour
+[RequireComponent(typeof(Slider))]
+public class ScoreBar : MonoBehaviour
 {
 
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
+    private Slider slider;
+    
+    [Tooltip("The score meter's color gradient")]
+    [SerializeField] private Gradient gradient;
+    
+    [Tooltip("The slider's fill object (for changing the meter's color)")]
+    [SerializeField] private Image fill;
+
+
+    void Start() 
+    {
+        slider = this.GetComponent<Slider>();
+    }
+
+
+    public void SetBarValue(float newValue) {
+        slider.value = newValue;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
+    public float GetBarValue() {
+        return slider.value;
+    }
 
     //HEALTH
     public void SetMaxHealth(float health)
