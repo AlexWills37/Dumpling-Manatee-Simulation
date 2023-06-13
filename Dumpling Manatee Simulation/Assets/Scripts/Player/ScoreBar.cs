@@ -34,13 +34,29 @@ public class ScoreBar : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Updates the slider's value and color.
+    /// </summary>
+    /// <param name="newValue">The new value of the slider</param>
     public void SetBarValue(float newValue) {
         slider.value = newValue;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
+    /// <summary>
+    /// Returns the slider's current value.
+    /// </summary>
+    /// <returns>The slider's current value</returns>
     public float GetBarValue() {
         return slider.value;
+    }
+
+    /// <summary>
+    /// Updates the slider's maximum value.
+    /// </summary>
+    /// <param name="newMaxValue">The maximum value for this slider</param>
+    public void SetBarMaxValue(float newMaxValue) {
+        slider.maxValue = newMaxValue;
     }
 
     //HEALTH

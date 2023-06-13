@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Alternative to the OVRPlayerController prefab. This player controller takes in input from the left thumbstick
+/// Alternative to the OVRPlayerController prefab. This player controller takes in input from Quest Controllers
 /// and moves the player accordingly.
 /// You can customize the movement speed.
 /// In the future, this script could be expanded to include more aspects like the OVRPlayerController (jumping, rotation with the right stick,
@@ -14,7 +14,7 @@ using UnityEngine;
 /// For this script to work, the "Player", with a collider and rigidbody, must not be in a parent-child hierarchy with the OVRCameraRig
 /// Recommended hierarchy:
 /// > Player
-///   > Player Controller (attach this script here)
+///   > Player Controller (attach this script here, and add a rigidbody component)
 ///   > OVRCameraRig
 ///   
 /// You also must set up the cameraRig and forwardDirection through the inspector.

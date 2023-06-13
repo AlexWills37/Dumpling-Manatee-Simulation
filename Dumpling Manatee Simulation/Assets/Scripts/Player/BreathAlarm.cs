@@ -20,6 +20,9 @@ public class BreathAlarm : MonoBehaviour
     // Right now, the breath bar goes red at 31.5%. With a max breath of 50, that is 15.75 when the bar turns red
     // 
 
+    [Tooltip("The Player object to track breath with")]
+    [SerializeField] private PlayerManager player;
+
     private bool warningActive = false;
 
 
@@ -38,7 +41,7 @@ public class BreathAlarm : MonoBehaviour
     void Update()
     {
         // If the player is low on breath, turn on the warning.
-        if(!warningActive && PlayerScript.currentBreath <= breathAlarmLimit)
+        if(!warningActive && player.currentBreath <= breathAlarmLimit)
         {
             heartbeat.StartHeartbeat();
             warningActive = true;
@@ -49,7 +52,7 @@ public class BreathAlarm : MonoBehaviour
         }
 
         // If the player is no longer low on breath, turn off the warning.
-        if(warningActive && PlayerScript.currentBreath > breathAlarmLimit)
+        if(warningActive && player.currentBreath > breathAlarmLimit)
         {
             TelemetryManager.entries.Add(
                 new TelemetryEntry("breathAlarmEnd")

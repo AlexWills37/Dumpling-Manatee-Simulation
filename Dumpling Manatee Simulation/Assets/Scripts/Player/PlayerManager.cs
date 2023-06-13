@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
-/// 
-/// This script is using variables and methods of Healtbar.cs script.
+/// This script manages the player's gamified behavior (losing breath, gaining health, etc.).
+/// For the script that manages the player's movement, see PlayerController.cs.
+/// This script is using variables and methods of ScoreBar.cs script.
 /// It sets the health and breath to the max in the beginning. Health 
 /// and breath decrease over time.
 ///
@@ -20,20 +21,28 @@ public class PlayerManager : MonoBehaviour
     [Tooltip("Maximum health for the player")]
 	[SerializeField] private float maxHealth = 100;
 
-    [Tooltip("Player's current health")]
-    public static float currentHealth;
-
-    [Tooltip("How much food the player has eaten")]
-    public static int ateGrassNum;
-
-    [Tooltip("Whether or not the player has interacted with a manatee")]
-    public static bool interactedWithManatee;
-
     [Tooltip("Maximum breath for the player")]
-    public float maxBreath = 180;
+    [SerializeField] private float maxBreath = 100;
 
-    [Tooltip("The player's current breath level")]
-    public static float currentBreath;
+    /// <summary>
+    /// The player's current health
+    /// </summary>
+    public float currentHealth {get; private set;}
+    
+    /// <summary>
+    /// The player's current breath
+    /// </summary>
+    public float currentBreath {get; private set;}
+
+    /// <summary>
+    /// How many seagrass the player has eaten
+    /// </summary>
+    public int ateGrassNum {get; private set;} = 0;
+
+    // Whether or not the player has interacted with a manatee
+    private bool interactedWithManatee;
+
+
 
     [Tooltip("Bar to display the player's health")]
     [SerializeField] private ScoreBar healthBar;
@@ -42,34 +51,32 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private ScoreBar breathBar;
 
     [Tooltip("Whether the breath meter should decrease over time")]
-    public bool breathDecreasing = true;
+    [SerializeField] private bool breathDecreasing = true;
 
     private float timeSinceTelemetry = 0f;  // Used to send an update on the player's scores every 10 seconds
 
-    //private float camXPos, camZPos;
-    //public float camYPos;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set initial values (10 health, max breath)
 		currentHealth = 10;
-		if(healthBar != null)
-        {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
-        }
+        currentBreath = maxBreath;
         ateGrassNum = 0;
         interactedWithManatee = false;
+		
+        if(healthBar != null)
+        {
+            healthBar.SetBarMaxValue(maxHealth);
+            healthBar.SetBarValue(currentHealth);
+        }
 
         if(breathBar != null)
         {
-            currentBreath = maxBreath;
-            breathBar.SetMaxHealth(maxBreath);
+            breathBar.SetBarMaxValue(maxBreath);
+            breathBar.SetBarValue(currentBreath);
         }
         
-
-       // transform.position = new Vector3 (camXPos, camYPos, camZPos);
     }
 
     // Update is called once per frame
@@ -91,19 +98,18 @@ public class PlayerManager : MonoBehaviour
                 Mathf.Max(0, currentHealth -= 1 * Time.deltaTime);
             }
 
-            // Health/points are modified externally with other scripts, so it is important
-            // To ensure that health is not above the max
+            // Ensure health is not above the maximum
             if(currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
             }
 
-            healthBar.SetHealth(currentHealth);
-            breathBar.SetBreath(currentBreath);
+            healthBar.SetBarValue(currentHealth);
+            breathBar.SetBarValue(currentBreath);
 
         }
 
-        // Send telemetry updates for the player's breath and health
+        // Send telemetry updates for the player's breath and health after 10 seconds
         timeSinceTelemetry += Time.deltaTime;
         // Every 10 seconds, add a telemetry entry for the player's scores
         if (timeSinceTelemetry >= 10)
@@ -125,7 +131,6 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Air"))
         {
             currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
-            breathBar.SetBreath(currentBreath);
         }
     }
 }
