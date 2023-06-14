@@ -38,11 +38,10 @@ public class GrassWave : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 2/ bendSpeedMultiplier)
         {
+            //remove 2 from the timer since that is the period of the wave function. keeps timer from getting crazy large
             timer -= 2 / bendSpeedMultiplier;
         }
         SideBlendAmount = bendForceMultiplier* bendingCurve.Evaluate(timer * bendSpeedMultiplier);
-        //SideBlendAmount = bendForceMultiplier * (Mathf.Sin(timer * bendSpeedMultiplier));
-        // VerticalBlendAmount = bendForceMultiplier * ((Mathf.Sin((4 * timer * bendSpeedMultiplier) - (Mathf.PI / 2)) + 1) / 2);
         VerticalBlendAmount = bendForceMultiplier*ZbendingCurve.Evaluate(Mathf.Abs(bendingCurve.Evaluate(timer * bendSpeedMultiplier)));
         for (int i = 0; i < grasses.Length; i++)
         {
