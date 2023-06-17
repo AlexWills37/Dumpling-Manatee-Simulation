@@ -41,12 +41,12 @@ public class ManateePhysicalCollider : MonoBehaviour
         // Know when the manatee is in the player's personal space
         if (other == playersPersonalSpace)
         {
-            manatee.SetInPlayerSpace(true);
+            // manatee.SetInPlayerSpace(true);
 
         // If the player collides, count that as a boop
         } else if (other.gameObject.CompareTag("Player"))
         {
-            manatee.InteractWithManatee();  
+            // manatee.InteractWithManatee();  
 
         // If the manatee is breathing air, set the surface status
         } else if (other.gameObject.CompareTag("Air"))
@@ -64,7 +64,7 @@ public class ManateePhysicalCollider : MonoBehaviour
         // Know when the manatee is out of the player's personal space
         if (other == playersPersonalSpace)
         {
-            manatee.SetInPlayerSpace(false);
+            // manatee.SetInPlayerSpace(false);
 
         // Detect when the manatee is no longer at the surface
         } else if (other.gameObject.CompareTag("Air"))
