@@ -54,7 +54,7 @@ public class ManateeBehaviorOLD : MonoBehaviour
     protected bool isRotating = false;
     private float rotationSpeed = 10f;
 
-    [SerializeField] protected ManateePhysicalCollider physicalManatee;
+    // [SerializeField] protected ManateePhysicalCollider physicalManatee;
 
     protected Rigidbody manateeRb;
 
