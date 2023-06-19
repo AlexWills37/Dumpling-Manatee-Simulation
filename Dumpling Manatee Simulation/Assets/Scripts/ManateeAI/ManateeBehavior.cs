@@ -34,8 +34,9 @@ public class ManateeBehavior : MonoBehaviour
 
     private bool currentActionActive = false;
 
-    private AbstractAction swim, breathe, rest;
+    private AbstractAction swim, breathe, rest, play;
     private AbstractAction currentAction = null;
+    private bool uninterruptableAction = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class ManateeBehavior : MonoBehaviour
         swim = new ManateeSwim(this, movementSpeed);
         rest = new ManateeWait(this);
         breathe = new ManateeBreathe(this, movementSpeed);
+        play = new ManateePlay(this, happyParticleSettings);
 
     }
 
@@ -67,7 +69,7 @@ public class ManateeBehavior : MonoBehaviour
         }
 
         if (Input.GetMouseButton(0)) {
-            currentAction.ForceEnd();
+            PlayerInteraction();
         }
     }
 
@@ -75,12 +77,13 @@ public class ManateeBehavior : MonoBehaviour
         if (currentTimeWithoutBreath >= breathTime) {
             currentAction = breathe;
             Debug.Log("Starting breathe");
+            uninterruptableAction = true;
         }
         else {
             int randomNum = (int)(Random.Range(0, 2));
             switch (randomNum) {
                 case 0:
-                    currentAction = rest;
+                    currentAction = swim;
                     Debug.Log("Starting swim.");
                     break;
                 case 1:
@@ -106,9 +109,10 @@ public class ManateeBehavior : MonoBehaviour
     /// </summary>
     public void EndCurrentAction() {
         currentActionActive = false;
+        uninterruptableAction = false;
     }
 
-
+    
 
     /// <summary>
     /// Sets whether this manatee is at the surface or not.
@@ -126,10 +130,25 @@ public class ManateeBehavior : MonoBehaviour
         this.currentTimeWithoutBreath = 0;
     }
 
+    private void PlayerInteraction() {
+        // If we are able to interrupt the current action, play with the player
+        if (!uninterruptableAction) {
+            currentAction.ForceEnd();
+            currentAction = play;
+            currentAction.StartAction();
+            currentActionActive = true;
+            uninterruptableAction = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
             case "Air":
                 atSurface = true;
+                break;
+            case "Player":
+                // Player-manatee interaction
+                this.PlayerInteraction();
                 break;
             default:
                 break;

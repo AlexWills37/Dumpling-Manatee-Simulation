@@ -36,15 +36,21 @@ public class ManateeSwim : AbstractAction
 
 
     /// <summary>
-    /// Swim forward for a random amount of time.
+    /// Swim for a random amount of time.
     /// </summary>
     /// <returns></returns>
     protected override IEnumerator ActionCoroutine() {
-        
+
+        bool swimBackwards = (Random.Range(0, 2) < 1);
+
         manateeAnimator.SetBool("isSwimming", true);
         // Set velocity forward for a bit of time
         manateeRb.velocity = manatee.transform.forward * movementSpeed;
         manateeRb.drag = 0;
+
+        if (swimBackwards) {
+            manateeRb.velocity = manatee.transform.forward * movementSpeed * -1;
+        }
 
         // Swim for a random amount of time
         yield return new WaitForSeconds(Random.Range(1, 5));
@@ -145,6 +151,45 @@ public class ManateeBreathe : AbstractAction
         // Reset the manatee's breath component
         manatee.RefillBreath();
 
+        this.OnComplete();
+    }
+}
+
+
+/// <summary>
+/// When the player interacts with the manatee, play a happy animation.
+/// </summary>
+public class ManateePlay : AbstractAction
+{
+    private ParticleSystem.EmissionModule happyParticles;
+    public ManateePlay(ManateeBehavior manatee, ParticleSystem.EmissionModule particles) : base(manatee)
+    {
+        this.happyParticles = particles;
+    }
+
+    public override void ForceEnd()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override IEnumerator ActionCoroutine()
+    {
+        // Begin the rolling animation
+        manateeAnimator.SetBool("isInteracting", true);
+        // Wait until the animation begins
+        while (!manateeAnimator.GetCurrentAnimatorStateInfo(0).IsTag("interaction")) {
+            yield return null;
+        }
+
+        // Emit particles until the animation ends
+        happyParticles.rateOverTime = 3;
+        manateeAnimator.SetBool("isInteracting", false);
+        while (manateeAnimator.GetCurrentAnimatorStateInfo(0).IsTag("interaction")) {
+            yield return null;
+        }
+
+        happyParticles.rateOverTime = 0;
+        
         this.OnComplete();
     }
 }
