@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ManateeBehavior : MonoBehaviour
 {
 
@@ -18,8 +19,6 @@ public class ManateeBehavior : MonoBehaviour
     [Range(5f, 300f)]
     [SerializeField] private float breathTime = 30f;
 
-    [Tooltip("The game object with this manatee's physical colliders and scripts")]
-    [SerializeField] protected ManateePhysicalCollider physicalManatee;
 
     protected Rigidbody manateeRb;
     
@@ -29,7 +28,7 @@ public class ManateeBehavior : MonoBehaviour
     private ParticleSystem.EmissionModule happyParticleSettings;
 
     // How the manatee knows if it is at the surface (object with the 'Air' tag)
-    private bool atSurface = false;
+    public bool atSurface {get; private set;} = false;
 
     private float currentTimeWithoutBreath = 0f;    // Timer for breathing occasionally
 
@@ -43,7 +42,7 @@ public class ManateeBehavior : MonoBehaviour
     {
         // Get specific components
 
-        manateeRb = physicalManatee.gameObject.GetComponent<Rigidbody>();
+        manateeRb = this.GetComponent<Rigidbody>();
 
         animator = this.GetComponentInChildren<Animator>();
         // manateeSound = this.GetComponent<AudioSource>();
@@ -53,6 +52,7 @@ public class ManateeBehavior : MonoBehaviour
 
         swim = new ManateeSwim(this, movementSpeed);
         rest = new ManateeWait(this);
+        breathe = new ManateeBreathe(this, movementSpeed);
 
     }
 
@@ -72,24 +72,28 @@ public class ManateeBehavior : MonoBehaviour
     }
 
     private void ChooseNextAction() {
-        // if (currentTimeWithoutBreath >= breathTime) {
-        //     currentAction = SurfaceAndBreathe();
-        // }
-        int randomNum = (int)(Random.Range(0, 2));
-        switch (randomNum) {
-            case 0:
-                currentAction = swim;
-                Debug.Log("Starting swim.");
-                break;
-            case 1:
-                currentAction = rest;
-                // rest.StartAction();
-                Debug.Log("Starting rest");
-                break;
-            default:
-                Debug.LogError("Error: No action chosen.");
-                break;
+        if (currentTimeWithoutBreath >= breathTime) {
+            currentAction = breathe;
+            Debug.Log("Starting breathe");
         }
+        else {
+            int randomNum = (int)(Random.Range(0, 2));
+            switch (randomNum) {
+                case 0:
+                    currentAction = rest;
+                    Debug.Log("Starting swim.");
+                    break;
+                case 1:
+                    currentAction = rest;
+                    // rest.StartAction();
+                    Debug.Log("Starting rest");
+                    break;
+                default:
+                    Debug.LogError("Error: No action chosen.");
+                    break;
+            }
+        }
+        
 
         currentAction.StartAction();
         // Prevent this method from being called again until the action is finished
@@ -118,5 +122,27 @@ public class ManateeBehavior : MonoBehaviour
 
     }
 
+    public void RefillBreath() {
+        this.currentTimeWithoutBreath = 0;
+    }
 
+    private void OnTriggerEnter(Collider other) {
+        switch (other.gameObject.tag) {
+            case "Air":
+                atSurface = true;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        switch (other.gameObject.tag) {
+            case "Air":
+                atSurface = false;
+                break;
+            default:
+                break;
+        }
+    }
 }

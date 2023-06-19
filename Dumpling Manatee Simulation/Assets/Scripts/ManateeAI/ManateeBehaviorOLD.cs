@@ -340,5 +340,5 @@ public class ManateeBehaviorOLD : MonoBehaviour
         Debug.LogWarning("Manatee is " + (isAtSurface ? "" : "not") + " at the surface!");
     }
 
-
+    
 }
