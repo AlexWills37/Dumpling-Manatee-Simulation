@@ -1,28 +1,27 @@
-#Sea Grass System Description:
-
+# Grass System
 The sea grass system uses skinned meshes and shapekeys to make grass sway back and forth
 
-##Key information:
+## Key information
 - Author 
-Models, scripts,etc. made by Riley Wood
+	> Models, scripts,etc. made by Riley Wood 
 
 - Project Location
-The sea grass system can be found in Assets>enviromental>SeaGrass.
-The sea grass system also interacts with the edible sea grass in Assets>Gameplay>EdibleSeaGrass
-
+	> The sea grass system can be found in Assets>enviromental>SeaGrass.
+	> The sea grass system also interacts with the edible sea grass in Assets>Gameplay>EdibleSeaGrass
 - How to use the asset
-Several prefabs have been created for the different types of grass. These have all required properties set up in advance
-To add grass to the scene navigate to Assets>enviromental>SeaGrass then select a sub directory (ManateeGrass or ShoalGrass) and drag the prefabs from the folder into the scene.
-The scene MUST HAVE a single object with the GrassWave script attached to it in order for the grass to animate
-DO NOT rotate the grass prefabs. They are set up to animate along specific axies. To change the rotation look at
+  > Several prefabs have been created for the different types of grass. These have all required properties set up in advance
+  > To add grass to the scene navigate to Assets>enviromental>SeaGrass then select a sub directory (ManateeGrass or ShoalGrass) and drag the prefabs from the folder into the scene.
+  > The scene MUST HAVE a single object with the GrassWave script attached to it in order for the grass to animate
+  > DO NOT rotate the grass prefabs. They are set up to animate along specific axies. To change the rotation look at
 
 - How the asset works
-The sea grass system uses skinned meshes and shapekeys to make grass sway back and forth.
-This technique was chosen over several other available methods for the following reasons:
+  > The sea grass system uses skinned meshes and shapekeys to make grass sway back and forth.
+  > This technique was chosen over several other available methods for the following reasons:
 	1) Shader-based grass movement (usign a displacement shader to bend individual grass blades) was discarded since the unity shadergraph is only accessible through URP which at this popint was not functioning on the oculus headset. Perhaps someone with more developed technical skills could implement a version of this using the built-in render pipeline
 	2) Animated grass movement (usign bones to create a swaying motion which would allow for better individual bending of grass blades) was discardedas testing found it to be about half as effecient as shape-key based grass movement even with a minimal rig and we needed a large quantity of seagrass 
-
-The grass meshes were set up as follows:
+  >
+  >
+  >	The grass meshes were set up as follows:
 	1) A texture is painted using photoshop (or equivilent software)
 		a) the alpha channel should make everything other than the individual blade of grass transparent
 	2) A mesh is created using Blender (or equivilent software).
@@ -51,6 +50,7 @@ The grass meshes were set up as follows:
 		90 degree Z axis rotation = y
 		180 degree Z axis rotation = -x
 		270 degree Z axis rotation = -y
-
-See the GrassWave script for a description of how the grasses are manipulated
-See the grass Init script for a description of what the grasses do when the scene starts
+  >
+  >
+  > See the GrassWave script for a description of how the grasses are manipulated
+  > See the grass Init script for a description of what the grasses do when the scene starts

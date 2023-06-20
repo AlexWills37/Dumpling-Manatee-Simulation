@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7064244062232996668}
   m_Layer: 0
-  m_Name: BillboardGrass
+  m_Name: PRFB_BillboardGrass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
