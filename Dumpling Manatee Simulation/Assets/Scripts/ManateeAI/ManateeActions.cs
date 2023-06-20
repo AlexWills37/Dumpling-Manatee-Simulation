@@ -1,5 +1,9 @@
 /// <summary>
-/// This file contains the implementations for different manatee actions.
+/// This file contains the implementations for different manatee actions:
+/// Swim
+/// Wait
+/// Breathe
+/// Play
 /// 
 /// @author Alex Wills
 /// @date 6/19/2023
@@ -25,13 +29,11 @@ public class ManateeSwim : AbstractAction
     /// 
     /// The manatee will still drift forward for a bit.
     /// </summary>
-    public override void ForceEnd()
+    protected override void ForceEnd()
     {
-        manatee.StopCoroutine(coroutine);
         // Add drag to slow the manatee down
         manateeRb.drag = 1;
         manateeAnimator.SetBool("isSwimming", false);
-        this.OnComplete();
     }
 
 
@@ -69,10 +71,8 @@ public class ManateeSwim : AbstractAction
 public class ManateeWait : AbstractAction
 {
     public ManateeWait(ManateeBehavior manatee) : base(manatee) {}
-    public override void ForceEnd()
+    protected override void ForceEnd()
     {
-        manatee.StopCoroutine(coroutine);
-        this.OnComplete();
     }
 
     protected override IEnumerator ActionCoroutine()
@@ -91,16 +91,13 @@ public class ManateeBreathe : AbstractAction
     public ManateeBreathe(ManateeBehavior manatee, float speed) : base(manatee)
     {
         movementSpeed = speed;
+        this.interruptable = false;
     }
 
-    public override void ForceEnd()
+    protected override void ForceEnd()
     {
-        manatee.StopCoroutine(coroutine);
-
         // Make sure the animator is set correctly
         manateeAnimator.SetBool("isBreathing", false);
-
-        this.OnComplete();
     }
 
     protected override IEnumerator ActionCoroutine()
@@ -165,9 +162,10 @@ public class ManateePlay : AbstractAction
     public ManateePlay(ManateeBehavior manatee, ParticleSystem.EmissionModule particles) : base(manatee)
     {
         this.happyParticles = particles;
+        this.interruptable = false;
     }
 
-    public override void ForceEnd()
+    protected override void ForceEnd()
     {
         throw new System.NotImplementedException();
     }

@@ -1,7 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Defines the manatee's AI/behavior.
+/// The manatee AI generally:
+///     - Choose an action to take
+///     - Do the action
+///     - Repeat
+/// And some actions can be interrupted:
+///     - If the player touches the manatee, try to interrupt the action
+///     - If action is interruptable, do the ManateePlay action
+///     - Else, do nothing
+/// 
+/// @author Alex Wills
+/// @date 6/20/2023
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class ManateeBehavior : MonoBehaviour
 {
@@ -36,7 +49,7 @@ public class ManateeBehavior : MonoBehaviour
 
     private AbstractAction swim, breathe, rest, play;
     private AbstractAction currentAction = null;
-    private bool uninterruptableAction = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -77,10 +90,10 @@ public class ManateeBehavior : MonoBehaviour
         if (currentTimeWithoutBreath >= breathTime) {
             currentAction = breathe;
             Debug.Log("Starting breathe");
-            uninterruptableAction = true;
         }
         else {
-            int randomNum = (int)(Random.Range(0, 2));
+            // int randomNum = (int)(Random.Range(0, 2));
+            int randomNum = 1;  // No swimming yet. Only rest and breathe
             switch (randomNum) {
                 case 0:
                     currentAction = swim;
@@ -109,7 +122,6 @@ public class ManateeBehavior : MonoBehaviour
     /// </summary>
     public void EndCurrentAction() {
         currentActionActive = false;
-        uninterruptableAction = false;
     }
 
     
@@ -132,12 +144,11 @@ public class ManateeBehavior : MonoBehaviour
 
     private void PlayerInteraction() {
         // If we are able to interrupt the current action, play with the player
-        if (!uninterruptableAction) {
-            currentAction.ForceEnd();
+        bool actionStopped = currentAction.StopAction();
+        if (actionStopped) {
             currentAction = play;
             currentAction.StartAction();
             currentActionActive = true;
-            uninterruptableAction = true;
         }
     }
 

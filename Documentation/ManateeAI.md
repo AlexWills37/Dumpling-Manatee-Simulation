@@ -43,13 +43,11 @@ currentAction.StartAction();
             // you can leave this section empty
         }    
 
-        public override void ForceEnd {
-            manatee.StopCoroutine( coroutine );
-
+        protected override void ForceEnd {
+        
             >>> Optionally write any code here to "end" the action and 
                 place the manatee in a state where another action may begin <<<
 
-            this.OnComplete();
         }
 
         protected override IEnumerator ActionCoroutine() {
@@ -60,7 +58,7 @@ currentAction.StartAction();
     }    
     ```
     > Notes:
-    > - The lines `this.OnComplete();` and `manatee.StopCoroutine( coroutine );` are
+    > - The line `this.OnComplete();` is
     >   necessary for the system to work. `OnComplete()` notifies the manatee that it
     >   should choose its next action.
     > - The existing actions can be found at [`Assets/Scripts/ManateeAI/ManateeActions.cs`](./../Dumpling%20Manatee%20Simulation/Assets/Scripts/ManateeAI/ManateeActions.cs).
@@ -68,10 +66,15 @@ currentAction.StartAction();
     > - The constructor can be changed, but it must still take in a `ManateeBehavior`
     >   parameter and pass it into the base constructor (See the `ManateeSwim` action 
     >   for an example with a custom constructor).
+    > - If the action should not be interrupted by the player, you do not need to write
+    >   any code in the `ForceEnd()` method, but you will need to add
+    >   `interruptable = false;` to the constructor (See 
+    >   [`ManateeBreathe`](./../Dumpling%20Manatee%20Simulation/Assets/Scripts/ManateeAI/ManateeActions.cs) 
+    >   as an example).
 
 <br>
 
-2. Then, add an instance of the new action to the `ManateeBehavior` script:
+1. Then, add an instance of the new action to the `ManateeBehavior` script:
    > In [`Assets/Scripts/ManateeAI/ManateeBehavior.cs`](./../Dumpling%20Manatee%20Simulation/Assets/Scripts/ManateeAI/ManateeBehavior.cs):
     ```
         ...
@@ -88,7 +91,7 @@ currentAction.StartAction();
         ...
     ```
 
-3. Finally, add the logic for the action to occur in `private void ChooseNextAction()`
+2. Finally, add the logic for the action to occur in `private void ChooseNextAction()`
    and assign the new action variable to `currentAction`:
    > Also in [`Assets/Scripts/ManateeAI/ManateeBehavior.cs`](./../Dumpling%20Manatee%20Simulation/Assets/Scripts/ManateeAI/ManateeBehavior.cs):
 
@@ -136,9 +139,17 @@ if needed.
 
 `action.OnComplete()` is called internally at the end of the `ActionCoroutine()` and `ForceEnd()` methods to prepare the manatee for its next action using `manatee.EndCurrentAction()`.
 
-`action.ForceEnd()` is called externally in the `ManateeBehavior` script to end a 
-coroutine early, such as when the manatee is pet by the player. This function must be
-implemented by different actions.
+`action.StopAction()` is called externally in the `ManateeBehavior` script to end a 
+coroutine early, such as when the manatee is pet by the player. Unless
+the `interruptable` variable is set to `false` in the constructor, this function ends the
+coroutine, calls `action.ForceEnd`, and then calls `action.OnComplete()`.
+If `interruptable` is set to `false`, this function will not stop the action.
+The function returns `true` if it stopped the action, and `false` otherwise.
+
+`action.ForceEnd()` is called by `StopAction()` to end the action early. This must
+be implemented by the different actions. As an example, in `ManateeSwim`, this method
+adds drag to the rigidbody and turns the `"isSwimming"` boolean on the animator to false,
+as it would if the action coroutine finished normally. 
 
 `action.ActionCoroutine()` is called internally by `action.StartAction()`, and this is 
 where the action is defined. The return type `IEnumerator` is used by coroutines in Unity
@@ -162,3 +173,10 @@ Detecting the end of an action:
 >
 > When the action finishes and calls `AbstractAction.OnComplete()`, it triggers
 >  `ManateeAI.EndCurrentAction`, which sets `currentActionActive` back to false.
+
+Interacting with the manatee:
+> When the player collides with the manatee, the script will attempt to stop the
+> current action with `currentAction.StopAction()`. If the action is set to not
+> be interrupted, this method will do nothing and return false, and the player will
+> not interact with the manatee. Otherwise, the action will be stopped, and we can
+> set/start the current action as the **play** action.
