@@ -19804,78 +19804,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 906679331306523952, guid: 084a6844a9eeb20429625b84076d7d56, type: 3}
   m_PrefabInstance: {fileID: 1055386851}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1777912237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1777912238}
-  - component: {fileID: 1777912239}
-  m_Layer: 0
-  m_Name: Fish
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1777912238
+--- !u!4 &1777912238 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+  m_PrefabInstance: {fileID: 4767876212213857720}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777912237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -12.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1446542854}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1777912239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777912237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behavioralCh: {x: 2, y: 6}
-  debug: 0
-  flockNum: 5
-  fragmentedFlock: 400
-  fragmentedFlockYLimit: 0.07
-  migrationFrequency: 0.03
-  posChangeFrequency: 0.7
-  smoothChFrequency: 15
-  birdPref: {fileID: 8303762769614692609, guid: 9e842a88bd47d9f4ab77e7b45975c60d, type: 3}
-  birdsNum: 20
-  birdSpeed: 0.5
-  fragmentedBirds: 15
-  fragmentedBirdsYLimit: 1
-  soaring: 0.5
-  verticalWawe: 12.52
-  rotationClamp: 0
-  rotationClampValue: 50
-  scaleRandom: {x: 1, y: 1.5}
-  danger: 0
-  dangerRadius: 15
-  dangerSpeed: 1.5
-  dangerSoaring: 0.5
-  dangerLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  HelpURL: nvjob.github.io/unity/nvjob-boids
-  ReportAProblem: nvjob.github.io/support
-  Patrons: nvjob.github.io/patrons
 --- !u!4 &1778260986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763205221536758235, guid: 3b495e9763b50254d8b53a0e0a92bd33, type: 3}
@@ -22550,8 +22483,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056855379}
-  m_LocalRotation: {x: -0.027673803, y: 0.6909713, z: 0.02660431, w: 0.7218622}
-  m_LocalPosition: {x: -8.669859, y: 6.5059643, z: 17.380468}
+  m_LocalRotation: {x: -0.010320836, y: -0.57937974, z: 0.0072328234, w: -0.81496036}
+  m_LocalPosition: {x: -10.336813, y: 6.390815, z: 0.3482685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24283,6 +24216,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1819473750018744722, guid: 35286f28600b1c849a59b621b70f67e4, type: 3}
   m_PrefabInstance: {fileID: 153189717}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4767876212213857720
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1446542854}
+    m_Modifications:
+    - target: {fileID: 4767876211574731797, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_Name
+      value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767876211574731798, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cbe29c585fe4edd418beba0392852fdc, type: 3}
 --- !u!1001 &6061281344543094205
 PrefabInstance:
   m_ObjectHideFlags: 0
