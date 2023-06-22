@@ -2,7 +2,10 @@
 
 If you are a developer or plan on opening the project with Unity, please read the following sections:
 - [First time setup](#setting-up-the-project-for-developmentbuilding)
-- [Documentation for the project](./Documentation/)
+- [Project documentation](./Documentation/)
+
+
+
 
 # Setting up the project for development/building
 Total estimated time: 30+ minutes (lots of waiting)
