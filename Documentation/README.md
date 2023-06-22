@@ -9,6 +9,12 @@ and we polish our formatting. If there is any confusion, or any broken links,
 please reach out to us or create a GitHub issue, and we will help as soon as possible.
 You can reach me at alexanderwills37@gmail.com.
 
+## [Player](./Player.md)
+- Movement
+- Health/Breath bars
+- Rotating HUD
+- Hierarchy structure (including OVRCameraRig)
+
 ## [Water Effects](./Water.md)
 ![Underwater scene view](./media/underwater-effects.jpg)
 - Depth fog

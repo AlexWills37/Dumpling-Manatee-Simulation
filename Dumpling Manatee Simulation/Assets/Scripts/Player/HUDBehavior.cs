@@ -18,6 +18,8 @@ using UnityEngine;
 /// TECHNICAL EXPLANATION:
 /// This script will cause the attached game object's Y rotation to match the player's Y rotation.
 /// By having this game object as a pivot point, and attaching HUD game objects at a distance as children, the HUD will seem to move around the player.
+/// To follow the player's location and rotation, this script searches the scene for a game object named "LeftEyeAnchor". This is part of the
+/// OVRCameraRig, and should only exist in the OVRCameraRig. It accurately tracks the player's position and rotation.
 /// 
 /// @author Alex Wills
 /// Updated 6/11/2022
