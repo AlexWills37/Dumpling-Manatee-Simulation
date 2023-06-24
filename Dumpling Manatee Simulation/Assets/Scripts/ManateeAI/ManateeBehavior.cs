@@ -35,6 +35,7 @@ public class ManateeBehavior : MonoBehaviour
 
     protected Rigidbody manateeRb;
     
+
     private Animator animator;
 
     // Particle variable
@@ -64,7 +65,7 @@ public class ManateeBehavior : MonoBehaviour
         happyParticleSettings = happyParticles.emission;
         happyParticleSettings.rateOverTime = 0; // Stop the manatee from emitting particles
 
-        swim = new ManateeSwim(this, movementSpeed);
+        swim = new ManateeSwim(this, movementSpeed, rotationSpeed);
         rest = new ManateeWait(this);
         breathe = new ManateeBreathe(this, movementSpeed);
         play = new ManateePlay(this, happyParticleSettings);
@@ -84,6 +85,7 @@ public class ManateeBehavior : MonoBehaviour
         if (Input.GetMouseButton(0)) {
             PlayerInteraction();
         }
+
     }
 
     private void ChooseNextAction() {
@@ -92,8 +94,8 @@ public class ManateeBehavior : MonoBehaviour
             Debug.Log("Starting breathe");
         }
         else {
-            // int randomNum = (int)(Random.Range(0, 2));
-            int randomNum = 1;  // No swimming yet. Only rest and breathe
+            int randomNum = (int)(Random.Range(0, 2));
+            // int randomNum = 1;  // No swimming yet. Only rest and breathe
             switch (randomNum) {
                 case 0:
                     currentAction = swim;
