@@ -48,9 +48,9 @@ public class ManateeBehavior : MonoBehaviour
 
     private bool currentActionActive = false;
 
-    private AbstractAction swim, breathe, rest, play;
+    private AbstractAction swim, breathe, rest, play, turnAround;
     private AbstractAction currentAction = null;
-
+private LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +69,8 @@ public class ManateeBehavior : MonoBehaviour
         rest = new ManateeWait(this);
         breathe = new ManateeBreathe(this, movementSpeed);
         play = new ManateePlay(this, happyParticleSettings);
-
+        turnAround = new ManateeChangeDirection(this, rotationSpeed);
+        lineRenderer = this.gameObject.GetComponent<LineRenderer>();
     }
 
 
@@ -94,22 +95,40 @@ public class ManateeBehavior : MonoBehaviour
             Debug.Log("Starting breathe");
         }
         else {
-            int randomNum = (int)(Random.Range(0, 2));
-            // int randomNum = 1;  // No swimming yet. Only rest and breathe
-            switch (randomNum) {
-                case 0:
-                    currentAction = swim;
-                    Debug.Log("Starting swim.");
-                    break;
-                case 1:
-                    currentAction = rest;
-                    // rest.StartAction();
-                    Debug.Log("Starting rest");
-                    break;
-                default:
-                    Debug.LogError("Error: No action chosen.");
-                    break;
+            
+            RaycastHit hit;
+            // Vector3 littleDown = this.transform.forward;
+            // littleDown.y -= 0.1f;
+            Ray ray = new Ray(this.transform.position, this.transform.forward);
+            // lineRenderer.SetPositions( new Vector3[] {this.transform.position, this.transform.position + littleDown * 50});
+
+            if (Physics.Raycast(ray, out hit, 20) && hit.distance < 10f) {
+                currentAction = turnAround;
+                Debug.Log("Changing Direction.");
+            } else {
+
+                int randomNum = (int)(Random.Range(0, 2));
+                // int randomNum = 1;  // No swimming yet. Only rest and breathe
+                switch (randomNum) {
+                    case 0:
+                        currentAction = swim;
+                        Debug.Log("Starting swim.");
+                        break;
+                    case 1:
+                        currentAction = rest;
+                        // rest.StartAction();
+                        Debug.Log("Starting rest");
+                        break;
+                    default:
+                        Debug.LogError("Error: No action chosen.");
+                        break;
+                }
+                
             }
+
+
+
+
         }
         
 

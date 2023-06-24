@@ -246,3 +246,43 @@ public class ManateePlay : AbstractAction
         this.OnComplete();
     }
 }
+
+/// <summary>
+/// Rotate to face another direction
+/// </summary>
+public class ManateeChangeDirection : AbstractAction
+{
+    private float rotationSpeed;
+    public ManateeChangeDirection(ManateeBehavior manatee, float rotationSpeed) : base(manatee)
+    {
+        this.rotationSpeed = rotationSpeed;
+
+    }
+
+    protected override IEnumerator ActionCoroutine()
+    {
+        // Rotate between 90 and 180 degrees, in any direction
+        float rotationChange = Random.Range(90f, 180f);
+        if (Random.Range(0f, 1f) < 0.5) {
+            rotationChange *= -1;
+        }
+
+        // Complete the rotation
+        float elapsedRotation = 0;
+        float deltaRotation;
+        while (elapsedRotation < Mathf.Abs(rotationChange)) {
+            deltaRotation = Time.deltaTime * rotationSpeed * Mathf.Sign(rotationChange);
+            manatee.transform.Rotate(0, deltaRotation, 0, Space.World);
+            elapsedRotation += Mathf.Abs(deltaRotation);
+            yield return null;
+        }
+
+        // End the coroutine
+        this.OnComplete();
+    }
+
+    protected override void ForceEnd()
+    {
+        // Nothing extra needs to occur; the rotation will just stop
+    }
+}
