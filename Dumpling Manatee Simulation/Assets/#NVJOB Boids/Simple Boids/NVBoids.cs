@@ -134,7 +134,8 @@ public class NVBoids : MonoBehaviour
         for (int b = 0; b < birdsNum; b++)
         {
             if (birdsSpeedCur[b] != birdsSpeed[b]) birdsSpeedCur[b] = Mathf.SmoothDamp(birdsSpeedCur[b], birdsSpeed[b], ref spVelocity[b], 0.5f);
-            birdsTransform[b].Translate(translateCur * birdsSpeed[b]);
+            //birdsTransform[b].Translate(translateCur * birdsSpeed[b]);
+            birdsTransform[b].gameObject.GetComponent<Rigidbody>().AddForce(birdsTransform[b].forward * 2);
             Vector3 tpCh = flocksTransform[curentFlock[b]].position + rdTargetPos[b] + verticalWaweCur - birdsTransform[b].position;
             Quaternion rotationCur = Quaternion.LookRotation(Vector3.RotateTowards(birdsTransform[b].forward, tpCh, soaringCur, 0));
             if (rotationClamp == false) birdsTransform[b].rotation = rotationCur;
