@@ -43,6 +43,8 @@ public class ManateeBehavior : MonoBehaviour
 
     // How the manatee knows if it is at the surface (object with the 'Air' tag)
     public bool atSurface {get; private set;} = false;
+    // How the manatee knows if it is too close to the player (trigger collider with 'PersonalSpace' tag)
+    public bool inPersonalSpace {get; private set;} = false;
 
     private float currentTimeWithoutBreath = 0f;    // Timer for breathing occasionally
 
@@ -50,7 +52,7 @@ public class ManateeBehavior : MonoBehaviour
 
     private AbstractAction swim, breathe, rest, play, turnAround;
     private AbstractAction currentAction = null;
-private LineRenderer lineRenderer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +72,6 @@ private LineRenderer lineRenderer;
         breathe = new ManateeBreathe(this, movementSpeed);
         play = new ManateePlay(this, happyParticleSettings);
         turnAround = new ManateeChangeDirection(this, rotationSpeed);
-        lineRenderer = this.gameObject.GetComponent<LineRenderer>();
     }
 
 
@@ -79,7 +80,8 @@ private LineRenderer lineRenderer;
     void Update()
     {
         currentTimeWithoutBreath += Time.deltaTime;
-        if (!currentActionActive) {
+        // Choose next action when the current action ends, and the manatee is not in personal space.
+        if (!currentActionActive && !inPersonalSpace) {
             ChooseNextAction();
         }
 
@@ -97,10 +99,8 @@ private LineRenderer lineRenderer;
         else {
             
             RaycastHit hit;
-            // Vector3 littleDown = this.transform.forward;
-            // littleDown.y -= 0.1f;
             Ray ray = new Ray(this.transform.position, this.transform.forward);
-            // lineRenderer.SetPositions( new Vector3[] {this.transform.position, this.transform.position + littleDown * 50});
+
 
             if (Physics.Raycast(ray, out hit, 20) && hit.distance < 10f) {
                 currentAction = turnAround;
@@ -178,6 +178,10 @@ private LineRenderer lineRenderer;
             case "Air":
                 atSurface = true;
                 break;
+            case "PersonalSpace":
+                inPersonalSpace = true;
+                Debug.Log("manatee in personal space");
+                break;
             case "Player":
                 // Player-manatee interaction
                 this.PlayerInteraction();
@@ -191,6 +195,10 @@ private LineRenderer lineRenderer;
         switch (other.gameObject.tag) {
             case "Air":
                 atSurface = false;
+                break;
+            case "PersonalSpace":
+                inPersonalSpace = false;
+                Debug.Log("Manatee left personal space");
                 break;
             default:
                 break;
