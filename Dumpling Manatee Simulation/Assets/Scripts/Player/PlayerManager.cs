@@ -130,6 +130,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void Breathe()
+    {
+        currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
+    }
 
     public void OnGrassEaten() {
         this.currentHealth += 10;

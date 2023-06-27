@@ -18660,6 +18660,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1819473750018744722, guid: 35286f28600b1c849a59b621b70f67e4, type: 3}
   m_PrefabInstance: {fileID: 916737682}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1656261262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6363136616631959794, guid: 6e30b7a1523d39a4681f0acf899e22ed, type: 3}
+  m_PrefabInstance: {fileID: 1630545296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1656261267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656261262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3751916400e2d418a876a17da712d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656384817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed64b66ef49537149bc27c126b8a6d0f, type: 3}
@@ -22481,8 +22498,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056855379}
-  m_LocalRotation: {x: -0.15251686, y: 0.09859267, z: 0.015378581, w: 0.98325056}
-  m_LocalPosition: {x: 2.258462, y: 2.706277, z: 5.6402836}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.9031188, y: 8.278878, z: 13.690504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23117,7 +23134,7 @@ GameObject:
   - component: {fileID: 2093334127}
   - component: {fileID: 2093334126}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Air Volume
   m_TagString: Air
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
