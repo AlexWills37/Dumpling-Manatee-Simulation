@@ -405,8 +405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 6363136616705758099}
   forwardDirection: {fileID: 6363136616705331131}
-  swimUpButton: 512
-  swimDownButton: 256
+  swimUpButton: 2
+  swimDownButton: 1
   horizontalMovementSpeed: 10
   verticalMovementSpeed: 10
 --- !u!114 &1656261267
