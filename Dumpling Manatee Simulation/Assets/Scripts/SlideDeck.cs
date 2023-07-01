@@ -120,7 +120,7 @@ public class SlideDeck : MonoBehaviour
     /// This function is called when the user presses the button attached to this game object.
     /// When the user presses the button, transition to the next slide and briefly disable the button.
     /// </summary>
-    private void OnButtonClick() {
+    public void OnButtonClick() {
         // Deactivate the button
         nextSlideButton.interactable = false;
 
