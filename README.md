@@ -62,6 +62,7 @@ After it loads, a window will allow you to choose what parts of the package to i
 
 From the Oculus Integration Package, this project uses:
 - VR
+- SampleFramework
 
 When you are prompted to update the Oculus Utilities plugin, click **Yes**. Then it will ask you to restart Unity, so click **Restart**.
 
