@@ -35,6 +35,7 @@ public class ManateeBehavior : MonoBehaviour
 
     protected Rigidbody manateeRb;
     
+
     private Animator animator;
 
     // Particle variable
@@ -42,12 +43,14 @@ public class ManateeBehavior : MonoBehaviour
 
     // How the manatee knows if it is at the surface (object with the 'Air' tag)
     public bool atSurface {get; private set;} = false;
+    // How the manatee knows if it is too close to the player (trigger collider with 'PersonalSpace' tag)
+    public bool inPersonalSpace {get; private set;} = false;
 
     private float currentTimeWithoutBreath = 0f;    // Timer for breathing occasionally
 
     private bool currentActionActive = false;
 
-    private AbstractAction swim, breathe, rest, play;
+    private AbstractAction swim, breathe, rest, play, turnAround;
     private AbstractAction currentAction = null;
 
 
@@ -64,11 +67,11 @@ public class ManateeBehavior : MonoBehaviour
         happyParticleSettings = happyParticles.emission;
         happyParticleSettings.rateOverTime = 0; // Stop the manatee from emitting particles
 
-        swim = new ManateeSwim(this, movementSpeed);
+        swim = new ManateeSwim(this, movementSpeed, rotationSpeed);
         rest = new ManateeWait(this);
         breathe = new ManateeBreathe(this, movementSpeed);
         play = new ManateePlay(this, happyParticleSettings);
-
+        turnAround = new ManateeChangeDirection(this, rotationSpeed);
     }
 
 
@@ -77,13 +80,15 @@ public class ManateeBehavior : MonoBehaviour
     void Update()
     {
         currentTimeWithoutBreath += Time.deltaTime;
-        if (!currentActionActive) {
+        // Choose next action when the current action ends, and the manatee is not in personal space.
+        if (!currentActionActive && !inPersonalSpace) {
             ChooseNextAction();
         }
 
         if (Input.GetMouseButton(0)) {
             PlayerInteraction();
         }
+
     }
 
     private void ChooseNextAction() {
@@ -92,22 +97,38 @@ public class ManateeBehavior : MonoBehaviour
             Debug.Log("Starting breathe");
         }
         else {
-            // int randomNum = (int)(Random.Range(0, 2));
-            int randomNum = 1;  // No swimming yet. Only rest and breathe
-            switch (randomNum) {
-                case 0:
-                    currentAction = swim;
-                    Debug.Log("Starting swim.");
-                    break;
-                case 1:
-                    currentAction = rest;
-                    // rest.StartAction();
-                    Debug.Log("Starting rest");
-                    break;
-                default:
-                    Debug.LogError("Error: No action chosen.");
-                    break;
+            
+            RaycastHit hit;
+            Ray ray = new Ray(this.transform.position, this.transform.forward);
+
+
+            if (Physics.Raycast(ray, out hit, 20) && hit.distance < 10f) {
+                currentAction = turnAround;
+                Debug.Log("Changing Direction.");
+            } else {
+
+                int randomNum = (int)(Random.Range(0, 2));
+                // int randomNum = 1;  // No swimming yet. Only rest and breathe
+                switch (randomNum) {
+                    case 0:
+                        currentAction = swim;
+                        Debug.Log("Starting swim.");
+                        break;
+                    case 1:
+                        currentAction = rest;
+                        // rest.StartAction();
+                        Debug.Log("Starting rest");
+                        break;
+                    default:
+                        Debug.LogError("Error: No action chosen.");
+                        break;
+                }
+                
             }
+
+
+
+
         }
         
 
@@ -157,6 +178,10 @@ public class ManateeBehavior : MonoBehaviour
             case "Air":
                 atSurface = true;
                 break;
+            case "PersonalSpace":
+                inPersonalSpace = true;
+                Debug.Log("manatee in personal space");
+                break;
             case "Player":
                 // Player-manatee interaction
                 this.PlayerInteraction();
@@ -170,6 +195,10 @@ public class ManateeBehavior : MonoBehaviour
         switch (other.gameObject.tag) {
             case "Air":
                 atSurface = false;
+                break;
+            case "PersonalSpace":
+                inPersonalSpace = false;
+                Debug.Log("Manatee left personal space");
                 break;
             default:
                 break;

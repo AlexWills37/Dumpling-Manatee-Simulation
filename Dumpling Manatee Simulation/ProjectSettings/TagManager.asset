@@ -7,6 +7,8 @@ TagManager:
   - SeaGrass
   - Air
   - Fish
+  - Manatee
+  - PersonalSpace
   layers:
   - Default
   - TransparentFX
