@@ -86,9 +86,6 @@ In the hierarchy,
       - RightControllerAnchor
         - Flipper
           > Same as the Left side
-  - Sun Rays
-    > Subject to change. The sun rays probably should not be part of the player,
-    > although we want them to follow the player.
 - Vibration Manager
   > Uses the `HapticFeedback.cs` script to rumble the player's controllers for
   > dynamic feedback.
