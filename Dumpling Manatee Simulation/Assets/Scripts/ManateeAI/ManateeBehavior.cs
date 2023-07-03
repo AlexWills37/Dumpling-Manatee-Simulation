@@ -18,6 +18,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ManateeBehavior : MonoBehaviour
 {
+    private DebugText gameDebug;
 
     [Tooltip("How quickly the manatee should move around")]
     [SerializeField] protected float movementSpeed = 4f;
@@ -57,6 +58,7 @@ public class ManateeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameDebug = GameObject.FindObjectOfType<DebugText>();
         // Get specific components
 
         manateeRb = this.GetComponent<Rigidbody>();
@@ -94,7 +96,7 @@ public class ManateeBehavior : MonoBehaviour
     private void ChooseNextAction() {
         if (currentTimeWithoutBreath >= breathTime) {
             currentAction = breathe;
-            Debug.Log("Starting breathe");
+            gameDebug.Log("Starting breathe");
         }
         else {
             
@@ -104,7 +106,7 @@ public class ManateeBehavior : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 20) && hit.distance < 10f) {
                 currentAction = turnAround;
-                Debug.Log("Changing Direction.");
+                gameDebug.Log("Changing Direction.");
             } else {
 
                 int randomNum = (int)(Random.Range(0, 2));
@@ -112,15 +114,15 @@ public class ManateeBehavior : MonoBehaviour
                 switch (randomNum) {
                     case 0:
                         currentAction = swim;
-                        Debug.Log("Starting swim.");
+                        gameDebug.Log("Starting swim.");
                         break;
                     case 1:
                         currentAction = rest;
                         // rest.StartAction();
-                        Debug.Log("Starting rest");
+                        gameDebug.Log("Starting rest");
                         break;
                     default:
-                        Debug.LogError("Error: No action chosen.");
+                        gameDebug.LogError("Error: No action chosen.");
                         break;
                 }
                 
@@ -155,7 +157,7 @@ public class ManateeBehavior : MonoBehaviour
     public void SetAtSurface(bool isAtSurface)
     {
         this.atSurface = isAtSurface;
-        Debug.LogWarning("Manatee is " + (isAtSurface ? "" : "not") + " at the surface!");
+        gameDebug.LogWarning("Manatee is " + (isAtSurface ? "" : "not") + " at the surface!");
 
     }
 
@@ -177,13 +179,15 @@ public class ManateeBehavior : MonoBehaviour
         switch (other.gameObject.tag) {
             case "Air":
                 atSurface = true;
+                gameDebug.Log("manatee is at the surface");
                 break;
             case "PersonalSpace":
                 inPersonalSpace = true;
-                Debug.Log("manatee in personal space");
+                gameDebug.Log("manatee in personal space");
                 break;
             case "Player":
                 // Player-manatee interaction
+                gameDebug.Log("Playing with manatee");
                 this.PlayerInteraction();
                 break;
             default:
@@ -195,10 +199,11 @@ public class ManateeBehavior : MonoBehaviour
         switch (other.gameObject.tag) {
             case "Air":
                 atSurface = false;
+                gameDebug.Log("Manatee back underwater");
                 break;
             case "PersonalSpace":
                 inPersonalSpace = false;
-                Debug.Log("Manatee left personal space");
+                gameDebug.Log("Manatee left personal space");
                 break;
             default:
                 break;

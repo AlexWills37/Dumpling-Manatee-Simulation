@@ -86,13 +86,19 @@ public class ManateeSwim : AbstractAction
         elapsedTime = 0;
         float elapsedRotation = 0;
         float deltaRotation;
+
         // Swim until: manatee enters personal space OR manatee swims for the swimTime and completes its rotation
         while ((elapsedTime < swimTime || elapsedRotation < Mathf.Abs(rotationDifference)) && !manatee.inPersonalSpace) {    // Stop early if the manatee enters the player's personal space
             elapsedTime += Time.deltaTime;
 
             // Only change height if we are going down, or if we are going up and are not at the surface
-            if (heightDifference < 0 || !manatee.atSurface) {
+            if (heightDifference <= 0 || !manatee.atSurface) {
                 manatee.transform.Translate(0, heightDifference * Time.deltaTime / swimTime, 0, Space.World);
+
+                // If we reach the surface, and the height difference is positive (this else statement)...
+            } else {
+                // ...swap the vertical direction to swim down
+                heightDifference *= -1;
             }
 
             // Only change rotation if we have not finished rotating

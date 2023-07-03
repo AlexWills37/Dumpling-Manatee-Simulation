@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309733705}
   - component: {fileID: 309733706}
+  - component: {fileID: 5265637646623388595}
   m_Layer: 0
   m_Name: Personal Space
   m_TagString: PersonalSpace
@@ -74,7 +75,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6363136617848158728}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &309733706
 SphereCollider:
@@ -89,6 +90,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.65
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5265637646623388595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309733704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb00c7b128c6424c8c163fbc8eb0572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toFollow: {fileID: 6363136616631959797}
+  matchRotation: 1
+  followXPosition: 1
+  followYPosition: 1
+  followZPosition: 1
 --- !u!1 &3444924599937269415
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +377,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6363136617848158728}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6363136616631959798
 CapsuleCollider:
@@ -967,8 +985,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 309733705}
   - {fileID: 6363136616631959797}
+  - {fileID: 309733705}
   - {fileID: 6363136616705331135}
   - {fileID: 173792346}
   - {fileID: 8087782891885453049}
