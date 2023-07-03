@@ -70,8 +70,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8230636790179488820}
-  m_LocalRotation: {x: -0.4364484, y: -0.5521904, z: -0.4396754, w: 0.5579283}
-  m_LocalPosition: {x: 4.04912, y: 1.2513556, z: -0.006467819}
+  m_LocalRotation: {x: -0.5473479, y: -0.471885, z: -0.5308056, w: 0.44269645}
+  m_LocalPosition: {x: 5.3591685, y: 0.35282928, z: -0.500927}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -92,6 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 3612766537501172123}
+  matchRotation: 1
+  followXPosition: 1
+  followYPosition: 1
+  followZPosition: 1
 --- !u!1 &8230636790389575796
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,9 +188,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8230636790563899603}
-  m_LocalRotation: {x: -0.004033476, y: 0.0023235977, z: -0.73543096, w: -0.6775837}
-  m_LocalPosition: {x: 0.73206437, y: 0.93911266, z: 0}
-  m_LocalScale: {x: 100, y: 100.000046, z: 100}
+  m_LocalRotation: {x: -0.019042961, y: 0.014092892, z: 0.73788035, w: 0.6745157}
+  m_LocalPosition: {x: 2.09419, y: 0.9321517, z: -0.5569141}
+  m_LocalScale: {x: 100, y: 100.000015, z: 100.000015}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8230636791350374236}
@@ -206,6 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 2863393149113152572}
+  matchRotation: 1
+  followXPosition: 1
+  followYPosition: 1
+  followZPosition: 1
 --- !u!1 &8230636791350374239
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,43 +421,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.594
+      value: -0.0029206276
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7025776
+      value: 0.63913226
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.9
+      value: 1.6628213
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.25318488
+      value: 0.29318255
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.669505
+      value: 0.64130807
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.21682273
+      value: 0.2947954
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.66381353
+      value: 0.64487493
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.932
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.455
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869609, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 141.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5735780080566869614, guid: 32a6902ed00b7904da4e74380eaf12c4, type: 3}
       propertyPath: m_Name
@@ -501,3 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 5697928485514697253}
+  matchRotation: 1
+  followXPosition: 1
+  followYPosition: 1
+  followZPosition: 1
