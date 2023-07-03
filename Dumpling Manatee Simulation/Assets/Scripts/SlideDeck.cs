@@ -78,7 +78,7 @@ public class SlideDeck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && nextSlideButton.interactable)
+        if(Input.GetKeyDown(KeyCode.N) && nextSlideButton.interactable)
         {
             nextSlideButton.onClick.Invoke();
         } else if (Input.GetKeyDown(KeyCode.L)) {
