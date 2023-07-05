@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ManateeHeavenGameController : MonoBehaviour
 {
@@ -9,25 +10,25 @@ public class ManateeHeavenGameController : MonoBehaviour
     private int numberOfGrassEaten = 0;
     private bool breathed = false;
     private bool interacted = false;
-    public void grassEaten()
+    private PlayerManager player;
+
+    private void Start()
     {
-        numberOfGrassEaten += 1;
+        player = GameObject.Find("Player").GetComponent<PlayerManager>();
+        player.getPlayerValuesEvent().AddListener(checkPlayerValues);
+    }
+    private void checkPlayerValues()
+    {
+        //Debug.Log("Player value Updates Received by game controller");
+        this.numberOfGrassEaten = player.ateGrassNum;
+        this.breathed = player.breathed;
         checkIflevelComplete();
     }
-    public void manateesInteracted()
-    {
-        interacted = true;
-        checkIflevelComplete();
-    }
-    public void playerBreathes()
-    {
-        breathed = true;
-        checkIflevelComplete();
-    }
+
     void checkIflevelComplete()
     {
-        if (numberOfGrassEaten >= numberOfGrassNeededToContinue 
-            //& breathed & interacted
+        if (numberOfGrassEaten >= numberOfGrassNeededToContinue & breathed 
+            //& interacted
             )
         {
             GameObject.Find("LevelExitVolume").GetComponent<LevelExitBehav>().levelComplete();
