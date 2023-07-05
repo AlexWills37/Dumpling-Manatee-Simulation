@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class EdibleGrassBehavior : MonoBehaviour
 {
     [SerializeField]
     private GameObject grassParticles;
     [SerializeField]
     private float amountOfGrassToRemoveOnEating;
-
     private bool alreadyEaten = false;
-
+    public UnityEvent grassEaten;
     public void onGrassEaten()
     {
         //anything meant to happen when the grass is consumed goes here
         Destroy(grassParticles);
         cullChildren(amountOfGrassToRemoveOnEating);
+        grassEaten.Invoke();
     }
     private void cullChildren(float percentCulled)
     {
