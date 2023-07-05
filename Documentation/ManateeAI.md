@@ -24,7 +24,7 @@ in [`Assets/Scripts/ManateeAI/ManateeBehavior.cs`](./../Dumpling%20Manatee%20Sim
 in the `private void ChooseNextAction()` method.
 
 To add behavior outside of this loop (for example, the manatee playing an animation/action 
-when the player pets it with the OnCollisionEnter event), stop the current action with `currentAction.ForceEnd()` and begin a new action with the following code:
+when the player pets it with the OnCollisionEnter event), stop the current action with `currentAction.StopAction()` and begin a new action with the following code:
 ```
 currentAction = newAction;
 currentAction.StartAction();
@@ -137,7 +137,7 @@ The **action** also stores the action when it runs as a coroutine (IEnumerator),
 The coroutine is stored in a variable to make it possible to end the coroutine early
 if needed.
 
-`action.OnComplete()` is called internally at the end of the `ActionCoroutine()` and `ForceEnd()` methods to prepare the manatee for its next action using `manatee.EndCurrentAction()`.
+`action.OnComplete()` is called internally at the end of the `ActionCoroutine()` and `StopAction()` methods to prepare the manatee for its next action using `manatee.EndCurrentAction()`.
 
 `action.StopAction()` is called externally in the `ManateeBehavior` script to end a 
 coroutine early, such as when the manatee is pet by the player. Unless
@@ -172,7 +172,7 @@ Detecting the end of an action:
 > action from being chosen. 
 >
 > When the action finishes and calls `AbstractAction.OnComplete()`, it triggers
->  `ManateeAI.EndCurrentAction`, which sets `currentActionActive` back to false.
+>  `ManateeAI.EndCurrentAction()`, which sets `currentActionActive` back to false.
 
 Interacting with the manatee:
 > When the player collides with the manatee, the script will attempt to stop the

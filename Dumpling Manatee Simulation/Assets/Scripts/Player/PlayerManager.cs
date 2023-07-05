@@ -42,6 +42,8 @@ public class PlayerManager : MonoBehaviour
     // Whether or not the player has interacted with a manatee
     private bool interactedWithManatee;
 
+    private HapticFeedback haptics;
+
 
 
     [Tooltip("Bar to display the player's health")]
@@ -76,6 +78,9 @@ public class PlayerManager : MonoBehaviour
             breathBar.SetBarMaxValue(maxBreath);
             breathBar.SetBarValue(currentBreath);
         }
+
+        haptics = this.GetComponentInChildren<HapticFeedback>();
+
         
     }
 
@@ -125,12 +130,13 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void Breathe()
     {
-        // If we are colliding with air, increase our breath bar
-        if (other.gameObject.CompareTag("Air"))
-        {
-            currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
-        }
+        currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
+    }
+
+    public void OnGrassEaten() {
+        this.currentHealth += 10;
+        haptics.TriggerVibrationTime(0.1f);
     }
 }
