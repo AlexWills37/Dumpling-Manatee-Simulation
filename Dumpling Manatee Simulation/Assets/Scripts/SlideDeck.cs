@@ -36,7 +36,7 @@ public class SlideDeck : MonoBehaviour
     [Tooltip("Text to display on the button when it is inactive")]
     [SerializeField] private string defaultInactiveText = "...";
 
-    private UnityEvent[] OnSlideActivate;
+    private UnityEvent[] slideActivationEvents;
     
 
 
@@ -54,9 +54,9 @@ public class SlideDeck : MonoBehaviour
         nextSlideButton.interactable = true;
 
         // Create a unity event for each slide
-        OnSlideActivate = new UnityEvent[slides.Length];
-        for (int i = 0; i < OnSlideActivate.Length; i++) {
-            OnSlideActivate[i] = new UnityEvent();
+        slideActivationEvents = new UnityEvent[slides.Length];
+        for (int i = 0; i < slideActivationEvents.Length; i++) {
+            slideActivationEvents[i] = new UnityEvent();
         }
 
         // Connect to the button for transitioning slides
@@ -110,7 +110,7 @@ public class SlideDeck : MonoBehaviour
     /// <param name="call"> The function (without parameters) to call when the slide is activated </param>
     public void AddEventOnSlideActivate(int slideIndex, UnityAction call) {
         if (slideIndex < slides.Length) {
-            OnSlideActivate[slideIndex].AddListener(call);
+            slideActivationEvents[slideIndex].AddListener(call);
         }
     }
 
@@ -153,6 +153,10 @@ public class SlideDeck : MonoBehaviour
         buttonText.SetText(text);
     }
 
+    public int GetNumSlides() {
+        return slides.Length;
+    }
+
     /// <summary>
     /// Moves the presentation to the next slide.
     /// </summary>
@@ -169,13 +173,18 @@ public class SlideDeck : MonoBehaviour
         if(slides[currentSlide] != null)
         {
             slides[currentSlide].SetActive(true);
-            OnSlideActivate[currentSlide].Invoke();
+            slideActivationEvents[currentSlide].Invoke();
         }
 
         // Check if we are at the last slide
         if (currentSlide == slides.Length - 1)
         {
             // OnLastSlide();
+        }
+
+        // If we are at the first slide again, the presentation has been completed
+        if (currentSlide == 0) {
+            OnPresentationComplete.Invoke();
         }
     }
 

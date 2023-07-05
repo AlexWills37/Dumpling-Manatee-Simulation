@@ -23,9 +23,6 @@ public class ManateeSoundButton : MonoBehaviour
     [Tooltip("The slide deck this button is a part of")]
     [SerializeField] private SlideDeck slideDeck;
 
-    [Tooltip("The index of the slide this button appears on")]
-    [SerializeField] private int slideIndex;
-
     private Button soundButton; // The button to start the sound
 
     private AudioSource manateeSound;   // The sound to play
@@ -39,9 +36,6 @@ public class ManateeSoundButton : MonoBehaviour
 
         // Get the manatee sound
         manateeSound = this.GetComponent<AudioSource>();
-
-        // Connect to the slide deck to take control of this slide
-        // slideDeck.AddEventOnSlideActivate(slideIndex, BeginSlide);
     }
 
     void Update() {
@@ -84,19 +78,15 @@ public class ManateeSoundButton : MonoBehaviour
         slideDeck.SetButtonActive(true);
     }
 
+
     /// <summary>
-    /// Method to be called when the slide with this button is reached.
+    /// When this slide is reached, this script will be enabled and this function will be called.
     /// Takes slide deck control away from the player and directs them to this button
     /// to play the sound. The player will be able to continue the slide deck after
     /// clicking the button and calling the PlayButtonSound() coroutine.
     /// </summary>
-    private void BeginSlide() {
+    private void OnEnable() {
         slideDeck.SetButtonActive(false);
         slideDeck.SetButtonText("<---");
-        Debug.Log("Button begin slide!");
-    }
-    private void OnEnable() {
-        BeginSlide();
-        Debug.Log("Button Enabled!");
     }
 }
