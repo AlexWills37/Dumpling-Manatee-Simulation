@@ -77,13 +77,36 @@ In a custom script:
 ### Calling functions when reaching a certain slide
 You may wish to activate a script's function when a certain slide is reached (like
 calling `slideDeck.SetButtonActive(false)` when reaching the slide where the player
-chooses their name). Since the slides are set active/inactive, one approach is to
-attach a script to the target slide and call functions in the script's `void OnEnable()`
-method. This method may get called when the scene is loaded, before the **Slide Deck** 
-disables the inactive slides, so the **Slide Deck** has another way of calling particular
-functions: `void AddEventOnSlideActivate(int slideIndex, UnityAction call)`.
+chooses their name). 
 
-In a custom script:
+There are two ways to call functions when a certain slide is reached, and it depends on
+the context.
+
+**If the script is attached to the slide or an object in the slide:**
+
+Call the code in the script's `private void OnEnable()` function.
+
+Since the `SlideDeck.cs` script is configured in the project settings to run before
+most other scripts, *any scripts attached to the slides (other than the first slide) will be disabled before they can run*. This includes the scripts' `Start()` and `OnEnable()` functions.
+
+This means that both `Start()` and `OnEnable()` will only run when the slide is activated.
+
+> If the scripts are running when the scene is loaded, before the **Slide Deck** disables the slides,
+> check to verify that `SlideDeck.cs` has an earlier execution time.
+>
+> Go to *Edit > Project Settings > Script Execution Order*. *SlideDeck* should be listed
+> before *Default Time*, or before the script attached to the slide.
+
+
+
+**If the script is not attached to the slide (it will not be disabled/enabled):**
+
+Subscribe a function to a certain slide with the **Slide Deck**'s `void AddEventOnSlideActivate(int slideIndex, UnityAction call)`.
+
+This may be useful if you have an external Game Manager script that should activate
+some function on a specific slide.
+
+In the custom script that is not attached to a slide:
 
 1. Write a function with no parameters to call when we reach a certain slide.
 2. Get a reference to the **Slide Deck** component (see the previous section 

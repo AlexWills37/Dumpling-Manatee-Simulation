@@ -29,7 +29,15 @@ public class SlideDeck : MonoBehaviour
 
     [Tooltip("Called after the final slide is complete")]
     public UnityEvent OnPresentationComplete;
+    
+    private TextMeshProUGUI buttonText;
+    private string defaultActiveText;   // The button's default text will be whatever is in the text when the scene is loaded.
+    
+    [Tooltip("Text to display on the button when it is inactive")]
+    [SerializeField] private string defaultInactiveText = "...";
+
     private UnityEvent[] OnSlideActivate;
+    
 
 
     private IEnumerator reactivationTimer;  // Coroutine to temporarily disable the button
@@ -40,6 +48,10 @@ public class SlideDeck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get the button text, as well as the default text to display when the button is active
+        buttonText = nextSlideButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        defaultActiveText = buttonText.text;
+        nextSlideButton.interactable = true;
 
         // Create a unity event for each slide
         OnSlideActivate = new UnityEvent[slides.Length];
@@ -107,6 +119,7 @@ public class SlideDeck : MonoBehaviour
 
         // Disable or enable the button
         nextSlideButton.interactable = active;
+        buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
 
         // Stop the reactivation coroutine
         if (reactivationTimer != null) {
@@ -123,6 +136,7 @@ public class SlideDeck : MonoBehaviour
     public void OnButtonClick() {
         // Deactivate the button
         nextSlideButton.interactable = false;
+        buttonText.SetText(defaultInactiveText);
 
         // Start the timer to reactivate the button
         if (reactivationTimer != null) {
@@ -133,6 +147,10 @@ public class SlideDeck : MonoBehaviour
 
         // Progress to the next slide
         this.NextSlide();
+    }
+
+    public void SetButtonText(string text) {
+        buttonText.SetText(text);
     }
 
     /// <summary>
@@ -174,7 +192,7 @@ public class SlideDeck : MonoBehaviour
 
         // Bring text back and make button interactable again
         nextSlideButton.interactable = true;
-        // nextSlideButton.SetText(buttonActiveText);
+        buttonText.SetText(defaultActiveText);
 
         // Clear the script's coroutine to indicate it has finished
         reactivationTimer = null;
