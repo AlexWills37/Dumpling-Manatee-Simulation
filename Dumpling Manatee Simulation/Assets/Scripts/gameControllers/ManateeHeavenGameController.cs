@@ -10,13 +10,19 @@ public class ManateeHeavenGameController : MonoBehaviour
     private int numberOfGrassEaten = 0;
     private bool breathed = false;
     private bool interacted = false;
-    private PlayerManager player;
+    private PlayerManager player; //hang onto a reference to the player
 
+    /// <summary>
+    /// At the start, get a reference to the player script and gall its getPlayerValuesEvent() method to get a reference to the event that scrip ttriggers every time is values are updated. add a listener that will be triggered when that event is invoked
+    /// </summary>
     private void Start()
-    {
+    { 
         player = GameObject.Find("Player").GetComponent<PlayerManager>();
         player.getPlayerValuesEvent().AddListener(checkPlayerValues);
     }
+    /// <summary>
+    /// simple method to update this scripts information from what the player script stores. This setup was chosen rather than simplyy updating these values every frame to save checks of these variables so they are only used when the variables update
+    /// </summary>
     private void checkPlayerValues()
     {
         //Debug.Log("Player value Updates Received by game controller");
@@ -25,6 +31,9 @@ public class ManateeHeavenGameController : MonoBehaviour
         checkIflevelComplete();
     }
 
+    /// <summary>
+    /// If the win condition of the level is complete, access the LevelExitVolume and turn it on so that when the player enters it they p[roceed to the next scene
+    /// </summary>
     void checkIflevelComplete()
     {
         if (numberOfGrassEaten >= numberOfGrassNeededToContinue & breathed 
