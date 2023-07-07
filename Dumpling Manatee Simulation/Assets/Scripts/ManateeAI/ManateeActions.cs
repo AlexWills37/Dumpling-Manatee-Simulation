@@ -52,7 +52,7 @@ public class ManateeSwim : AbstractAction
     protected override IEnumerator ActionCoroutine() {
 
         // Choose time to swim
-        float swimTime = Random.Range(1, 5);
+        float swimTime = Random.Range(1f, 5f);
         // Choose rotation to take
         float maxRotation = 45;
         float rotationDifference = Random.Range(-maxRotation, maxRotation);
@@ -66,43 +66,46 @@ public class ManateeSwim : AbstractAction
         }
 
 
-
-        // Kinematically (not using rigidbody physics) rotate the manatee
-        float elapsedRotation = 0;
-        float deltaRotation;
-        // Rotate the manatee at rotationSpeed (degrees per second), until we have reached rotationDifference
-        while (elapsedRotation < Mathf.Abs(rotationDifference)) {
-            deltaRotation = Mathf.Sign(rotationDifference) * Time.deltaTime * rotationSpeed;
-            manatee.transform.Rotate(0, deltaRotation, 0, Space.World);
-            elapsedRotation += Mathf.Abs(deltaRotation);
-            
-            yield return null;
-        }
-
         // Move the manatee forward with rigidbody velocity
         // Ease into swim speed
-        AnimationCurve velocityStartup = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        AnimationCurve velocityStartup = AnimationCurve.EaseInOut(0, 0, 1, 1);  // Smoothe curve
         manateeAnimator.SetBool("isSwimming", true);
         float elapsedTime = 0;
+        // Go from time = 0 to time = the end of the startup curve
         while(elapsedTime < velocityStartup.keys[velocityStartup.length - 1].time && !manatee.inPersonalSpace) {    // Stop early if the manatee enters the player's personal space
             
             manateeRb.velocity = manatee.transform.forward * velocityStartup.Evaluate(elapsedTime) * movementSpeed;
             yield return null;
             elapsedTime += Time.deltaTime;
         }
-        // At full speed now, turn off drag and set the speed to our movementSpeed for continuous movement
+        // At full speed now, turn off drag for continuous movement
         manateeRb.drag = 0;
-        manateeRb.velocity = manatee.transform.forward * movementSpeed;
+        // manateeRb.velocity = manatee.transform.forward * movementSpeed;
 
-        // For the swim time, slowly move vertically while maintaining horizontal speed from 0 drag
+        // For the swim time, swim forward, slowly swim up/down, and rotate
         elapsedTime = 0;
-        while (elapsedTime < swimTime && !manatee.inPersonalSpace) {    // Stop early if the manatee enters the player's personal space
+        float elapsedRotation = 0;
+        float deltaRotation;
+        // Swim until: manatee enters personal space OR manatee swims for the swimTime and completes its rotation
+        while ((elapsedTime < swimTime || elapsedRotation < Mathf.Abs(rotationDifference)) && !manatee.inPersonalSpace) {    // Stop early if the manatee enters the player's personal space
             elapsedTime += Time.deltaTime;
 
             // Only change height if we are going down, or if we are going up and are not at the surface
             if (heightDifference < 0 || !manatee.atSurface) {
                 manatee.transform.Translate(0, heightDifference * Time.deltaTime / swimTime, 0, Space.World);
             }
+
+            // Only change rotation if we have not finished rotating
+            if (elapsedRotation < Mathf.Abs(rotationDifference)) {
+                // Rotate the manatee kinematically (with the transform, not the rigidbody)
+                deltaRotation = Mathf.Sign(rotationDifference) * Time.deltaTime * rotationSpeed;
+                manatee.transform.Rotate(0, deltaRotation, 0, Space.World);
+                elapsedRotation += Mathf.Abs(deltaRotation);
+
+                // Update its velocity to match rotation
+                manateeRb.velocity = manatee.transform.forward * movementSpeed;
+            }
+
             yield return null;
         }
 
@@ -260,7 +263,7 @@ public class ManateeChangeDirection : AbstractAction
     protected override IEnumerator ActionCoroutine()
     {
         // Choose a rotation between 90 and 180 degrees, in any direction
-        float rotationChange = Random.Range(90f, 180f);
+        float rotationChange = Random.Range(80f, 140f);
         if (Random.Range(0f, 1f) < 0.5) {
             rotationChange *= -1;
         }
@@ -269,7 +272,7 @@ public class ManateeChangeDirection : AbstractAction
         float elapsedRotation = 0;
         float deltaRotation;
         while (elapsedRotation < Mathf.Abs(rotationChange)) {
-            deltaRotation = Time.deltaTime * rotationSpeed * Mathf.Sign(rotationChange);    // Rotate based on rotation speed and the direction of the rotation
+            deltaRotation = Time.deltaTime * (rotationSpeed + 5) * Mathf.Sign(rotationChange);    // Rotate based on rotation speed and the direction of the rotation
             manatee.transform.Rotate(0, deltaRotation, 0, Space.World);
             elapsedRotation += Mathf.Abs(deltaRotation);
             yield return null;

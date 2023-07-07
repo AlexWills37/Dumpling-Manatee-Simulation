@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 ///<summary>
 /// This script manages the player's gamified behavior (losing breath, gaining health, etc.).
@@ -38,9 +37,12 @@ public class PlayerManager : MonoBehaviour
     /// How many seagrass the player has eaten
     /// </summary>
     public int ateGrassNum {get; private set;} = 0;
+    public bool breathed { get; private set; } = false;
 
     // Whether or not the player has interacted with a manatee
     private bool interactedWithManatee;
+
+    private HapticFeedback haptics;
 
 
 
@@ -55,7 +57,8 @@ public class PlayerManager : MonoBehaviour
 
     private float timeSinceTelemetry = 0f;  // Used to send an update on the player's scores every 10 seconds
 
-
+    public static UnityEvent playerValuesUpdated = new UnityEvent();
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +66,7 @@ public class PlayerManager : MonoBehaviour
 		currentHealth = 10;
         currentBreath = maxBreath;
         ateGrassNum = 0;
+        breathed = false;
         interactedWithManatee = false;
 		
         if(healthBar != null)
@@ -76,6 +80,9 @@ public class PlayerManager : MonoBehaviour
             breathBar.SetBarMaxValue(maxBreath);
             breathBar.SetBarValue(currentBreath);
         }
+
+        haptics = this.GetComponentInChildren<HapticFeedback>();
+
         
     }
 
@@ -125,12 +132,22 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void Breathe()
     {
-        // If we are colliding with air, increase our breath bar
-        if (other.gameObject.CompareTag("Air"))
-        {
-            currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
-        }
+        breathed = true;
+        playerValuesUpdated.Invoke();
+        currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
+    }
+
+    public void OnGrassEaten() {
+        ateGrassNum++;
+        playerValuesUpdated.Invoke();
+        this.currentHealth += 10;
+        haptics.TriggerVibrationTime(0.1f);
+    }
+
+    public UnityEvent getPlayerValuesEvent()
+    {
+        return playerValuesUpdated;
     }
 }
