@@ -161,7 +161,7 @@ The manatee's behavior can be found in [`Assets/Scripts/ManateeAI/ManateeBehavio
 
 This is the algorithm the manatee script uses to determine which action to take:
 
-\>\>\> Insert algorithm, or a flow chart picture, here.
+![Flowchart describing the manatee's decision-making process](./media/manatee-algorithm.png)
 
 
 Detecting the end of an action:
