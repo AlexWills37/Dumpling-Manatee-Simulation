@@ -29,6 +29,7 @@ public class BoatSceneManager : MonoBehaviour
     /// the move to a new scene.
     /// </summary>
     private void OnFinalSlide() {
+        slideDeck.SetButtonActive(true);
         slideDeck.SetButtonText("Become a manatee!");
     }
 }
