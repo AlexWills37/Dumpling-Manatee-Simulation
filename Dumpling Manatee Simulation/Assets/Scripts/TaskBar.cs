@@ -49,13 +49,6 @@ public class TaskBar : MonoBehaviour
         checkmark.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            TransitionTask("Super cool new task.");
-        }
-    }
 
     /// <summary>
     /// Sets the task to complete, playing a small animation.

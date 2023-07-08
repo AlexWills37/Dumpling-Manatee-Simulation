@@ -610,5 +610,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Task Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 160743878847620836, guid: 876a52af78c41d04e984da38e0cd3f6b, type: 3}
+      propertyPath: m_text
+      value: Move the thumbstick to swim around.
+      objectReference: {fileID: 0}
+    - target: {fileID: 160743878847620836, guid: 876a52af78c41d04e984da38e0cd3f6b, type: 3}
+      propertyPath: m_fontSize
+      value: 17.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876a52af78c41d04e984da38e0cd3f6b, type: 3}
