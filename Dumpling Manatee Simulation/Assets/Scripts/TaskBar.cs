@@ -92,6 +92,7 @@ public class TaskBar : MonoBehaviour
     public void TransitionTask(string newTask) {
         StartCoroutine(TransitionTaskCoroutine(newTask));
     }
+    
 
     /// <summary>
     /// Creates a coroutine that changes the text's color through a gradient over time.
@@ -133,4 +134,5 @@ public class TaskBar : MonoBehaviour
         // Reset the task
         this.ResetTask();
     }
+
 }

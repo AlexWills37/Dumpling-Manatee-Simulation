@@ -33,8 +33,6 @@ using UnityEngine;
 [RequireComponent(typeof(SlideDeck))]
 public class TutorialGameManager : MonoBehaviour
 {
-
-
     [Tooltip("Task bar that indicates what the player should do with their controller")]
     [SerializeField] private TaskBar taskBar;
 
@@ -83,12 +81,12 @@ public class TutorialGameManager : MonoBehaviour
             Debug.LogError("Player's Rigidbody not found in the PlayerManager's children");   
         }
 
-        // Freeze vertical position of the player by adding the Y position constraint
+        // Freeze vertical position of the player by adding the Y position constraint (disable swimming up/down)
         playerRb.constraints |= RigidbodyConstraints.FreezePositionY;
 
         // Set up the first task: moving around (move outside of this sphere trigger)
         playerMovementDetector = this.gameObject.AddComponent<SphereCollider>();
-        playerMovementDetector.center = playerRb.transform.position;
+        playerMovementDetector.center = playerRb.transform.position - this.transform.position;
         playerMovementDetector.radius = 0.5f;
         playerMovementDetector.isTrigger = true;
 
@@ -145,8 +143,11 @@ public class TutorialGameManager : MonoBehaviour
 
         // Allow the player to move up/down by removing the Freeze Y Position constraint with bitwise operations
         // ~ negates the constraint so that FreezePositionY is the only bit with a 0
-        // &= keeps the original bits as either 0 or 1 everywhere except for the FreezePositionY bit, which becomes 0 (x & 1 = x, x & 0 = 0)
+        // &= with the result keeps the original bits as either 0 or 1 everywhere except for the FreezePositionY bit, which becomes 0 (x & 1 = x, x & 0 = 0)
         playerRb.constraints &= ~RigidbodyConstraints.FreezePositionY;  
+
+        // Lower the player's breath
+        player.SetBreath(50);
 
         // Copy the air collider to detect surfacing/swimming back down
         airColliderCopy = this.gameObject.AddComponent<BoxCollider>();
