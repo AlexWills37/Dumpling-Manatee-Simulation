@@ -57,7 +57,7 @@ public class SlideDeck : MonoBehaviour
 
         // Connect to the button for transitioning slides
         if (nextSlideButton == null) {
-            Debug.LogError(this.gameObject.name + " has a slide deck, but no button selected in the inspector.");
+            Debug.LogWarning(this.gameObject.name + " has a slide deck, but no button selected in the inspector. Calling OnButtonClick() will create errors.");
         } else {
             // Get the button text, as well as the default text to display when the button is active
             buttonText = nextSlideButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
