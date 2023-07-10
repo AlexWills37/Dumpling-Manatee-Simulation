@@ -150,4 +150,12 @@ public class PlayerManager : MonoBehaviour
     {
         return playerValuesUpdated;
     }
+
+    /// <summary>
+    /// Changes the player's breath level (for use in the tutorial scene).
+    /// </summary>
+    /// <param name="newBreath"> the new breath level </param>
+    public void SetBreath(int newBreath) {
+        this.currentBreath = newBreath;
+    }
 }

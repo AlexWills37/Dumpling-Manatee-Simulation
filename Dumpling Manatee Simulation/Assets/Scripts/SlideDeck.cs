@@ -48,10 +48,6 @@ public class SlideDeck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get the button text, as well as the default text to display when the button is active
-        buttonText = nextSlideButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        defaultActiveText = buttonText.text;
-        nextSlideButton.interactable = true;
 
         // Create a unity event for each slide
         slideActivationEvents = new UnityEvent[slides.Length];
@@ -61,9 +57,13 @@ public class SlideDeck : MonoBehaviour
 
         // Connect to the button for transitioning slides
         if (nextSlideButton == null) {
-            Debug.LogError(this.gameObject.name + " has a slide deck, but no button selected in the inspector.");
+            Debug.LogWarning(this.gameObject.name + " has a slide deck, but no button selected in the inspector. Calling OnButtonClick() will create errors.");
         } else {
+            // Get the button text, as well as the default text to display when the button is active
+            buttonText = nextSlideButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            defaultActiveText = buttonText.text;
             nextSlideButton.onClick.AddListener(OnButtonClick);
+            nextSlideButton.interactable = true;
         }
 
         // Initialize the slides
@@ -160,7 +160,7 @@ public class SlideDeck : MonoBehaviour
     /// <summary>
     /// Moves the presentation to the next slide.
     /// </summary>
-    private void NextSlide() {
+    public void NextSlide() {
         // Transition slides if possible
         if(slides[currentSlide] != null)
         {
