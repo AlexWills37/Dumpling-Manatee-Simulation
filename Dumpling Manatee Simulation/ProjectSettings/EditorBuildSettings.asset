@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/Scenes/Boat Scene.unity
+    guid: 5865bd25a9aad744e830fd1f37f134ac
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TEST Twizzler Player.unity
     guid: df42b3de7ffdfee4aa573013b0bc2d9d
-  - enabled: 0
-    path: Assets/Scenes/Boat Scene.unity
-    guid: 5865bd25a9aad744e830fd1f37f134ac
   - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/DebugUI.unity
     guid: 34004346bd7dcbf4fbfd78d2f12e4451
