@@ -37,7 +37,9 @@ public class SlideDeck : MonoBehaviour
     [SerializeField] private string defaultInactiveText = "...";
 
     private UnityEvent[] slideActivationEvents;
-    
+
+    [SerializeField][Tooltip("does the slide show go back to the start after it is completed")]
+    private bool slideShowRepeats;
 
 
     private IEnumerator reactivationTimer;  // Coroutine to temporarily disable the button
@@ -168,7 +170,14 @@ public class SlideDeck : MonoBehaviour
         }
 
         // Progress to the next slide, looping to the beginning if we surpass the last slide
-        currentSlide = (currentSlide + 1) % slides.Length;
+        if (slideShowRepeats)
+        {
+            currentSlide = (currentSlide + 1) % slides.Length;
+        }
+        else
+        {
+            currentSlide += 1;
+        }
         
         if(slides[currentSlide] != null)
         {
@@ -177,9 +186,9 @@ public class SlideDeck : MonoBehaviour
         }
 
         // Check if we are at the last slide
-        if (currentSlide == slides.Length - 1)
+        if (currentSlide >= slides.Length - 1)
         {
-            // OnLastSlide();
+            OnPresentationComplete.Invoke();
         }
 
         // If we are at the first slide again, the presentation has been completed
