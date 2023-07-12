@@ -27,7 +27,7 @@ public class SlideDeck : MonoBehaviour
     [Tooltip("List of game objects representing the slides")]
     [SerializeField] private GameObject[] slides;
 
-    [Tooltip("Called after the final slide is complete")]
+    [Tooltip("Called when the button is clicked on the final slide")]
     public UnityEvent OnPresentationComplete;
     
     private TextMeshProUGUI buttonText;
@@ -116,15 +116,18 @@ public class SlideDeck : MonoBehaviour
 
     
     public void SetButtonActive(bool active) {
+        if (buttonText == null) {
+            Debug.LogWarning("Attempting to interact with the slide deck before the Start method initializes it.");
+        } else {
+            // Disable or enable the button
+            nextSlideButton.interactable = active;
+            buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
 
-        // Disable or enable the button
-        nextSlideButton.interactable = active;
-        buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
-
-        // Stop the reactivation coroutine
-        if (reactivationTimer != null) {
-            StopCoroutine(reactivationTimer);
-            reactivationTimer = null;
+            // Stop the reactivation coroutine
+            if (reactivationTimer != null) {
+                StopCoroutine(reactivationTimer);
+                reactivationTimer = null;
+            }
         }
     }
 

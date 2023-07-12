@@ -8677,9 +8677,9 @@ MonoBehaviour:
   m_fontSize: 15.9
   m_fontSizeBase: 15.9
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
+  m_fontSizeMax: 15.9
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8913,7 +8913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Miso
+  m_text: Eggroll
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12889,6 +12889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1705764581}
   - component: {fileID: 1705764580}
+  - component: {fileID: 1705764582}
   m_Layer: 0
   m_Name: Water4SimpleReflectionCenterEyeAnchor
   m_TagString: Untagged
@@ -12946,14 +12947,23 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705764579}
-  m_LocalRotation: {x: -0.00029170554, y: -0.99942505, z: 0.033594605, w: -0.00456749}
-  m_LocalPosition: {x: 0.5480502, y: -2.821367, z: -10.963014}
+  m_LocalRotation: {x: 0.006572236, y: 0.98974985, z: 0.04692252, w: -0.1347231}
+  m_LocalPosition: {x: 0.12295771, y: -3.6116655, z: -8.879112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1705764582
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705764579}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &1712772613
 GameObject:
   m_ObjectHideFlags: 0
@@ -15305,6 +15315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1990111326}
+  - component: {fileID: 1990111327}
   m_Layer: 0
   m_Name: 05 Choose Manatee Names
   m_TagString: Untagged
@@ -15335,6 +15346,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1990111327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990111325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde10b60b87b8604d96aaba5408f1849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameChoiceButtons:
+  - {fileID: 1794941866}
+  - {fileID: 952033048}
+  - {fileID: 1582223013}
+  chosenNameFields:
+  - {fileID: 790678693}
+  - {fileID: 1320907082}
+  slideDeck: {fileID: 1724379153}
 --- !u!1 &2002069231
 GameObject:
   m_ObjectHideFlags: 0
