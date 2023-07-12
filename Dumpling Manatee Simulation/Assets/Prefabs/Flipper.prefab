@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 6229553194515596536}
   - component: {fileID: 6043584772325155579}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: FlipperCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
