@@ -43,7 +43,7 @@ and calls any methods tied to the slide.
 5. In the inspector for the **Slide Deck**, drag and drop each **slide** into the *Slides*
    list. The list can be as long or as short as needed.
 
-### Next Slide Behavior
+### Controlling the Next Slide Button
 By default, when the player clicks the button, the script will move to the next slide
 and disable the button for a small amount of time to prevent the user from skipping
 through slides too quickly.
@@ -66,6 +66,10 @@ In a custom script:
 2. Call `slideDeck.SetButtonActive(false)` to make the button unclickable, so that the player
    is unable to progress to the next slide.
 
+   > To change the text displayed in the button to something other than the default,
+   > call `slideDeck.SetButtonText(string text)` *after* calling `slideDeck.SetButtonActive(bool active)`.
+
+
 3. a) When ready to move to the next slide, call `slideDeck.SetButtonActive(true)` to 
    allow the player to move to the next slide.
 
@@ -86,14 +90,14 @@ the context.
 
 Call the code in the script's `private void OnEnable()` function.
 
-Since the `SlideDeck.cs` script is configured in the project settings to run before
-most other scripts, *any scripts attached to the slides (other than the first slide) will be disabled before they can run*. This includes the scripts' `Start()` and `OnEnable()` functions.
-
+Since the `SlideDeck.cs` script disables all of the slide objects in the `Awake()` function, 
+*any scripts attached to the slides (other than the first slide) will be disabled before they can run*
 This means that both `Start()` and `OnEnable()` will only run when the slide is activated.
 
-> If the scripts are running when the scene is loaded, before the **Slide Deck** disables the slides,
-> check to verify that `SlideDeck.cs` has an earlier execution time.
->
+> **SlideDeck.cs** is currently set in the Project Settings to have an earlier execution time
+> than other scripts. This means that even the other script's `Awake()` functions will
+> be disabled before they can run. To change this:
+> 
 > Go to *Edit > Project Settings > Script Execution Order*. *SlideDeck* should be listed
 > before *Default Time*, or before the script attached to the slide.
 
@@ -101,14 +105,15 @@ This means that both `Start()` and `OnEnable()` will only run when the slide is 
 
 **If the script is not attached to the slide (it will not be disabled/enabled):**
 
-Subscribe a function to a certain slide with the **Slide Deck**'s `void AddEventOnSlideActivate(int slideIndex, UnityAction call)`.
+Subscribe a function to a certain slide with the **Slide Deck**'s `void AddEventOnSlideActivate(int slideIndex, UnityAction call)` or `void AddEventOnFinalSlide(UnityAction call)`.
 
 This may be useful if you have an external Game Manager script that should activate
 some function on a specific slide.
 
 In the custom script that is not attached to a slide:
 
-1. Write a function with no parameters to call when we reach a certain slide.
+1. Write a function with no parameters to call when we reach a certain slide
+   (for a function *with* parameters, see [this section below]()).
 2. Get a reference to the **Slide Deck** component (see the previous section 
    for possible implementations).
 3. In the script's `void Start()` method, call 
@@ -145,3 +150,45 @@ public class CoolScript : MonoBehaviour
 >
 > A script can add multiple functions to a single slide, or different functions
 > for different slides, or the same function for different slides.
+>
+
+#### Subscribing a function with parameters to a UnityEvent
+Answers taken from [here on the Unity Forums](https://discussions.unity.com/t/button-onclick-addlistener-how-to-pass-parameter-or-get-which-button-was-clicked-in-handler-method/179151/2).
+
+If you have a function that requires parameters, such as the following code from
+line 82 of [ManateeNameChooser.cs]:
+```
+   private void ChooseName(string nameToChoose) {
+      chosenNames[currentManatee] = nameToChoose;
+      ...
+   }
+```
+> In this case, each button adds this method to its onClick event, with the
+> text displayed on the button as the parameter, so each button passes a different
+> name to this function.
+
+you can use a [lambda (anonymous) function](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions) that doesn't have any parameters.
+> These are functions that do not have any name, and are defined explicitly
+>
+> `(input-parameters) => { <sequence-of-statements> }`
+
+With the example from the ManateeNameChooser script, a separate lambda function can be 
+subscribed to each button to call the ChooseName method with a different string ([starting at line 56 of ManateeNameChooser.cs]):
+
+```
+   for (int i = 0; i < nameChoiceButtons.Length; i++) {
+      TextMeshProUGUI buttonText;
+      buttonText = nameChoiceButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+      
+      ... // Code to validate the buttonText has been omitted
+
+      // When the button is clicked, call the ChooseName method with the button's text
+      nameChoiceButtons[i].onClick.AddListener( () => { ChooseName(buttonText.text); } );
+   }
+```
+> Here, each button adds the **UnityAction** `() => { ChooseName(buttonText.text); }`,
+> which is a lambda function without parameters that calls the `ChooseName` method with
+> the button's unique text.
+>
+> This same process can be used for any kind of **UnityEvent**, including the events
+> in this **Slide Deck** script.
