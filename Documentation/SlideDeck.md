@@ -113,7 +113,7 @@ some function on a specific slide.
 In the custom script that is not attached to a slide:
 
 1. Write a function with no parameters to call when we reach a certain slide
-   (for a function *with* parameters, see [this section below]()).
+   (for a function *with* parameters, see [this section below](#subscribing-a-function-with-parameters-to-a-unityevent)).
 2. Get a reference to the **Slide Deck** component (see the previous section 
    for possible implementations).
 3. In the script's `void Start()` method, call 
