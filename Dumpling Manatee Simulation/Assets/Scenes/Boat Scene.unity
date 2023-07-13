@@ -12947,8 +12947,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705764579}
-  m_LocalRotation: {x: 0.006572236, y: 0.98974985, z: 0.04692252, w: -0.1347231}
-  m_LocalPosition: {x: 0.12295771, y: -3.6116655, z: -8.879112}
+  m_LocalRotation: {x: -0.0011767546, y: 0.9920905, z: 0.12506366, w: 0.010682663}
+  m_LocalPosition: {x: -3.4120193, y: -4.370097, z: -10.443066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13169,6 +13169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724379151}
+  - component: {fileID: 1724379154}
   - component: {fileID: 1724379153}
   - component: {fileID: 1724379150}
   - component: {fileID: 1724379149}
@@ -13240,7 +13241,7 @@ RectTransform:
   - {fileID: 11060984}
   - {fileID: 1368653584}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13289,8 +13290,32 @@ MonoBehaviour:
   - {fileID: 2047833883}
   OnPresentationComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1724379154}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   defaultInactiveText: ...
+--- !u!114 &1724379154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724379147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2229f494e0c56364992e6c324b081a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1730356050
 GameObject:
   m_ObjectHideFlags: 0
@@ -14728,7 +14753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897607310870066, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4897607310870066, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
       propertyPath: m_LocalPosition.x

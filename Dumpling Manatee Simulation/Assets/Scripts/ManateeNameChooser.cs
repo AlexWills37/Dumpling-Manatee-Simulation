@@ -5,7 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
+/// Manages the UI and backend interaction for allowing the player to choose the names of the game's manatees.
 /// 
+/// @author Alex Wills
+/// @date 7/12/2023
 /// </summary>
 public class ManateeNameChooser : MonoBehaviour
 {
@@ -31,6 +34,7 @@ public class ManateeNameChooser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the static list of chosen names
         chosenNames = new string[chosenNameFields.Length];
 
         // Get the selector images for each chosenNameField
@@ -74,11 +78,6 @@ public class ManateeNameChooser : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void ChooseName(string nameToChoose) {
         // Add the current name to the list of selections
