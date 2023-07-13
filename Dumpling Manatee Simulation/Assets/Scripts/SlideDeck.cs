@@ -27,28 +27,23 @@ public class SlideDeck : MonoBehaviour
     [Tooltip("List of game objects representing the slides")]
     [SerializeField] private GameObject[] slides;
 
+    [Tooltip("Text to display on the button when it is inactive (default active text is whatever is in the button at the start of the scene)")]
+    [SerializeField] private string defaultInactiveText = "...";
+    
     [Tooltip("Called after the final slide is complete")]
     public UnityEvent OnPresentationComplete;
-    
-    private TextMeshProUGUI buttonText;
+
+    private TextMeshProUGUI buttonText; // Text to display the button's status
     private string defaultActiveText;   // The button's default text will be whatever is in the text when the scene is loaded.
+
+    private UnityEvent[] slideActivationEvents; // Events to call when a specific slide is accessed
     
-    [Tooltip("Text to display on the button when it is inactive")]
-    [SerializeField] private string defaultInactiveText = "...";
-
-    private UnityEvent[] slideActivationEvents;
-
-    [SerializeField][Tooltip("does the slide show go back to the start after it is completed")]
-    private bool slideShowRepeats;
-
-
     private IEnumerator reactivationTimer;  // Coroutine to temporarily disable the button
-
 
     private int currentSlide = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called before any OnEnable functions
+    void Awake()
     {
 
         // Create a unity event for each slide
@@ -116,17 +111,34 @@ public class SlideDeck : MonoBehaviour
         }
     }
 
-    
+    /// <summary>
+    /// Adds an event to trigger when the final slide is activated.
+    /// </summary>
+    /// <param name="call"> The function (without parameters) to call when the slide is activated </param>
+    public void AddEventOnFinalSlide(UnityAction call) {
+        slideActivationEvents[slideActivationEvents.Length - 1].AddListener(call);
+    }
+
+    /// <summary>
+    /// Manually sets the button to be active or inactive. If the button is set to inactive,
+    /// the player will be unable to continue the slide until either:
+    ///     1. The button is set active
+    ///     2. The OnButtonClick is called somewhere else
+    /// </summary>
+    /// <param name="active"></param>
     public void SetButtonActive(bool active) {
+        if (buttonText == null) {
+            Debug.LogWarning("Attempting to interact with the slide deck before the Start method initializes it.");
+        } else {
+            // Disable or enable the button
+            nextSlideButton.interactable = active;
+            buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
 
-        // Disable or enable the button
-        nextSlideButton.interactable = active;
-        buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
-
-        // Stop the reactivation coroutine
-        if (reactivationTimer != null) {
-            StopCoroutine(reactivationTimer);
-            reactivationTimer = null;
+            // Stop the reactivation coroutine
+            if (reactivationTimer != null) {
+                StopCoroutine(reactivationTimer);
+                reactivationTimer = null;
+            }
         }
     }
 
@@ -151,10 +163,19 @@ public class SlideDeck : MonoBehaviour
         this.NextSlide();
     }
 
+    /// <summary>
+    /// Changes the text displayed on the button until it is changed again by
+    /// OnButtonClick or SetButtonActive.
+    /// </summary>
+    /// <param name="text"> the new text to show on the button </param>
     public void SetButtonText(string text) {
         buttonText.SetText(text);
     }
 
+    /// <summary>
+    /// Returns the number of slides in this slide deck.
+    /// </summary>
+    /// <returns> number of slides in this slide deck </returns>
     public int GetNumSlides() {
         return slides.Length;
     }
@@ -164,37 +185,23 @@ public class SlideDeck : MonoBehaviour
     /// </summary>
     public void NextSlide() {
         // Transition slides if possible
-        if(slides[currentSlide] != null)
+        if(currentSlide < slides.Length && slides[currentSlide] != null)
         {
             slides[currentSlide].SetActive(false);
         }
 
-        // Progress to the next slide, looping to the beginning if we surpass the last slide
-        if (slideShowRepeats)
-        {
-            currentSlide = (currentSlide + 1) % slides.Length;
-        }
-        else
-        {
-            currentSlide += 1;
-        }
-        
-        if(slides[currentSlide] != null)
-        {
+        // Progress to the next slide
+        currentSlide += 1;
+
+        // Check if the slide deck is finished
+        if (currentSlide >= slides.Length) {
+            OnPresentationComplete.Invoke();    // Activate the OnPresentationComplete event anytime the button is pressed and the slide deck is complete
+       
+        } else if(slides[currentSlide] != null) {   // Make sure the slide exists before enabling it and activating the slide's event
             slides[currentSlide].SetActive(true);
             slideActivationEvents[currentSlide].Invoke();
         }
 
-        // Check if we are at the last slide
-        if (currentSlide >= slides.Length - 1)
-        {
-            OnPresentationComplete.Invoke();
-        }
-
-        // If we are at the first slide again, the presentation has been completed
-        if (currentSlide == 0) {
-            OnPresentationComplete.Invoke();
-        }
     }
 
     /// <summary>
