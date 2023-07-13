@@ -18,7 +18,7 @@ In order to work with this project, you will need:
   - Android SDK & NDK Tools module
   - OpenJDK module
 - Oculus Integration Package v50.0
-    > If you have Git Large File Storage installed, this version of the package will be downloaded with the repository.
+    > This must be downloaded from Meta's website. [Instructions are below](#step-1-download-the-oculus-integration-package).
 
 
 Setting up the Oculus Integration Package will take a substantial amount of time, but you will only have to set it up once.
@@ -26,37 +26,41 @@ Setting up the Oculus Integration Package will take a substantial amount of time
 This setup is adapted from [the official getting-started guide from Meta](https://developer.oculus.com/documentation/unity/unity-tutorial-hello-vr/) (some steps on the official guide can be skipped, since they are already part of the project files).
 
 
-## Why is the Oculus Integration Package here?
-In short: the Oculus Integration Package is huge. In its compressed `.unitypackage` form, it is over 500 MB. If I were to include the unpacked assets in the repository, it would include tons of small files that add up to make cloning the repository take a long time.
+## Why do I need to download the Oculus Integration Package?
+In short: the Oculus Integration Package is huge. In its compressed `.unitypackage` form, it is over 500 MB. If the package's contents were included in the repository, it would
+take too long to clone.
 
-The downside to this approach is that it requires developers to take these extra steps before working with the project and possibly use Git LFS, and the `.unitypackage` will continue to take up 500 MB (if you have Git LFS) even after it has been imported. 
+The downside to this approach is that it requires developers to take these extra steps before working with the project. 
 
-The upside is that the repository clones much faster, and this is a one-time setup, which I believe justifies the extra work. Also, we will always have the same version of the Oculus Integration Package, in case the official download is ever lost.
+The upside is that the repository clones much faster, and this is a one-time setup, which hopefully justifies the extra work. 
 
 ## Step 1: Download the Oculus Integration Package
 Estimated time: 5-15 minutes (mostly downloads)
 
-If you do not have [Git Large File Storage (LFS) installed](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage), I recommend [trying to download the package from the official page](#official-download). 
+This project uses v50.0 of the Oculus Integration Package for Unity, which is available
+on Meta's website.
 
-If you already have Git LFS installed, then the integration package should [download with the repository](#git-large-file-storage-unofficial).
 
-### Official download
-The official download can be obtained from [this link](https://developer.oculus.com/downloads/package/unity-integration/), then by selecting **Version 50.0** from the dropdown before clicking **Download**.
+The official download can be obtained from [this link to Meta's develolper website](https://developer.oculus.com/downloads/package/unity-integration/50.0).
 
-### Git Large File storage (unofficial)
-If the official download is unavailable, or if you already have Git LFS installed, you can use the package file included in this repository. First, you must install Git LFS. Instructions on that can be found at [this link](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage). With Git LFS, when you clone this repository, it will download the package file into the OculusIntegrationPackage folder.
+Make sure that **Version 50.0** is selected in the dropdown before clicking **Download**.
+
+The file should be a `.unitypackage` file that is around 500 MB. 
+Save this file somewhere you can easily access later.
+
 
 ## Step 2: Open the project
 Estimated time: 5 minutes for first time (depends on size of project and computer speed)
 
-With Unity 2021.3.23f1, open the `./Dumpling Manatee Simulation/` folder (this folder is the project).
+With Unity 2021.3.23f1, open the `./Dumpling Manatee Simulation/` folder (the project folder).
+
 
 ## Step 3: Import the Oculus Integration Package
 Estimated time: 5-10 minutes
 
 In the editor, go to **Assets > Import Package > Custom Package**.
 
-Then locate and select `OculusIntegration_v50.0.unitypackage`.
+Then locate and select `OculusIntegration_v50.0.unitypackage` from where you saved it earlier.
 
 After it loads, a window will allow you to choose what parts of the package to import. In the future, we may want to optimize the project by excluding some of the package. For now, we should just import all.
 

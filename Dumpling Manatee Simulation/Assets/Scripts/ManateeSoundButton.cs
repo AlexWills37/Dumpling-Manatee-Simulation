@@ -36,6 +36,7 @@ public class ManateeSoundButton : MonoBehaviour
 
         // Get the manatee sound
         manateeSound = this.GetComponent<AudioSource>();
+        Debug.LogWarning("Starting sound button!");
     }
 
     void Update() {

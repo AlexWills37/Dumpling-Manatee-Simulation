@@ -127,15 +127,18 @@ public class SlideDeck : MonoBehaviour
     /// </summary>
     /// <param name="active"></param>
     public void SetButtonActive(bool active) {
+        if (buttonText == null) {
+            Debug.LogWarning("Attempting to interact with the slide deck before the Start method initializes it.");
+        } else {
+            // Disable or enable the button
+            nextSlideButton.interactable = active;
+            buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
 
-        // Disable or enable the button
-        nextSlideButton.interactable = active;
-        buttonText.SetText( (active ? defaultActiveText : defaultInactiveText) );
-
-        // Stop the reactivation coroutine
-        if (reactivationTimer != null) {
-            StopCoroutine(reactivationTimer);
-            reactivationTimer = null;
+            // Stop the reactivation coroutine
+            if (reactivationTimer != null) {
+                StopCoroutine(reactivationTimer);
+                reactivationTimer = null;
+            }
         }
     }
 
