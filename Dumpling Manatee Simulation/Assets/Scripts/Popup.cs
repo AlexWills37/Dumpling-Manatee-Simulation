@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Popup : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class Popup : MonoBehaviour
     GameObject popupCanvas;
     [SerializeField]
     float popupDuration;
+    private bool showing = false;
     GameObject physicalPlayer;
+    private float timer;
+    public UnityEvent onPopupInteraction = new UnityEvent();
 
     private void Start()
     {
@@ -20,10 +24,26 @@ public class Popup : MonoBehaviour
     {
         if(other.gameObject.name == "FlipperCollider")
         {
+            onPopupInteraction.Invoke();
             popupIcon.SetActive(false);
             popupCanvas.SetActive(true);
+            timer = 0;
+            showing = true;
+        }
+    }
+    private void Update()
+    {
+        if (timer > popupDuration)
+        {
+            timer = 0;
+            showing = false;
+            popupIcon.SetActive(true);
+            popupCanvas.SetActive(false);
+        }
+        else if (showing)
+        {
+            timer += Time.deltaTime;
             transform.LookAt(physicalPlayer.transform);
-            StartCoroutine("unPopup");
         }
     }
 
