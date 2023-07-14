@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ManateeSchool.unity
     guid: 8882afc91cfd79744abcfd530c5734fc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TEST Twizzler Player.unity
     guid: df42b3de7ffdfee4aa573013b0bc2d9d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Boat Scene.unity
     guid: 5865bd25a9aad744e830fd1f37f134ac
   - enabled: 0
