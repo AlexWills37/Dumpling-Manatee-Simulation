@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230636790389575797, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8230636790389575797, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -413,7 +413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &639308171
 PrefabInstance:
@@ -424,11 +424,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6922166147960194693, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_LocalScale.x
@@ -444,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.87
+      value: 7.16
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_LocalPosition.y
@@ -452,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.45
+      value: -21.59
       objectReference: {fileID: 0}
     - target: {fileID: 6922166147960194695, guid: 94185972828e76c49aa015d76a661769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -602,7 +602,7 @@ Transform:
   - {fileID: 40919615}
   - {fileID: 1828601336}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1114040580
 PrefabInstance:
@@ -815,14 +815,6 @@ PrefabInstance:
       propertyPath: m_text
       value: This is a Sea Trout! an importnat coastal species that visits the Indian
         River Lagoon. Just like manatees, they depend on sea grass for survival
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
-      propertyPath: m_fontSize
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -1167,7 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1617466537357748687, guid: 71bb98572c43e3648b1b4355a10fd18a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1617466537357748687, guid: 71bb98572c43e3648b1b4355a10fd18a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1229,7 +1221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4641587402623301867, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4641587402623301867, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1277,21 +1269,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is a Mangrove! It's a type of tree that grows in salty water. Mangroves
-        create habitat for many fish and birds, and grow all around the indian river
-        lagoon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
-      propertyPath: m_fontSize
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 6322972812120205957, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: This is a Mangrove! they are a type of tree that grows in coastal waters.
+        Mangroves create habitat for many fish and birds, adn grow all around the
+        indian river lagoon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -1304,7 +1284,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3724199440375832592, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440375832592, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1352,31 +1332,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.215124
+      value: 4.576858
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.195111
+      value: 8.723692
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.036377
+      value: 13.73335
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.940781
+      value: -0.97989327
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.011280857
+      value: 0.017207796
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.33882517
+      value: -0.1987775
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0012229779
+      value: -0.0008195911
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554757, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_TargetTexture
