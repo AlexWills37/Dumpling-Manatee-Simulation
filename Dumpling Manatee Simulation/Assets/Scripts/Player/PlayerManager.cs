@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     public bool breathed { get; private set; } = false;
 
     // Whether or not the player has interacted with a manatee
-    private bool interactedWithManatee;
+    public bool interactedWithManatee {get; private set;} = false;
 
     private HapticFeedback haptics;
 
@@ -58,6 +58,9 @@ public class PlayerManager : MonoBehaviour
     private float timeSinceTelemetry = 0f;  // Used to send an update on the player's scores every 10 seconds
 
     public static UnityEvent playerValuesUpdated = new UnityEvent();
+
+    public UnityEvent onGrassEaten;
+    public UnityEvent onManateeInteraction;
     
     // Start is called before the first frame update
     void Start()
@@ -135,7 +138,7 @@ public class PlayerManager : MonoBehaviour
     public void Breathe()
     {
         breathed = true;
-        playerValuesUpdated.Invoke();
+        // playerValuesUpdated.Invoke();
         currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
     }
 
@@ -144,6 +147,7 @@ public class PlayerManager : MonoBehaviour
         playerValuesUpdated.Invoke();
         this.currentHealth += 10;
         haptics.TriggerVibrationTime(0.1f);
+        onGrassEaten.Invoke();
     }
 
     public UnityEvent getPlayerValuesEvent()
@@ -157,5 +161,16 @@ public class PlayerManager : MonoBehaviour
     /// <param name="newBreath"> the new breath level </param>
     public void SetBreath(int newBreath) {
         this.currentBreath = newBreath;
+    }
+
+    /// <summary>
+    /// Updates the player to interact with the manatee. 
+    /// This function is called from the ManateeBehavior script whenever the player collides
+    /// with a manatee (as long as the manatee's action is interruptable, and
+    /// the manatee is able to play its interaction animation)
+    /// </summary>
+    public void InteractWithManatee() {
+        interactedWithManatee = true;
+        onManateeInteraction.Invoke();
     }
 }

@@ -26,9 +26,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TEST Nametags.unity
     guid: 9bdc428a0edf0844da6de95c5ff416c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ManateeHell.unity
     guid: 7227d2f016be6df44864bc9f9596a27c
+  - enabled: 1
+    path: Assets/Scenes/V2 ManateeHell.unity
+    guid: 332fb7658d997a24ebd02d2e71908f71
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 498714c8582695f4fa4badace100eeae, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5f188246c467d5b47853335b90eee5f9, type: 2}
