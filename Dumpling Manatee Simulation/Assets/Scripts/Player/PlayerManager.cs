@@ -171,6 +171,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void InteractWithManatee() {
         interactedWithManatee = true;
+        haptics.TriggerVibrationTime(0.1f);
         onManateeInteraction.Invoke();
     }
 }

@@ -59,9 +59,10 @@ public class HellGameManager : MonoBehaviour
 
 
     private PlayerManager player;
+    private HapticFeedback haptics;
     private int numSeagrassEaten = 0;   // How much seagrass the player has eaten
     private bool learnedAboutManateeImpact = false; // Whether the player has seen the text box about how manatee health has degraded
-    private float readingTime = 5f;
+    private float readingTime = 8f;
 
     // Variables for displaying text boxes in a coroutine
     private Queue<GameObject> coroutineTextboxes;
@@ -106,6 +107,8 @@ public class HellGameManager : MonoBehaviour
         sendLetterButton.onClick.AddListener(SendLetterToHumans);
 
         Debug.Log("Game manager successfully initialized.");
+
+        haptics = HapticFeedback.singleton;
     }
 
     // Update is called once per frame
@@ -148,6 +151,7 @@ public class HellGameManager : MonoBehaviour
         // Complete reading task
         if (!learnedAboutManateeImpact) {
             secondaryTask.CompleteTask();
+            haptics.TriggerVibrationTime(0.1f);
             learnedAboutManateeImpact = true;
             CheckFirstTasks();
         }
@@ -162,6 +166,7 @@ public class HellGameManager : MonoBehaviour
             // Remove the secondary task and change to a single new task
             secondaryTask.gameObject.SetActive(false);
             mainTask.TransitionTask(mailLetterTaskText);
+            haptics.TriggerVibrationTime(0.1f);
 
             // Show the text box to tell the player where to go to send the letter
             StartCoroutine(QueueTextboxDisplay(mailLetterTextBox, readingTime));
@@ -224,5 +229,6 @@ public class HellGameManager : MonoBehaviour
     private void SendLetterToHumans() {
         letterForHumans.SetActive(false);
         mainTask.CompleteTask();
+        haptics.TriggerVibrationTime(0.1f);
     }
 }
