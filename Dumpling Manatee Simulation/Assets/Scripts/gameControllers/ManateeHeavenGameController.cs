@@ -30,6 +30,7 @@ public class ManateeHeavenGameController : MonoBehaviour
         player.getPlayerValuesEvent().AddListener(checkPlayerValues);
         goToSchoolTask.gameObject.SetActive(false);
         interacted = true;
+        UpdateTasks();
     }
     /// <summary>
     /// simple method to update this scripts information from what the player script stores. This setup was chosen rather than simplyy updating these values every frame to save checks of these variables so they are only used when the variables update
