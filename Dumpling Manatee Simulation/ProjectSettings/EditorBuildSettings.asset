@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TEST Twizzler Player.unity
     guid: df42b3de7ffdfee4aa573013b0bc2d9d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Boat Scene.unity
     guid: 5865bd25a9aad744e830fd1f37f134ac
   - enabled: 0
