@@ -1,5 +1,5 @@
 # Dumpling-Manatee-Simulation
-
+#### Documentation Guide
 If you want to play through this simulation without setting up Unity, 
 please read this section:
 - [Installing a release](#installing-a-release)
@@ -31,7 +31,7 @@ impacted by humans in this short educational game!
 Manatees are large marine mammals (often called Sea Cows) that are a key part of
 Florida's marine ecosystems. The primary issues they face are caused by humans, so
 by raising awareness for these issues and what can be done to help, we hope to
-work towards minimizing the harm manatees face because of humans.
+work towards minimizing the harm manatees face.
 
 In this simulation, we explore manatee starvation that results from a chain reaction
 that starts with human pollution. When phosphates and nitrates (chemicals frequently
@@ -246,6 +246,9 @@ Most, if not all, of the project settings should already be set up when you clon
 - In the left sidebar, click **Oculus**. 
 - Under **Outstanding Issues**, click **Fix All**. 
 - Under **Recommended Items**, click **Apply All**.
+
+Now there should be no major errors, and the project should be setup correctly for
+development.
 
 ## Building to the headset
 To build the project to the headset:
