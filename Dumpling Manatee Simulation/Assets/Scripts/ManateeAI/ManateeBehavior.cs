@@ -53,6 +53,7 @@ public class ManateeBehavior : MonoBehaviour
     private AbstractAction swim, breathe, rest, play, turnAround;
     private AbstractAction currentAction = null;
 
+    private PlayerManager player;    // Used for communicating with the player when an interaction occurs
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,9 @@ public class ManateeBehavior : MonoBehaviour
 
         happyParticleSettings = happyParticles.emission;
         happyParticleSettings.rateOverTime = 0; // Stop the manatee from emitting particles
+
+        // Get the player
+        player = GameObject.FindObjectOfType<PlayerManager>();
 
         swim = new ManateeSwim(this, movementSpeed, rotationSpeed);
         rest = new ManateeWait(this);
@@ -85,9 +89,6 @@ public class ManateeBehavior : MonoBehaviour
             ChooseNextAction();
         }
 
-        if (Input.GetMouseButton(0)) {
-            PlayerInteraction();
-        }
 
     }
 
@@ -170,6 +171,9 @@ public class ManateeBehavior : MonoBehaviour
             currentAction = play;
             currentAction.StartAction();
             currentActionActive = true;
+
+            // Trigger interaction in the player script
+            player.InteractWithManatee();
         }
     }
 

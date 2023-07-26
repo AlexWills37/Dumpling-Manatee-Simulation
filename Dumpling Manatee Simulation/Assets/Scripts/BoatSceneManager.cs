@@ -7,8 +7,6 @@ public class BoatSceneManager : MonoBehaviour
     [Tooltip("The slide deck that teaches the player about manatees")]
     [SerializeField] private SlideDeck slideDeck;
 
-    [Tooltip("The index of the slide where the player chooses their name")]
-    [SerializeField] private int nameChoosingSlideIndex = 4;
 
     // Start is called before the first frame update
     void Start()
