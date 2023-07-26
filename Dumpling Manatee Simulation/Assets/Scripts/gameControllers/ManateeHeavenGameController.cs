@@ -28,8 +28,8 @@ public class ManateeHeavenGameController : MonoBehaviour
     { 
         player = GameObject.Find("Player").GetComponent<PlayerManager>();
         player.getPlayerValuesEvent().AddListener(checkPlayerValues);
+        player.onManateeInteraction.AddListener(InteractWithManatee);
         goToSchoolTask.gameObject.SetActive(false);
-        interacted = true;
         UpdateTasks();
     }
     /// <summary>
@@ -56,6 +56,13 @@ public class ManateeHeavenGameController : MonoBehaviour
         {
             goToSchoolTask.gameObject.SetActive(true);
             GameObject.Find("LevelExitVolume").GetComponent<LevelExitBehav>().levelComplete();
+        }
+    }
+
+    private void InteractWithManatee() {
+        if (!interacted) {
+            interacted = true;
+            UpdateTasks();
         }
     }
 

@@ -1887,6 +1887,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enviroment
       objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772866, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9577646
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.6904926
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.915205
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9792239
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.105574794
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.17213579
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.01854271
+      objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.46988106
@@ -2777,7 +2809,7 @@ MonoBehaviour:
   mainTask: {fileID: 277514890}
   secondaryTask: {fileID: 881397437}
   seagrassTaskText: Find seagrass
-  displayedGrassRequirement: 10
+  displayedGrassRequirement: 7
   actualGrassRequirement: 5
   notEnoughGrassTextbox: {fileID: 1233903394}
   manateeInteractionTaskText: Check on your manatee friends
