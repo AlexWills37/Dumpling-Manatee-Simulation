@@ -138,7 +138,7 @@ public class PlayerManager : MonoBehaviour
     public void Breathe()
     {
         breathed = true;
-        // playerValuesUpdated.Invoke();
+        playerValuesUpdated.Invoke();
         currentBreath = Mathf.Clamp(currentBreath + 12 * Time.deltaTime, 0, maxBreath);
     }
 
