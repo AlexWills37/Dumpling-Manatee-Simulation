@@ -42,6 +42,7 @@ public class TaskBar : MonoBehaviour
 
     private IEnumerator coroutine;  // Store the current color transition coroutine to detect when it is finished
 
+    private string newTaskText = ""; // For the TransitionTask coroutine, this string holds on to the text called by the latest call of the coroutine
 
     // Start is called before the first frame update
     void Start()
@@ -120,6 +121,10 @@ public class TaskBar : MonoBehaviour
     /// <param name="newTask"> the new task to display </param>
     /// <returns> IEnumerator representation of the coroutine </returns>
     private IEnumerator TransitionTaskCoroutine(string newTask) {
+        
+        newTaskText = newTask;  // Save the latest version of the task
+
+
         // Copmlete the current task
         this.CompleteTask();
 
@@ -129,7 +134,7 @@ public class TaskBar : MonoBehaviour
         }
         
         // Change the task
-        this.ChangeTask(newTask);
+        this.ChangeTask(newTaskText);   // Regardless of which coroutine is running, update the text to the most recent call of this method
 
         // Reset the task
         this.ResetTask();

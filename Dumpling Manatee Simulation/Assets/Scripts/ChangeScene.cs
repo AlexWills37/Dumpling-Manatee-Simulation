@@ -14,14 +14,6 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    void OnTriggerEnter(Collider player)
-    {
-        if (player.gameObject.tag == "Player") //if an object tagged "Player" collides with it
-        {
-            Debug.Log("Highlighted Area Collided with the player");
-            SceneManager.LoadScene(2); //change the scene to index 1 scene
-        }
-    }
 
     /// <summary>
     /// Load a scene using this script. Can be called from Unity Events, for example.

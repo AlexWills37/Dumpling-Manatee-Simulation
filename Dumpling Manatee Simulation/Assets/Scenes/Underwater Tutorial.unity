@@ -895,10 +895,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Tutorial Complete!
 
-    
 
-    You will now go to a large area where
-    you can live as a manatee for a day.
+
+    You will now go to a large area where you can
+    live as a manatee for a day.
 
 '
   m_isRightToLeft: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.05
+  m_fontSize: 9.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1311,6 +1311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217109246}
   - component: {fileID: 1217109248}
+  - component: {fileID: 1217109249}
   - component: {fileID: 1217109247}
   m_Layer: 5
   m_Name: Countdown to scene change
@@ -1436,6 +1437,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217109245}
   m_CullTransparentMesh: 1
+--- !u!114 &1217109249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217109245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc8220ece78668478ea281cef2d9136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerStart: 6
+  preText: 'Moving on in: '
+  postText: 
+  startTimerOnPlay: 1
+  onTimerEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1668769305}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1292281581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +2029,7 @@ GameObject:
   - component: {fileID: 1668769302}
   - component: {fileID: 1668769303}
   - component: {fileID: 1668769304}
+  - component: {fileID: 1668769305}
   m_Layer: 0
   m_Name: Tutorial Game Manager
   m_TagString: Untagged
@@ -2058,10 +2091,22 @@ MonoBehaviour:
   - {fileID: 1589193932}
   - {fileID: 1797964906}
   - {fileID: 1292281581}
+  defaultInactiveText: ...
   OnPresentationComplete:
     m_PersistentCalls:
       m_Calls: []
-  defaultInactiveText: ...
+--- !u!114 &1668769305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668769301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2229f494e0c56364992e6c324b081a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731243682
 GameObject:
   m_ObjectHideFlags: 0
