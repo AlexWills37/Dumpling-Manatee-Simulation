@@ -12,6 +12,15 @@ public class ManateeHeavenGameController : MonoBehaviour
     private bool interacted = false;
     private PlayerManager player; //hang onto a reference to the player
 
+    [SerializeField] private TaskBar grassTask;
+    [SerializeField] private TaskBar interactionTask;
+    [SerializeField] private TaskBar breatheTask;
+    // These following bools should be replaced by adding a way to get the current status of the task bar
+    private bool breatheTaskCompleted = false;
+    private bool interactionTaskCompleted = false;  
+
+    [SerializeField] private TaskBar goToSchoolTask;
+
     /// <summary>
     /// At the start, get a reference to the player script and gall its getPlayerValuesEvent() method to get a reference to the event that scrip ttriggers every time is values are updated. add a listener that will be triggered when that event is invoked
     /// </summary>
@@ -19,6 +28,9 @@ public class ManateeHeavenGameController : MonoBehaviour
     { 
         player = GameObject.Find("Player").GetComponent<PlayerManager>();
         player.getPlayerValuesEvent().AddListener(checkPlayerValues);
+        goToSchoolTask.gameObject.SetActive(false);
+        interacted = true;
+        UpdateTasks();
     }
     /// <summary>
     /// simple method to update this scripts information from what the player script stores. This setup was chosen rather than simplyy updating these values every frame to save checks of these variables so they are only used when the variables update
@@ -29,6 +41,8 @@ public class ManateeHeavenGameController : MonoBehaviour
         this.numberOfGrassEaten = player.ateGrassNum;
         this.breathed = player.breathed;
         checkIflevelComplete();
+
+        UpdateTasks();
     }
 
     /// <summary>
@@ -37,10 +51,31 @@ public class ManateeHeavenGameController : MonoBehaviour
     void checkIflevelComplete()
     {
         if (numberOfGrassEaten >= numberOfGrassNeededToContinue & breathed 
-            //& interacted
+            & interacted
             )
         {
+            goToSchoolTask.gameObject.SetActive(true);
             GameObject.Find("LevelExitVolume").GetComponent<LevelExitBehav>().levelComplete();
+        }
+    }
+
+    private void UpdateTasks() {
+        // Update the seagrass task
+        grassTask.ChangeTask("Eat seagrass (" + numberOfGrassEaten + " / " + numberOfGrassNeededToContinue + ")");
+        if (numberOfGrassEaten == numberOfGrassNeededToContinue) {
+            grassTask.CompleteTask();
+        }
+
+        // Update the breathing task
+        if (breathed && !breatheTaskCompleted) {
+            breatheTaskCompleted = true;
+            breatheTask.CompleteTask();
+        }
+
+        // Update the interaction task
+        if (interacted && !interactionTaskCompleted) {
+            interactionTaskCompleted = true;
+            interactionTask.CompleteTask();
         }
     }
 }
