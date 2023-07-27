@@ -6,6 +6,7 @@ using UnityEngine;
 public class ManateeSchoolManager : MonoBehaviour
 {
     [SerializeField] private SlideDeck presentation;
+    [SerializeField] private LevelExitBehav levelExitVolume;
     
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,6 @@ public class ManateeSchoolManager : MonoBehaviour
     private void FinalSlide() {
         presentation.SetButtonActive(false);
         presentation.SetButtonText("Lesson complete!");
+        levelExitVolume.levelComplete();
     }
 }

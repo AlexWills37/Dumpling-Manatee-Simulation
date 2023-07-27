@@ -109,6 +109,14 @@ PrefabInstance:
       propertyPath: toFollow
       value: 
       objectReference: {fileID: 2487201709744687551}
+    - target: {fileID: 40276562096423474, guid: 733c927b9346961448e466c17feec1ae, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 643ade6051487f74b8d3b3e6ded138a3, type: 2}
+    - target: {fileID: 40276562096423476, guid: 733c927b9346961448e466c17feec1ae, type: 3}
+      propertyPath: m_Name
+      value: SadParticles
+      objectReference: {fileID: 0}
     - target: {fileID: 4630537653857595235, guid: 733c927b9346961448e466c17feec1ae, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -167,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698886181102821381, guid: 733c927b9346961448e466c17feec1ae, type: 3}
       propertyPath: m_Name
-      value: Manatee Named, Thin
+      value: Manatee Named, Thin Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5698886181362750531, guid: 733c927b9346961448e466c17feec1ae, type: 3}
       propertyPath: toFollow

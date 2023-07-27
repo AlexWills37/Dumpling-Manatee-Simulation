@@ -69,6 +69,7 @@ public class HellGameManager : MonoBehaviour
 
     private bool readyToSendMail = false;
 
+    private ChangeScene sceneChanger;
     
 
     // Start is called before the first frame update
@@ -83,6 +84,7 @@ public class HellGameManager : MonoBehaviour
         mailLetterTextBox.SetActive(false);
         letterForHumans.SetActive(false);
         coroutineTextboxes = new Queue<GameObject>();
+        sceneChanger = this.gameObject.AddComponent<ChangeScene>();
 
 
         player = GameObject.FindObjectOfType<PlayerManager>();
@@ -230,5 +232,6 @@ public class HellGameManager : MonoBehaviour
         letterForHumans.SetActive(false);
         mainTask.CompleteTask();
         haptics.TriggerVibrationTime(0.1f);
+        sceneChanger.LoadNextScene();
     }
 }

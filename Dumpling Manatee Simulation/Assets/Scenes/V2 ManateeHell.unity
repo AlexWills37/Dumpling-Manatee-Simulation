@@ -769,17 +769,20 @@ MonoBehaviour:
 
     To help:
 
-    - Choose shampoos and soaps that are
-    "Phosphate free"
+    - Choose shampoos, soaps, and detergents
+    that are "Phosphate free"
 
-    - Only use fertilizer during certain times of year
+    - Keep litter, waste, and debris out of street
+    gutters and storm drains
 
-    -
-    Support your local manatee organizations
+    - Encourage government to develop construction
+    erosion and sediment control ordinances in your community.
+
 
     Thank you,
 
-    The Manatees'
+    The
+    Manatees'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -806,7 +809,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.4
+  m_fontSize: 5.4
   m_fontSizeBase: 15.05
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4123,8 +4126,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This manatee >insert name< hasn't been able to eat enough every day, so
-    >insert science<
+  m_text: This manatee >insert name< hasn't been able to eat enough every day. You
+    can tell the manatee is malnourished because of the depression at the back of
+    its head (called a peanut head) and the drastic difference in weight.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4151,7 +4155,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.7
+  m_fontSize: 8.45
   m_fontSizeBase: 15.05
   m_fontWeight: 400
   m_enableAutoSizing: 1
