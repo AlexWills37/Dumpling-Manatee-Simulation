@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 3724199439539576343}
-  m_IndirectSpecularColor: {r: 0.18155906, g: 0.22720551, b: 0.30744898, a: 1}
+  m_IndirectSpecularColor: {r: 0.18138257, g: 0.22698988, b: 0.30716747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1400,9 +1400,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587404135500785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is Manatee Grass, a critical food source for manatees and one of
+      value: This is manatee grass, a critical food source for manatees and one of
         the most common plants in the Indian River Lagoon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1466,10 +1470,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587404135500785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is a Sea Trout! an importnat coastal species that visits the Indian
-        River Lagoon. Just like manatees, they depend on sea grass for survival
+      value: This is a sea trout! a species of fish that visits the Indian River
+        Lagoon. Just like manatees, they depend on sea grass for survival
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -1933,11 +1941,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587404135500785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is a Mangrove! they are a type of tree that grows in coastal waters.
-        Mangroves create habitat for many fish and birds, adn grow all around the
-        indian river lagoon
+      value: This is a mangrove tree! They grow near the coast and create habitat
+        for many species around the Indian River Lagoon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -2030,31 +2041,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.9031188
+      value: 4.957134
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.278878
+      value: 7.5719557
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.690504
+      value: 7.1330624
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.07994599
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.016479783
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.98644435
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.14235389
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554757, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_TargetTexture

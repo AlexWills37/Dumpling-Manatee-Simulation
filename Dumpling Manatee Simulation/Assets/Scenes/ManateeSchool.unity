@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 580156760}
-  m_IndirectSpecularColor: {r: 0.18155906, g: 0.22720551, b: 0.30744898, a: 1}
+  m_IndirectSpecularColor: {r: 0.18138257, g: 0.22698988, b: 0.30716747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6047,7 +6047,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Over 1,000 manatees have lost their lives in the Indian River Lagoon and
-    surrounding areas due to loss of seagrass.
+    surrounding areas due to the loss of seagrass.
 
 '
   m_isRightToLeft: 0
@@ -7230,31 +7230,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4072504
+      value: 3.3197596
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.391832
+      value: 9.930099
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.16851
+      value: 22.256191
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.93991613
+      value: 0.99809283
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.055035412
+      value: -0.023402048
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.3365186
+      value: -0.056785863
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.01685429
+      value: -0.0061962074
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554757, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_TargetTexture
