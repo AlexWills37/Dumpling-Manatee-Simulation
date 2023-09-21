@@ -18,6 +18,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ManateeBehavior : MonoBehaviour
 {
+    [Tooltip("Check this to disable the manatee AI entirely so they don't move")]
+    [SerializeField] protected bool disableAI = false;
 
     [Tooltip("How quickly the manatee should move around")]
     [SerializeField] protected float movementSpeed = 4f;
@@ -76,6 +78,11 @@ public class ManateeBehavior : MonoBehaviour
         breathe = new ManateeBreathe(this, movementSpeed);
         play = new ManateePlay(this, happyParticleSettings);
         turnAround = new ManateeChangeDirection(this, rotationSpeed);
+
+        // If AI is disabled, change their animation slightly so multiple manatees don't look identical
+        if (disableAI) {
+            animator.speed = Random.Range(0.7f, 1f);
+        }
     }
 
 
@@ -85,7 +92,7 @@ public class ManateeBehavior : MonoBehaviour
     {
         currentTimeWithoutBreath += Time.deltaTime;
         // Choose next action when the current action ends, and the manatee is not in personal space.
-        if (!currentActionActive && !inPersonalSpace) {
+        if (!disableAI && !currentActionActive && !inPersonalSpace) {
             ChooseNextAction();
         }
 
