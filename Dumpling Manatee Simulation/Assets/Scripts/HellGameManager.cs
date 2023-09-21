@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public class HellGameManager : MonoBehaviour
 {
     
+    [SerializeField] private GUITextBox textBox;
 
     // Variables that are customizable in the inspector for setting up the tasks
     [Tooltip("Task bar to display seagrass task, which will transition to the 'mail letter to human' task")]
@@ -31,24 +32,33 @@ public class HellGameManager : MonoBehaviour
     [Tooltip("Actual number of seagrass player must eat to progress the gameplay (should be the total number of seagrass possible to eat)")]
     [SerializeField] private int actualGrassRequirement = 5;
 
-    [Tooltip("Textbox to display when the player has eaten enough seagrass, to explain how there isn't enough")]
-    [SerializeField] private GameObject notEnoughGrassTextbox;
+    // [Tooltip("Textbox to display when the player has eaten enough seagrass, to explain how there isn't enough")]
+    // [SerializeField] private GameObject notEnoughGrassTextbox;
+    
+    [Multiline][SerializeField] private string notEnoughGrassText;
+    [SerializeField] private float notEnoughGrassTextTime;
 
 
     [Header("Interact with manatee task")]
     [Tooltip("Text to display for the 'interact with manatees' task")]
     [SerializeField] private string manateeInteractionTaskText = "Check in on your manatee friends";
 
-    [Tooltip("Text box explaining what happened to the starving manatee friend")]
-    [SerializeField] private GameObject manateeImpactInfo;
-    [SerializeField] private GameObject manateeImpactInfo2;
+    // [Tooltip("Text box explaining what happened to the starving manatee friend")]
+    // [SerializeField] private GameObject manateeImpactInfo;
+    // [SerializeField] private GameObject manateeImpactInfo2;
+
+    [Multiline][SerializeField] private string manateeImpactInfo;
+    [SerializeField] private float manateeImpactInfoTime;
+
 
     [Header("Mail to humans task")]
     [Tooltip("Text to display for the 'mail letter to humans' task")]
     [SerializeField] private string mailLetterTaskText = "Send a message to humans for help";
 
-    [Tooltip("Textbox to tell the player to go to the mailbox")]
-    [SerializeField] private GameObject mailLetterTextBox;
+    // [Tooltip("Textbox to tell the player to go to the mailbox")]
+    // [SerializeField] private GameObject mailLetterTextBox;
+
+    [Multiline][SerializeField] private string mailLetterText;
 
     [Tooltip("Trigger collider to send mail to the player")]
     [SerializeField] private BoxCollider mailboxTrigger;
@@ -78,10 +88,10 @@ public class HellGameManager : MonoBehaviour
         // Set up the tasks
         mainTask.ChangeTask(seagrassTaskText + " (0 / " + displayedGrassRequirement + ")");
         secondaryTask.ChangeTask(manateeInteractionTaskText);
-        manateeImpactInfo.SetActive(false);
-        manateeImpactInfo2.SetActive(false);
-        notEnoughGrassTextbox.SetActive(false);
-        mailLetterTextBox.SetActive(false);
+        // manateeImpactInfo.SetActive(false);
+        // manateeImpactInfo2.SetActive(false);
+        // notEnoughGrassTextbox.SetActive(false);
+        // mailLetterTextBox.SetActive(false);
         letterForHumans.SetActive(false);
         coroutineTextboxes = new Queue<GameObject>();
         sceneChanger = this.gameObject.AddComponent<ChangeScene>();
@@ -117,15 +127,15 @@ public class HellGameManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Debug.Log("P");
-            StartCoroutine(QueueTextboxDisplay(manateeImpactInfo, 5f));
+        // if (Input.GetKeyDown(KeyCode.P)) {
+        //     Debug.Log("P");
+        //     StartCoroutine(QueueTextboxDisplay(manateeImpactInfo, 5f));
 
-        }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.L)) {
-            StartCoroutine(QueueTextboxDisplay(manateeImpactInfo2, 4f));
-        }
+        // if (Input.GetKeyDown(KeyCode.L)) {
+        //     StartCoroutine(QueueTextboxDisplay(manateeImpactInfo2, 4f));
+        // }
 
     }
 
@@ -133,7 +143,8 @@ public class HellGameManager : MonoBehaviour
         mainTask.ChangeTask(seagrassTaskText + " (" + numSeagrassEaten + " / " + displayedGrassRequirement + ")");
         if (numSeagrassEaten == actualGrassRequirement) {
             // mainTask.CompleteTask();
-            StartCoroutine(QueueTextboxDisplay(notEnoughGrassTextbox, readingTime));
+            // StartCoroutine(QueueTextboxDisplay(notEnoughGrassTextbox, readingTime));
+            textBox.DisplayMessage(notEnoughGrassText, notEnoughGrassTextTime);
             CheckFirstTasks();
         }
     }
@@ -147,8 +158,9 @@ public class HellGameManager : MonoBehaviour
     /// </summary>
     /// <returns> IEnumerator containing this coroutine </returns>
     private IEnumerator DisplayManateeImpactInfo() {
-        manateeImpactInfo.SetActive(true);
-        yield return new WaitForSecondsRealtime(readingTime);
+        // manateeImpactInfo.SetActive(true);
+        textBox.DisplayMessage(manateeImpactInfo, manateeImpactInfoTime);
+        yield return new WaitForSecondsRealtime(manateeImpactInfoTime);
 
         // Complete reading task
         if (!learnedAboutManateeImpact) {
@@ -158,7 +170,7 @@ public class HellGameManager : MonoBehaviour
             CheckFirstTasks();
         }
 
-        manateeImpactInfo.SetActive(false);
+        // manateeImpactInfo.SetActive(false);
     }
 
     private void CheckFirstTasks() {
@@ -171,7 +183,7 @@ public class HellGameManager : MonoBehaviour
             haptics.TriggerVibrationTime(0.1f);
 
             // Show the text box to tell the player where to go to send the letter
-            StartCoroutine(QueueTextboxDisplay(mailLetterTextBox, readingTime));
+            StartCoroutine(QueueTextboxDisplay(mailLetterText, readingTime));
             // mailboxTriggerCopy = this.gameObject.AddComponent<BoxCollider>();
 
             // Copy the original trigger's bounds
@@ -182,7 +194,7 @@ public class HellGameManager : MonoBehaviour
 
             
             // mailboxTriggerCopy.isTrigger = true;
-            readyToSendMail = true;
+            StartCoroutine(QueueMailTask());
             mailboxTrigger.enabled = true;
             mailboxTrigger.transform.SetParent(this.transform);
         }
@@ -196,31 +208,39 @@ public class HellGameManager : MonoBehaviour
     /// <param name="toDisplay"></param>
     /// <param name="timeToDisplay"></param>
     /// <returns></returns>
-    private IEnumerator QueueTextboxDisplay(GameObject toDisplay, float timeToDisplay) {
-        
-        // Ensure only 1 coroutine runs per game object
-        if (coroutineTextboxes.Contains(toDisplay)) {
-            // Do nothing
-        } else {
-            // Add the game object to display to the queue as a marker
-            coroutineTextboxes.Enqueue(toDisplay);
-
-            // Wait for the queue to reach this game object
-            while (coroutineTextboxes.Peek() != toDisplay) {
-                yield return null;
-            }
-
-            // Now that the next object is at the front of the queue, display it. We will not remove it from the queue until it has finished showing
-            toDisplay.SetActive(true);
-            yield return new WaitForSecondsRealtime(timeToDisplay);
-
-            // The text is done showing, we can now remove it from the queue to let the next item display 
-            toDisplay.SetActive(false);
-            coroutineTextboxes.Dequeue();
+    private IEnumerator QueueTextboxDisplay(string toDisplay, float timeToDisplay) {
+        yield return null;  // Wait a frame, just in case this frame is displaying a new text message
+        // Wait for the current message to end
+        while (textBox.textActive) {
+            yield return null;
         }
+        
+        // Display the next message
+        textBox.DisplayMessage(toDisplay, timeToDisplay);
+    }
+
+    /// <summary>
+    /// Wait for the current text boxes to finish displaying their message before
+    /// updating the readyToMail boolean, allowing the player to continue the scene.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator QueueMailTask() {
+        yield return null;
+        while (textBox.textActive) {
+            yield return null;
+        }
+        readyToSendMail = true;
     }
 
     private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player") && readyToSendMail) {
+            readyToSendMail = false;
+            Debug.LogError("Trigger entered by player!");
+            letterForHumans.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
         if(other.CompareTag("Player") && readyToSendMail) {
             readyToSendMail = false;
             Debug.LogError("Trigger entered by player!");
