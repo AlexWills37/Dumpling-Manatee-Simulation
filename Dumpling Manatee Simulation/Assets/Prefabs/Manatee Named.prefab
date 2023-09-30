@@ -354,7 +354,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8230636790389575796, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
       propertyPath: m_Name
-      value: Manatee (1)
+      value: Manatee Named
       objectReference: {fileID: 0}
     - target: {fileID: 8230636790389575797, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
       propertyPath: m_RootOrder
@@ -399,6 +399,26 @@ PrefabInstance:
     - target: {fileID: 8230636790389575797, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230636791350374237, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
+      propertyPath: m_Height
+      value: 5.9798045
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230636791350374237, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
+      propertyPath: m_Radius
+      value: 1.1936748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230636791350374237, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000013703404
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230636791350374237, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
+      propertyPath: m_Center.y
+      value: 0.57490087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230636791350374237, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}
+      propertyPath: m_Center.z
+      value: -0.000000004701114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5590a89644d0a4eb3c93e1648a39ed, type: 3}

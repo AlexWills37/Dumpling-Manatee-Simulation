@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8ae17e725396a4bb2a6580848a49d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAI: 0
   movementSpeed: 4
   rotationSpeed: 10
   happyParticles: {fileID: 4440704357660537412}
@@ -256,10 +257,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.08
-  m_Height: 5.67534
+  m_Radius: 1.1717932
+  m_Height: 5.970631
   m_Direction: 1
-  m_Center: {x: 0.0000014306087, y: 0.7271333, z: 0}
+  m_Center: {x: 0.000001372821, y: 0.57948756, z: -0.000000004707747}
 --- !u!1 &8230636791817150710
 GameObject:
   m_ObjectHideFlags: 0
