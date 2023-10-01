@@ -1005,6 +1005,12 @@ MonoBehaviour:
   healthBar: {fileID: 9035757543088027640}
   breathBar: {fileID: 2915403119775089988}
   breathDecreasing: 1
+  onGrassEaten:
+    m_PersistentCalls:
+      m_Calls: []
+  onManateeInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1662247819492573608
 PrefabInstance:
   m_ObjectHideFlags: 0

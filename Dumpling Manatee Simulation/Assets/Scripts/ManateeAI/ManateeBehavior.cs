@@ -189,13 +189,13 @@ public class ManateeBehavior : MonoBehaviour
             case "Air":
                 atSurface = true;
                 break;
-            case "PersonalSpace":
-                inPersonalSpace = true;
-                Debug.Log("manatee in personal space");
-                break;
             case "Player":
                 // Player-manatee interaction
                 this.PlayerInteraction();
+                break;
+            case "PersonalSpace":
+                inPersonalSpace = true;
+                Debug.Log("manatee in personal space");
                 break;
             default:
                 break;
