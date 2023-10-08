@@ -58,6 +58,11 @@ public class HellGameManager : MonoBehaviour
     [Tooltip("Trigger collider to send mail to the player")]
     [SerializeField] private BoxCollider mailboxTrigger;
 
+    [Tooltip("Particle effect to give feedback with sending a letter")]
+    [SerializeField] private ParticleSystem mailParticles;
+    private ParticleSystem.EmissionModule mailParticleEmmiter;
+
+
     [Tooltip("The letter to show the player")]
     [SerializeField] private GameObject letterForHumans;
     private BoxCollider mailboxTriggerCopy; // Copy of the mailbox collider to activate this script
@@ -108,6 +113,8 @@ public class HellGameManager : MonoBehaviour
         });
 
         mailboxTrigger.enabled = false;
+        mailParticleEmmiter = mailParticles.emission;
+        mailParticleEmmiter.rateOverTime = 0;
 
         Button sendLetterButton = letterForHumans.GetComponentInChildren<Button>();
         sendLetterButton.onClick.AddListener(SendLetterToHumans);
@@ -252,6 +259,9 @@ public class HellGameManager : MonoBehaviour
     /// if the bool readyToSenMail is true.
     /// </summary>
     private void ShowPlayerLetter() {
+
+        // Activate mail particles
+        mailParticleEmmiter.rateOverTime = 2;
 
         // Stop any future text from showing (may be redundant)
         if (queuedTextboxCoroutine != null) {
