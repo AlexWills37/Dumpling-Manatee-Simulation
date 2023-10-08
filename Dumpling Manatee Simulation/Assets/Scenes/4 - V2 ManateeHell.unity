@@ -314,7 +314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &150794636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -980,6 +980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 480824621}
   - component: {fileID: 480824623}
+  - component: {fileID: 480824624}
   - component: {fileID: 480824622}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -1050,8 +1051,8 @@ MonoBehaviour:
 
     Thank you,
 
-    The
-    Manatees'
+    [manatee
+    name] and friends'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1128,6 +1129,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480824620}
   m_CullTransparentMesh: 1
+--- !u!114 &480824624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480824620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab30bcd4408b5b459cbcf1bb4e9057e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chosenNameIndex: 0
+  namePlaceholder: '[manatee name]'
 --- !u!1001 &635943228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2177,31 +2192,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.135384
+      value: -0.29721236
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.573946
+      value: 9.248824
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.211628
+      value: 15.5605755
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.34336835
+      value: -0.99688536
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.026517613
+      value: 0.009882514
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.93601274
+      value: -0.078240976
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.072630435
+      value: -0.00057151564
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3147,8 +3162,8 @@ MonoBehaviour:
   notEnoughGrassTextTime: 5
   manateeInteractionTaskText: Check on your manatee friends
   manateeImpactInfo: This manatee hasn't been able to eat enough every day. You can
-    tell the manatee is malnourished because of the depression at the back of its
-    head (called a peanut head) and the drastic difference in weight.
+    tell the manatee is malnourished because of the lower shape at the back of its
+    head (called a peanut head) and the large difference in weight.
   manateeImpactInfoTime: 20
   mailLetterTaskText: Send a letter to humans for help
   mailLetterText: Swim to the mailbox to send a letter asking the humans for help

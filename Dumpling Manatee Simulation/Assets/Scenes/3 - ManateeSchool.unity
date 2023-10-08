@@ -781,8 +781,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Eutrophication leads to alge blooming in the Indian River Lagoon. Algae
-    feeds on these nutrients and block the light that seagrass beds depend on.
+  m_text: 'Eutrophication leads to algae and bacteria overgrowing in the Indian River
+    Lagoon. They feed on the extra nutrients and block the light that seagrass needs
+    to grow.
 
 '
   m_isRightToLeft: 0
@@ -1176,7 +1177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' In fact, as of 2022, 96% of the seagrass in Indian River Lagoon has been
+  m_text: 'In fact, as of 2022, 96% of the seagrass in Indian River Lagoon has been
     lost.
 
 '
@@ -1314,7 +1315,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome class! Today we are studying current events. Our topic is eutrophication.
+  m_text: "Welcome class! Today we are studying eutrophication. \nIt sounds like:
+    \n\"you - truh - fih - kay - shin\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1449,9 +1451,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Eutrophication occurs when too many nutrients are released into the water.
-    These nutrients (ammonia, ammonium, nitrates, and phosphates) come from sources
-    like industrial and agricultural areas.
+  m_text: Eutrophication is when so many nutrients get into the water, that algae
+    and bacteria start to overgrow. This makes it hard for other plants and animals
+    to live. The nutrients usually come from areas with lots of factories or farming.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2854,7 +2856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: When light cannot reach the seagrass it dies in an event called sea grass
+  m_text: When light cannot reach the seagrass, it dies in an event called seagrass
     loss.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3278,7 +3280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'There is nothing manatees can do to prevent eutrophication so it is critical
+  m_text: 'There is nothing manatees can do to prevent eutrophication so it is important
     that humans help protect manatees so we can continue to live happily under the
     sea.
 
@@ -3870,7 +3872,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Thank you for coming everyone, go back to the bus stop to head home and
-    remember to watch out for murky water and dying sea grass.
+    remember to watch out for foggy water and dying sea grass.
 
 '
   m_isRightToLeft: 0
@@ -4793,7 +4795,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.6933962, g: 1, b: 0.8838672, a: 1}
     m_PressedColor: {r: 0.26041296, g: 0.7169812, b: 0.67401004, a: 1}
     m_SelectedColor: {r: 0, g: 1, b: 0.90588236, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.078431375}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6156,7 +6158,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Over 1,000 manatees have lost their lives in the Indian River Lagoon and
-    surrounding areas due to loss of seagrass.
+    nearby areas due to loss of seagrass.
 
 '
   m_isRightToLeft: 0
@@ -6548,10 +6550,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The harmful nutrients are found in places like pet waste, soaps and detergents,
-    household cleaners, and fertilizers.
-
-'
+  m_text: The harmful nutrients are found in places like fertilizers, waste, soaps/detergents,
+    and cleaning products.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6902,7 +6902,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Now that you all know the signs of dangerous eutrophication, please keep
-    a careful eye out for it occurring in your area.
+    a careful eye out for it happening in your area.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7311,31 +7311,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2150468
+      value: 0.2682231
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.793798
+      value: 7.686521
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.552444
+      value: 14.180511
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999192
+      value: 0.9999081
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.012602798
+      value: -0.0068943687
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0017088294
+      value: -0.011674784
       objectReference: {fileID: 0}
     - target: {fileID: 3724199440721772867, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00018854221
+      value: -0.00026160778
       objectReference: {fileID: 0}
     - target: {fileID: 3724199441000554754, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: m_LocalPosition.x

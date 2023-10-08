@@ -5616,8 +5616,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Manatees prefer swimming in groups of 1 or 2. \nManatees will sometimes
-    be in a larger group, either as a mating herd or to share resources, like food,
-    in warmer waters. "
+    be in a larger group, either for mating or sharing resources, like food, in warmer
+    waters. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9320,7 +9320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Manatees are herbivores with a diet consisting mainly of delicious seagrass. '
+  m_text: 'Manatees are herbivores, mostly eating delicious seagrass. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13348,8 +13348,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705764579}
-  m_LocalRotation: {x: -0.0011751674, y: -0.9979965, z: -0.057853375, w: 0.025584005}
-  m_LocalPosition: {x: -0.052607954, y: -3.3839848, z: -12.145439}
+  m_LocalRotation: {x: -0.0001224049, y: 0.99993616, z: -0.009603689, w: 0.0059612463}
+  m_LocalPosition: {x: -1.9526445, y: -3.0631735, z: -12.251314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
