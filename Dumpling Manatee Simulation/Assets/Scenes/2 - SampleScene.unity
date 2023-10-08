@@ -1400,10 +1400,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.275
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is Manatee Grass, a critical food source for manatees and one of
-        the most common plants in the Indian River Lagoon
+      value: This is Manatee Grass, an important food for manatees. You can find
+        it all over the Indian River Lagoon!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -1466,10 +1490,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.601
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.601
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.601
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.194
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is a Sea Trout! an importnat coastal species that visits the Indian
-        River Lagoon. Just like manatees, they depend on sea grass for survival
+      value: "This is a Sea Trout! \nIt often comes to the Indian River Lagoon. Like
+        manatees, they mostly eat seagrass to live."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
@@ -1889,6 +1933,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2507389170778992151, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507389170778992151, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.061
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507389170778992151, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 4641587402623301865, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_Name
       value: MangrovePopup
@@ -1937,15 +1993,79 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587402840886785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1061
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587402840886785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1061
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587402840886785, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1061
+      objectReference: {fileID: 0}
     - target: {fileID: 4641587403783266161, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641587403783266165, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.194
+      objectReference: {fileID: 0}
     - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
       propertyPath: m_text
-      value: This is a Mangrove! they are a type of tree that grows in coastal waters.
-        Mangroves create habitat for many fish and birds, adn grow all around the
-        indian river lagoon
+      value: "This is a Mangrove tree! \nIt grows roots in the water. Mangroves are
+        homes for many fish and birds. You can find many mangroves in the Indian
+        River Lagoon!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_fontSize
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_margin.w
+      value: 0.10192676
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_margin.x
+      value: -0.05497402
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_margin.y
+      value: -0.0062589943
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_margin.z
+      value: -0.102573276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658231305277103477, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebce7b468fde6a41b33abd1aac4724a, type: 3}
