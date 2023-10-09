@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.EditorTools;
 
 /// <summary>
 /// Inserts a manatee's name, as chosen by the player, into the text.
