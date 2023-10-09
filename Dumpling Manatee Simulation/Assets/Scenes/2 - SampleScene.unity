@@ -4489,6 +4489,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8958858165614067365, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 303c760835e33cf41af27f875e5dda22, type: 3}
+    - target: {fileID: 8958858165614067365, guid: 5b2aeee3f5ec10c429d2255c4bd95b39, type: 3}
       propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
