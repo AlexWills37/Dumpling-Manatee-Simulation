@@ -84,6 +84,7 @@ public class HellGameManager : MonoBehaviour
 
     private IEnumerator queuedTextboxCoroutine = null;
     
+    private bool grassTaskComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -164,6 +165,7 @@ public class HellGameManager : MonoBehaviour
         yield return new WaitForSeconds(grassShortageRealizationTime);
 
         // Now inform the player what is wrong, and complete the task.
+        grassTaskComplete = true;
         textBox.DisplayMessage(notEnoughGrassText, notEnoughGrassTextTime);
         haptics.TriggerVibrationTime(0.1f);
         CheckFirstTasks();
@@ -204,7 +206,7 @@ public class HellGameManager : MonoBehaviour
     private void CheckFirstTasks() {
         // NOTE: the seagrass text will not technically be "completed", since there will not be enough seagrass for the player to eat
         // If both tasks are complete, move on to the final task
-        if (learnedAboutManateeImpact && numSeagrassEaten >= actualGrassRequirement) {
+        if (learnedAboutManateeImpact && grassTaskComplete) {
             mainTasksCompleted = true;  // Set this bool so that if the manateeInfo is still showing, nothing will happen when it finishes showing.
 
 
