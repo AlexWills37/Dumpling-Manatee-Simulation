@@ -65,8 +65,8 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Set initial values (10 health, max breath)
-		currentHealth = 10;
+        // Set initial values (40% health, max breath)
+		currentHealth = maxHealth * 0.4f;
         currentBreath = maxBreath;
         ateGrassNum = 0;
         breathed = false;
