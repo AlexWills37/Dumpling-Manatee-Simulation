@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Repositions the OVR CameraRig at the start of the scene, to offer control
 /// over what direction the player starts off facing.
+/// Help from https://forum.unity.com/threads/help-with-oculus-quest-reorientation-on-levelload.759626/#post-5066975
 /// 
 /// @author Alex Wills
 /// @date 18 October 2023
