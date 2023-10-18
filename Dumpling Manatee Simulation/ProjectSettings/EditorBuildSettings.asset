@@ -14,13 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2 - SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/3 - ManateeSchool.unity
     guid: 8882afc91cfd79744abcfd530c5734fc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/4 - V2 ManateeHell.unity
     guid: 332fb7658d997a24ebd02d2e71908f71
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/5 - Ending Boat Scene.unity
     guid: cf517ebe432a8c14b9e7cce30d95558e
   m_configObjects:
