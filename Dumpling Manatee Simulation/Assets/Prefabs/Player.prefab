@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309733705}
   - component: {fileID: 309733706}
+  - component: {fileID: 7374183644687240368}
   m_Layer: 0
   m_Name: Personal Space
   m_TagString: PersonalSpace
@@ -69,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309733704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.29000014, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,8 +88,25 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.33
+  m_Radius: 2.25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7374183644687240368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309733704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb00c7b128c6424c8c163fbc8eb0572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toFollow: {fileID: 6363136616631959797}
+  matchRotation: 0
+  followXPosition: 1
+  followYPosition: 1
+  followZPosition: 1
 --- !u!1 &3444924599937269415
 GameObject:
   m_ObjectHideFlags: 0

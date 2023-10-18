@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/0 - Boat Scene.unity
     guid: 5865bd25a9aad744e830fd1f37f134ac
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1 - Underwater Tutorial.unity
     guid: 4428fb084ed22ed4ba9009837a482d38
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2 - SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3 - ManateeSchool.unity
     guid: 8882afc91cfd79744abcfd530c5734fc
   - enabled: 1

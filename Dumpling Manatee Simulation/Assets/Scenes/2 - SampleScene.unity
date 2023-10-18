@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 3724199439539576343}
-  m_IndirectSpecularColor: {r: 0.18155906, g: 0.22720551, b: 0.30744898, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154573, g: 0.22718737, b: 0.3074054, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -553,28 +553,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876a52af78c41d04e984da38e0cd3f6b, type: 3}
---- !u!1 &265856795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 309733704, guid: 6e30b7a1523d39a4681f0acf899e22ed, type: 3}
-  m_PrefabInstance: {fileID: 1630545296}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &265856797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265856795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb00c7b128c6424c8c163fbc8eb0572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toFollow: {fileID: 1630545297}
-  matchRotation: 1
-  followXPosition: 1
-  followYPosition: 1
-  followZPosition: 1
 --- !u!1001 &489284432
 PrefabInstance:
   m_ObjectHideFlags: 0
