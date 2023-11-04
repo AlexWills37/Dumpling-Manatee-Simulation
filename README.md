@@ -15,7 +15,7 @@ see the following \[work in progress\]:
 - Backend server (maybe another repository)
 
 If you want general information about the project, please see the following:
-- Project website (external site)
+- [Project website (external site)](https://sites.google.com/ncf.edu/edap2023/home)
 - [About this project](#about-this-project)
 
 # About this project
