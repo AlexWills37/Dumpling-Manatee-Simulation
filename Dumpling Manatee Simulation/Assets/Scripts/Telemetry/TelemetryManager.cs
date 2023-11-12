@@ -21,7 +21,7 @@ using UnityEditor.EditorTools;
 ///     Data is sent online with WebManager.cs
 ///     The backend server can be found at: https://github.com/AlexWills37/Dumpling-Backend-Server
 ///     and the URL to connect to this server must be set in this file.
-/// /// Otherwise, the player can click a button to enable data saving locally.
+/// Otherwise, the player can click a button to enable data saving locally.
 ///     Data is saved locally with LocalDataManager.cs
 /// 
 /// Tha MongoDB cluster is organized into databases for each simulation.
@@ -262,4 +262,5 @@ public class TelemetryManager : MonoBehaviour {
             Debug.LogError("Could not find the player's camera (LeftEyeAnchor).");
         }
     }
+
 }

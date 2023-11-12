@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 /// <summary>
+/// Handles the web requests for sending telemetry data to the backend server.
+/// This code requires:
+///     - A working connection to the backend server (specified in TelemetryManager.url)
+///     - A unique session ID (given by the server, stored in TelemetryManager.session)
 /// 
-
 /// @author Ender Fluegge
 /// </summary>
 public class WebManager {
