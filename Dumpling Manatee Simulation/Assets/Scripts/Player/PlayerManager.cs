@@ -55,8 +55,6 @@ public class PlayerManager : MonoBehaviour
     [Tooltip("Whether the breath meter should decrease over time")]
     [SerializeField] private bool breathDecreasing = true;
 
-    private float timeSinceTelemetry = 0f;  // Used to send an update on the player's scores every 10 seconds
-
     public static UnityEvent playerValuesUpdated = new UnityEvent();
 
     public UnityEvent onGrassEaten;
@@ -119,20 +117,6 @@ public class PlayerManager : MonoBehaviour
 
         }
 
-        // Send telemetry updates for the player's breath and health after 10 seconds
-        timeSinceTelemetry += Time.deltaTime;
-        // Every 10 seconds, add a telemetry entry for the player's scores
-        if (timeSinceTelemetry >= 10)
-        {
-            TelemetryManager.entries.Add(
-                new TelemetryEntry("playerHealth", ((int) currentHealth))
-            );
-            TelemetryManager.entries.Add(
-                new TelemetryEntry("playerBreath", ((int) currentBreath))
-            );
-
-            timeSinceTelemetry = 0f;
-        }
     }
 
     public void Breathe()
