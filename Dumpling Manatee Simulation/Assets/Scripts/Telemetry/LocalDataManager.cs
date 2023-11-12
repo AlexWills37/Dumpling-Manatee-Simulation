@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -32,22 +33,22 @@ public class LocalDataManager
     /// Initializes local data storage by creating a new CSV file with a sessionID and writing the header.
     /// </summary>
     public static void CreateLocalSession() {
-        Debug.Log("Creating local session");
         
         // Create directory for storing data, if it doesn't yet exist
         sessionPath = Application.persistentDataPath + "/SessionDataLogs/";
         if (!Directory.Exists(sessionPath)) {
-            DirectoryInfo di = Directory.CreateDirectory(sessionPath);
+            Directory.CreateDirectory(sessionPath);
         }
 
         // Now create a new file for telemetry
         TelemetryManager.session = GenerateSessionID();
         sessionPath += TelemetryManager.session + ".csv";
+        
         sessionFile = new FileInfo(sessionPath);
         
 
         if (!sessionFile.Exists) {
-            sessionFile.Create();
+            using FileStream stream = sessionFile.Create();
         }
 
         // Add the header for the csv file

@@ -42,7 +42,7 @@ Local data will be stored as csv files for each session in the persistent data p
 `<persistentDataPath>/SessionDataLogs/[sessionID].csv`
 
 To locate the peristent data path, see [the Unity documentation](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html).
-On Quest 2, it should be ``
+On Quest 2, it should be `Android/data/com.NCF.DumplingManateeSimulation/files/SessionDataLogs/[sessionID].csv`
 
 
 ## Functionality
@@ -75,7 +75,7 @@ locally on the device.
 > 
 > Data will be saved using the [`LocalDataManager`](../Dumpling%20Manatee%20Simulation/Assets/Scripts/Telemetry/LocalDataManager.cs).
 >
-> Data can be found at `ljfdsjflk/SessionDataLogs/[sessionID].csv`
+> Data can be found at `Android/data/com.NCF.DumplingManateeSimulation/files/SessionDataLogs/[sessionID].csv`
 
 If the button is not pressed, data will be ignored.
 > Instead of sending data anywhere, it will just be cleared from memory.
