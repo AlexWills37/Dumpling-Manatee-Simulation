@@ -175,7 +175,7 @@ public class TelemetryManager : MonoBehaviour {
                         }
                     });
 
-                    enableLocalTelemetryButton.onClick.Invoke();
+                    // enableLocalTelemetryButton.onClick.Invoke();
                 } // End of backup button use
             } // End of try-catch
         } // Delete the web request object

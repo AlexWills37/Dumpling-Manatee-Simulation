@@ -82,6 +82,8 @@ public class LocalDataManager
     /// </summary>
     /// <returns> A unique and non-identifying session ID </returns>
     private static string GenerateSessionID() {
-        return "test";
+        // Solution from
+        // https://stackoverflow.com/questions/11313205/generate-a-unique-id
+        return Guid.NewGuid().ToString();
     }
 }
