@@ -125,6 +125,10 @@ public class TutorialGameManager : MonoBehaviour
             // If there are no more tasks, just complete the current one
             taskBar.CompleteTask();
         }
+
+        // Telemetry Entry for completing each task
+        // Log the completed task (if 0 <= currentTask - 1 < tasks.Length, then log tasks[currentTask - 1]. Else, log nothing (array is out of bounds))
+        TelemetryManager.entries.Add(new TelemetryEntry("tutorialTaskCompleted", (0 < currentTask && currentTask <= tasks.Length)? tasks[currentTask - 1] : ""));
     }
 
     /// <summary>

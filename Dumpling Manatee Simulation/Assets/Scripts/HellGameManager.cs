@@ -123,6 +123,9 @@ public class HellGameManager : MonoBehaviour
         Debug.Log("Game manager successfully initialized.");
 
         haptics = HapticFeedback.singleton;
+
+        // Add a telemetry entry for measuring the time taken to complete tasks
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "sceneBeginsNow"));
     }
 
     // Update is called once per frame
@@ -169,6 +172,7 @@ public class HellGameManager : MonoBehaviour
         textBox.DisplayMessage(notEnoughGrassText, notEnoughGrassTextTime);
         haptics.TriggerVibrationTime(0.1f);
         CheckFirstTasks();
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "eatAllSeagrass"));
     }
 
 
@@ -192,6 +196,7 @@ public class HellGameManager : MonoBehaviour
                 secondaryTask.CompleteTask();
                 haptics.TriggerVibrationTime(0.1f);
                 CheckFirstTasks();
+                TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "checkOnManateeFriend"));
             }   // If mainTasksCompleted (if the player completes the seagrass task before the manatee info box is finished showing, thus advancing to the final task)
                 // then we do not want to give any feedback when the timer completes (at this point, the player has mentally moved on from this task, so feedback would be out of place)
         }
@@ -276,6 +281,8 @@ public class HellGameManager : MonoBehaviour
 
         // Display the letter, activating the send button
         letterForHumans.SetActive(true);
+
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "seeLetterAtMailbox"));
     }
 
     private void OnTriggerEnter(Collider other) {

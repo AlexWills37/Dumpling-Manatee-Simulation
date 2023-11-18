@@ -181,6 +181,7 @@ public class ManateeBehavior : MonoBehaviour
 
             // Trigger interaction in the player script
             player.InteractWithManatee();
+            TelemetryManager.entries.Add(new TelemetryEntry("manateeInteraction"));
         }
     }
 

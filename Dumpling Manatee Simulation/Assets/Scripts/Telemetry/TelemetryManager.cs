@@ -235,6 +235,11 @@ public class TelemetryManager : MonoBehaviour {
                     LocalDataManager.SendPayload();
                     break;
                 case TelemetryDestination.Delete:
+                    
+                    // For debugging and looking at telemetry entries without any server, you can use this code
+                    // foreach (TelemetryEntry entry in entries) {
+                    //     Debug.LogWarning(String.Format("{0}: {3}, {4}\n", entry.name, entry.time, entry.vec, entry.textContent, entry.intContent));
+                    // }
                     entries.Clear();
                     break;
             }
