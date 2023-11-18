@@ -11,8 +11,8 @@ please read the following sections:
 
 If you want to work with the project's backend for data collection, please
 see the following \[work in progress\]:
-- Data collection (section in documentation)
-- Backend server (maybe another repository)
+- [Data collection functionality (section in documentation)](/Documentation/Telemetry.md/#functionality)
+- [Backend server (another repository)](https://github.com/AlexWills37/Dumpling-Backend-Server)
 
 If you want general information about the project, please see the following:
 - Project website (external site)
