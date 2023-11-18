@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks.Sources;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,8 +33,9 @@ public class HellGameManager : MonoBehaviour
     [Tooltip("Actual number of seagrass player must eat to progress the gameplay (should be the total number of seagrass possible to eat)")]
     [SerializeField] private int actualGrassRequirement = 5;
 
-    // [Tooltip("Textbox to display when the player has eaten enough seagrass, to explain how there isn't enough")]
-    // [SerializeField] private GameObject notEnoughGrassTextbox;
+    [Tooltip("How long to wait before notifying the player of the lack of grass (seconds)")]
+    [SerializeField] private float grassShortageRealizationTime = 5f;
+
     
     [Multiline][SerializeField] private string notEnoughGrassText;
     [SerializeField] private float notEnoughGrassTextTime;
@@ -43,10 +45,6 @@ public class HellGameManager : MonoBehaviour
     [Tooltip("Text to display for the 'interact with manatees' task")]
     [SerializeField] private string manateeInteractionTaskText = "Check in on your manatee friends";
 
-    // [Tooltip("Text box explaining what happened to the starving manatee friend")]
-    // [SerializeField] private GameObject manateeImpactInfo;
-    // [SerializeField] private GameObject manateeImpactInfo2;
-
     [Multiline][SerializeField] private string manateeImpactInfo;
     [SerializeField] private float manateeImpactInfoTime;
 
@@ -55,13 +53,15 @@ public class HellGameManager : MonoBehaviour
     [Tooltip("Text to display for the 'mail letter to humans' task")]
     [SerializeField] private string mailLetterTaskText = "Send a message to humans for help";
 
-    // [Tooltip("Textbox to tell the player to go to the mailbox")]
-    // [SerializeField] private GameObject mailLetterTextBox;
-
     [Multiline][SerializeField] private string mailLetterText;
 
     [Tooltip("Trigger collider to send mail to the player")]
     [SerializeField] private BoxCollider mailboxTrigger;
+
+    [Tooltip("Particle effect to give feedback with sending a letter")]
+    [SerializeField] private ParticleSystem mailParticles;
+    private ParticleSystem.EmissionModule mailParticleEmmiter;
+
 
     [Tooltip("The letter to show the player")]
     [SerializeField] private GameObject letterForHumans;
@@ -77,10 +77,14 @@ public class HellGameManager : MonoBehaviour
     // Variables for displaying text boxes in a coroutine
     private Queue<GameObject> coroutineTextboxes;
 
+    private bool mainTasksCompleted = false;
     private bool readyToSendMail = false;
 
     private ChangeScene sceneChanger;
+
+    private IEnumerator queuedTextboxCoroutine = null;
     
+    private bool grassTaskComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -88,10 +92,6 @@ public class HellGameManager : MonoBehaviour
         // Set up the tasks
         mainTask.ChangeTask(seagrassTaskText + " (0 / " + displayedGrassRequirement + ")");
         secondaryTask.ChangeTask(manateeInteractionTaskText);
-        // manateeImpactInfo.SetActive(false);
-        // manateeImpactInfo2.SetActive(false);
-        // notEnoughGrassTextbox.SetActive(false);
-        // mailLetterTextBox.SetActive(false);
         letterForHumans.SetActive(false);
         coroutineTextboxes = new Queue<GameObject>();
         sceneChanger = this.gameObject.AddComponent<ChangeScene>();
@@ -114,6 +114,8 @@ public class HellGameManager : MonoBehaviour
         });
 
         mailboxTrigger.enabled = false;
+        mailParticleEmmiter = mailParticles.emission;
+        mailParticleEmmiter.rateOverTime = 0;
 
         Button sendLetterButton = letterForHumans.GetComponentInChildren<Button>();
         sendLetterButton.onClick.AddListener(SendLetterToHumans);
@@ -121,6 +123,9 @@ public class HellGameManager : MonoBehaviour
         Debug.Log("Game manager successfully initialized.");
 
         haptics = HapticFeedback.singleton;
+
+        // Add a telemetry entry for measuring the time taken to complete tasks
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "sceneBeginsNow"));
     }
 
     // Update is called once per frame
@@ -142,11 +147,32 @@ public class HellGameManager : MonoBehaviour
     private void UpdateSeagrassTask() {
         mainTask.ChangeTask(seagrassTaskText + " (" + numSeagrassEaten + " / " + displayedGrassRequirement + ")");
         if (numSeagrassEaten == actualGrassRequirement) {
-            // mainTask.CompleteTask();
-            // StartCoroutine(QueueTextboxDisplay(notEnoughGrassTextbox, readingTime));
-            textBox.DisplayMessage(notEnoughGrassText, notEnoughGrassTextTime);
-            CheckFirstTasks();
+            
+            // The task is now complete, but we will delay user feedback (and inform them why, later)
+            // since the user does not yet know the task is complete.
+            StartCoroutine(CompleteSeagrassTask());
         }
+    }
+
+    /// <summary>
+    /// Completes the seagrass task with some delay.
+    /// The player is tasked with finding more seagrass than is available. Once they
+    /// find as much seagrass as they can, this coroutine waits to let them wonder how to find more seagrass
+    /// before showing them a message explaining the seagrass shortage and completing the task.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CompleteSeagrassTask() {
+        // Now that the player has eaten all of the available seagrass, the task is complete
+        // In the game, the player will think that they need to find more seagrass.
+        // We should let them think this way for a short amount of time before realizing there is not enough grass.
+        yield return new WaitForSeconds(grassShortageRealizationTime);
+
+        // Now inform the player what is wrong, and complete the task.
+        grassTaskComplete = true;
+        textBox.DisplayMessage(notEnoughGrassText, notEnoughGrassTextTime);
+        haptics.TriggerVibrationTime(0.1f);
+        CheckFirstTasks();
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "eatAllSeagrass"));
     }
 
 
@@ -159,31 +185,44 @@ public class HellGameManager : MonoBehaviour
     /// <returns> IEnumerator containing this coroutine </returns>
     private IEnumerator DisplayManateeImpactInfo() {
         // manateeImpactInfo.SetActive(true);
-        textBox.DisplayMessage(manateeImpactInfo, manateeImpactInfoTime);
-        yield return new WaitForSecondsRealtime(manateeImpactInfoTime);
-
-        // Complete reading task
+        // only show info once, the first time
         if (!learnedAboutManateeImpact) {
-            secondaryTask.CompleteTask();
-            haptics.TriggerVibrationTime(0.1f);
             learnedAboutManateeImpact = true;
-            CheckFirstTasks();
+            textBox.DisplayMessage(manateeImpactInfo, manateeImpactInfoTime);
+            yield return new WaitForSecondsRealtime(manateeImpactInfoTime);
+
+            // Complete reading task after the time passes
+            if (!mainTasksCompleted) {
+                secondaryTask.CompleteTask();
+                haptics.TriggerVibrationTime(0.1f);
+                CheckFirstTasks();
+                TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "checkOnManateeFriend"));
+            }   // If mainTasksCompleted (if the player completes the seagrass task before the manatee info box is finished showing, thus advancing to the final task)
+                // then we do not want to give any feedback when the timer completes (at this point, the player has mentally moved on from this task, so feedback would be out of place)
         }
 
         // manateeImpactInfo.SetActive(false);
     }
 
+    /// <summary>
+    /// If the player has completed both tasks, guide the player to the final task: send a letter to humans
+    /// to learn how to help.
+    /// </summary>
     private void CheckFirstTasks() {
         // NOTE: the seagrass text will not technically be "completed", since there will not be enough seagrass for the player to eat
         // If both tasks are complete, move on to the final task
-        if (learnedAboutManateeImpact && numSeagrassEaten >= actualGrassRequirement) {
+        if (learnedAboutManateeImpact && grassTaskComplete) {
+            mainTasksCompleted = true;  // Set this bool so that if the manateeInfo is still showing, nothing will happen when it finishes showing.
+
+
             // Remove the secondary task and change to a single new task
             secondaryTask.gameObject.SetActive(false);
             mainTask.TransitionTask(mailLetterTaskText);
             haptics.TriggerVibrationTime(0.1f);
 
             // Show the text box to tell the player where to go to send the letter
-            StartCoroutine(QueueTextboxDisplay(mailLetterText, readingTime));
+            queuedTextboxCoroutine = QueueTextboxDisplay(mailLetterText, readingTime);
+            StartCoroutine(queuedTextboxCoroutine);
             // mailboxTriggerCopy = this.gameObject.AddComponent<BoxCollider>();
 
             // Copy the original trigger's bounds
@@ -194,7 +233,7 @@ public class HellGameManager : MonoBehaviour
 
             
             // mailboxTriggerCopy.isTrigger = true;
-            StartCoroutine(QueueMailTask());
+            readyToSendMail = true;
             mailboxTrigger.enabled = true;
             mailboxTrigger.transform.SetParent(this.transform);
         }
@@ -220,34 +259,47 @@ public class HellGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Wait for the current text boxes to finish displaying their message before
-    /// updating the readyToMail boolean, allowing the player to continue the scene.
+    /// Displays the letter for the player to send to humans, which
+    /// has the button to progress to the final scene.
+    /// This function should be called when the user interacts with the mailbox collider, if
+    /// the mail is ready to be sent (main tasks complete). To do this, only call this method
+    /// if the bool readyToSenMail is true.
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator QueueMailTask() {
-        yield return null;
-        while (textBox.textActive) {
-            yield return null;
+    private void ShowPlayerLetter() {
+
+        // Activate mail particles
+        mailParticleEmmiter.rateOverTime = 2;
+
+        // Stop any future text from showing (may be redundant)
+        if (queuedTextboxCoroutine != null) {
+            StopCoroutine(queuedTextboxCoroutine);
         }
-        readyToSendMail = true;
+
+        // Hide the text box, which might have text showing/queued to show
+        textBox.gameObject.SetActive(false);
+        readyToSendMail = false;    // Prevent this method from happening again (check this bool before calling the method)
+
+        // Display the letter, activating the send button
+        letterForHumans.SetActive(true);
+
+        TelemetryManager.entries.Add(new TelemetryEntry("taskCompleted", "seeLetterAtMailbox"));
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player") && readyToSendMail) {
-            readyToSendMail = false;
-            Debug.LogError("Trigger entered by player!");
-            letterForHumans.SetActive(true);
+            ShowPlayerLetter();
         }
     }
 
     private void OnTriggerStay(Collider other) {
         if(other.CompareTag("Player") && readyToSendMail) {
-            readyToSendMail = false;
-            Debug.LogError("Trigger entered by player!");
-            letterForHumans.SetActive(true);
+            ShowPlayerLetter();
         }
     }
         
+    /// <summary>
+    /// Completes the level by "sending the letter to the humans".
+    /// </summary>
     private void SendLetterToHumans() {
         letterForHumans.SetActive(false);
         mainTask.CompleteTask();

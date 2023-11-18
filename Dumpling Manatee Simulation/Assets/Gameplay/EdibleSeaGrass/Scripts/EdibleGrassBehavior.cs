@@ -14,6 +14,9 @@ public class EdibleGrassBehavior : MonoBehaviour
         //anything meant to happen when the grass is consumed goes here
         Destroy(grassParticles);
         cullChildren(amountOfGrassToRemoveOnEating);
+
+        // Create a telemetry event to notify of seagrass eaten
+        TelemetryManager.entries.Add(new TelemetryEntry("seagrassEaten"));
     }
     private void cullChildren(float percentCulled)
     {

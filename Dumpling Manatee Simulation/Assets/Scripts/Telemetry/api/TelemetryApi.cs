@@ -9,6 +9,7 @@ public class TelemetryApi {
         return true;
     }
 
+    [System.Obsolete]
     public static IEnumerable<bool> testInternetConnected() {
         // Submit a request to google.com, returning true if it was successful, and false otherwise.
         UnityWebRequest www = UnityWebRequest.Get("http://google.com");

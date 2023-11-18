@@ -88,6 +88,6 @@ public class ManateeSoundButton : MonoBehaviour
     /// </summary>
     private void OnEnable() {
         slideDeck.SetButtonActive(false);
-        slideDeck.SetButtonText("<---");
+        slideDeck.SetButtonText("Click the button next to me");
     }
 }

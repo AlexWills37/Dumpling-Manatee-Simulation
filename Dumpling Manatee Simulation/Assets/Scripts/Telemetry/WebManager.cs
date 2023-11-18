@@ -4,30 +4,34 @@ using UnityEngine;
 // Import UnityWebRequest
 using UnityEngine.Networking;
 
+/// <summary>
+/// Handles the web requests for sending telemetry data to the backend server.
+/// This code requires:
+///     - A working connection to the backend server (specified in TelemetryManager.url)
+///     - A unique session ID (given by the server, stored in TelemetryManager.session)
+/// 
+/// @author Ender Fluegge
+/// </summary>
 public class WebManager {
+
+    /// <summary>
+    /// Sends the current list of TelemetryEntries to the backend server and clears the list.
+    /// Connects to the server using this game instance's sessionID
+    /// </summary>
+    /// <returns> IEnum representation of the coroutine </returns>
     public static IEnumerator SendPayload() {
 
-        if (TelemetryApi.isInternetConnected()) {
-            var chunk = new TelemetryChunk(TelemetryManager.session, "Twizzler");
+            // Build a payload to send, including the session ID, simulation name, and data entries
+            var chunk = new TelemetryChunk(TelemetryManager.session, TelemetryManager.simulationName);
             chunk.concat(TelemetryManager.entries);
-            TelemetryManager.entries.Clear();
+            TelemetryManager.entries.Clear();   // Empty the list for future entries
 
+            // Send the web request
             using (UnityWebRequest webRequest = new UnityWebRequest(TelemetryManager.url + "telemetry/payload")) {
-                webRequest.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(chunk)));
+                webRequest.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(chunk))); // Add the payload to the request
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 webRequest.method = UnityWebRequest.kHttpVerbPOST;
-                yield return webRequest.SendWebRequest();
+                yield return webRequest.SendWebRequest();   // Send actual request to the server
             }
-        } else {
-            var currentData = "";
-            if (PlayerPrefs.HasKey("telemetry")) {
-                currentData = PlayerPrefs.GetString("telemetry");
-            }
-                // Add to local storage
-                PlayerPrefs.SetString(
-                "telemetry",
-                currentData + "|=|" + JsonUtility.ToJson(new TelemetryChunk(TelemetryManager.session, "Twizzler"))
-            );
-        }
     }
 }
