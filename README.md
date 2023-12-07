@@ -10,7 +10,7 @@ please read the following sections:
 - [Project documentation](./Documentation/) (folder in project)
 
 If you want to work with the project's backend for data collection, please
-see the following \[work in progress\]:
+see the following:
 - [Data collection functionality](/Documentation/Telemetry.md/#functionality) (section in documentation)
 - [Backend server](https://github.com/AlexWills37/Dumpling-Backend-Server) (another repository)
 
