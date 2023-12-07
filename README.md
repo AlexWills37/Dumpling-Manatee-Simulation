@@ -27,7 +27,9 @@ indiviuals can do to help out. See firsthand how manatees live and how they are
 impacted by humans in this short educational game! 
 
 
-[![Two manatees underneath the game's title](https://img.youtube.com/vi/xFpKAaVvNNs/0.jpg)Trailer video for this game](https://www.youtube.com/watch?v=xFpKAaVvNNs)
+[![Two manatees underneath the game's title](https://img.youtube.com/vi/xFpKAaVvNNs/0.jpg)](https://www.youtube.com/watch?v=xFpKAaVvNNs)
+
+[Trailer for this game](https://www.youtube.com/watch?v=xFpKAaVvNNs)
 
 [Full gameplay video (v0.1.5)](https://youtu.be/gqaQSZeFI1c)
 
