@@ -19,6 +19,8 @@ public class ManateeHeavenGameController : MonoBehaviour
     private bool breatheTaskCompleted = false;
     private bool interactionTaskCompleted = false;  
 
+    private bool grassTaskCompleted = false;
+
     [SerializeField] private TaskBar goToSchoolTask;
 
     /// <summary>
@@ -69,7 +71,8 @@ public class ManateeHeavenGameController : MonoBehaviour
     private void UpdateTasks() {
         // Update the seagrass task
         grassTask.ChangeTask("Eat seagrass (" + numberOfGrassEaten + " / " + numberOfGrassNeededToContinue + ")");
-        if (numberOfGrassEaten == numberOfGrassNeededToContinue) {
+        if (numberOfGrassEaten == numberOfGrassNeededToContinue && !grassTaskCompleted) {
+            grassTaskCompleted = true;
             grassTask.CompleteTask();
         }
 

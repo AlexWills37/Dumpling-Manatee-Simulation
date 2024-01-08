@@ -95,5 +95,8 @@ public class ManateeNameChooser : MonoBehaviour
         if (slideDeck != null && currentManatee == 0 && chosenNames[0] != "") {
             slideDeck.SetButtonActive(true);
         }
+
+        // Send telemetry entry for choosing a name
+        TelemetryManager.entries.Add(new TelemetryEntry("manateeNameSelected", nameToChoose));
     }
 }

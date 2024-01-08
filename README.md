@@ -7,15 +7,15 @@ please read this section:
 If you are a developer or plan on opening the project with Unity, 
 please read the following sections:
 - [First time setup](#setting-up-the-project-for-developmentbuilding)
-- [Project documentation (folder in project)](./Documentation/)
+- [Project documentation](./Documentation/) (folder in project)
 
 If you want to work with the project's backend for data collection, please
-see the following \[work in progress\]:
-- Data collection (section in documentation)
-- Backend server (maybe another repository)
+see the following:
+- [Data collection functionality](/Documentation/Telemetry.md/#functionality) (section in documentation)
+- [Backend server](https://github.com/AlexWills37/Dumpling-Backend-Server) (another repository)
 
 If you want general information about the project, please see the following:
-- Project website (external site)
+- [Project website](https://sites.google.com/ncf.edu/edap2023/home) (external site)
 - [About this project](#about-this-project)
 
 # About this project
@@ -25,6 +25,13 @@ the Florida Manatee and some of the issues they face.
 In this game, you become a manatee! Learn about the effects of pollution and what
 indiviuals can do to help out. See firsthand how manatees live and how they are
 impacted by humans in this short educational game! 
+
+
+[![Two manatees underneath the game's title](https://img.youtube.com/vi/xFpKAaVvNNs/0.jpg)](https://www.youtube.com/watch?v=xFpKAaVvNNs)
+
+[Trailer for this game](https://www.youtube.com/watch?v=xFpKAaVvNNs)
+
+[Full gameplay video (v0.1.5)](https://youtu.be/gqaQSZeFI1c)
 
 
 ### Background (sources needed)
@@ -48,7 +55,7 @@ to reduce the amount of pollution we produce, we can help restore the Indian Riv
 Lagoon's previous status as a wonderland for manatees!
 
 ### Credits
-This project would not be possible without all of the people who have contributed (internally: feel free to change titles/roles if you want and add anyone I missed):
+This project would not be possible without all of the people who have contributed:
 - Dr. Tania Roy - Project Leader - Assistant Professor of Human Centered Computing
 - Dr. Athena Rycyk - Manatee Expert - Assistant Professor of Biology and Marine Science
 - Riley Wood - Simulation Developer

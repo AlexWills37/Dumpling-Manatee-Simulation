@@ -30,22 +30,8 @@ public class ChangeScene : MonoBehaviour
     /// </summary>
     public void LoadNextScene()
     {
-
-        int sceneNumber = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
-        int timeInScene = (int)Time.timeSinceLevelLoad;
-
-        
-        SceneManager.LoadScene(sceneNumber);
-        string sceneName = SceneManager.GetSceneByBuildIndex(sceneNumber).name;
-        
-        
-        Debug.Log("Going to scene: " + sceneName);
-        Debug.Log("Time in preivous scene: " + timeInScene);
-
-
-        // Add a telemetry entry saying the scene/level was changed.
-        TelemetryManager.entries.Add(
-            new TelemetryEntry("sceneChange", SceneManager.GetSceneByBuildIndex(sceneNumber).name, timeInScene)
-        );
+        // Go to the next scene in the build settings
+        int sceneNumber = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;        
+        SceneManager.LoadScene(sceneNumber);        
     }
 }

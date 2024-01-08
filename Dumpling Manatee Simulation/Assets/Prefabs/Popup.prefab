@@ -51,6 +51,9 @@ MonoBehaviour:
   popupIcon: {fileID: 4641587404135500785}
   popupCanvas: {fileID: 4641587403783266161}
   popupDuration: 10
+  onPopupInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &4641587402623301866
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -62,8 +65,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2.5701501
+  m_Center: {x: 0, y: 0, z: 0.6287324}
 --- !u!54 &4641587402623301869
 Rigidbody:
   m_ObjectHideFlags: 0
