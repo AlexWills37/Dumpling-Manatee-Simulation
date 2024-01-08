@@ -39,4 +39,4 @@ One change has been made to fix a compiler error with the shader at `Standard As
 
 
 ## Fish
-The fish use a model created by Devin Gregg, and a script from the [Simple Boids asset by Nick Veselov](https://assetstore.unity.com/packages/3d/characters/animals/simple-boids-flocks-of-birds-fish-and-insects-164188).
+The fish use a model created by Devin Gregg, and a script from Riley Wood. Documentation on the fish can be found [here](./Fish.md).
