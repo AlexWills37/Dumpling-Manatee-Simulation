@@ -36,7 +36,8 @@ using TMPro;
 /// @author Alex Wills
 /// @date 11 November 2023
 public class TelemetryManager : MonoBehaviour {
-    public static string url = "http://localhost/";     // The address of the backend server to connect to (see file header)
+    // If this URL is empty, it will be set in the Awake() function, based on the local config file.
+    public static string url = "";     // The address of the backend server to connect to (see file header)
 
     public static string simulationName = "Dumpling";   // String to organize database by simulation
 
@@ -87,6 +88,8 @@ public class TelemetryManager : MonoBehaviour {
             Destroy(this);
         } else {
             instance = this;
+            if (url == "")
+                url = ReadConfigFile.GetConnectionURL(); // Find the url from the config file (or create the config file)
             StartCoroutine(Initialize());   // Connect to the server (or try to)
             DontDestroyOnLoad(gameObject);  // Preserve this script and game object between scenes
         }
@@ -115,10 +118,11 @@ public class TelemetryManager : MonoBehaviour {
         Debug.Log("Initilizing telemetry");
         
         // Display status message if possible
-        telemetryStatusText?.SetText("Connecting to server...");
+        telemetryStatusText?.SetText("Connecting to server at " + TelemetryManager.url + "...");
         enableLocalTelemetryButton?.gameObject.SetActive(false);
         
         using (UnityWebRequest webRequest = UnityWebRequest.Get(TelemetryManager.url + "session/new")) {    // Create a web request
+            webRequest.timeout = 3;
             yield return webRequest.SendWebRequest();   // Send the web request, waiting for the response
             
             // After receiving response, validate it
