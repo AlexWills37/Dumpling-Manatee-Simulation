@@ -119,6 +119,7 @@ public class TelemetryManager : MonoBehaviour {
         enableLocalTelemetryButton?.gameObject.SetActive(false);
         
         using (UnityWebRequest webRequest = UnityWebRequest.Get(TelemetryManager.url + "session/new")) {    // Create a web request
+            webRequest.timeout = 3;
             yield return webRequest.SendWebRequest();   // Send the web request, waiting for the response
             
             // After receiving response, validate it
