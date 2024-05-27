@@ -1,2 +1,3 @@
 # The main gitignore file is at the root of the Unity project, in the
 # /Dumpling\ Manatee\ Simulation/ folder
+.vscode/

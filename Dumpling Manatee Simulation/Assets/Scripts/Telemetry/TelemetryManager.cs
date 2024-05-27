@@ -74,7 +74,8 @@ public class TelemetryManager : MonoBehaviour {
     /// Local: save data on the device with the LocalDataManager script.
     /// Delete: do not store data anywhere.
     /// </summary>
-    enum TelemetryDestination {Online, Local, Delete};
+    [Flags]
+    enum TelemetryDestination {Delete = 0, Online = 1, Local = 2};
     private TelemetryDestination telemetryDestination = TelemetryDestination.Delete;    // By default, do not save data
 
     /// <summary>
@@ -113,11 +114,18 @@ public class TelemetryManager : MonoBehaviour {
     /// <returns> IEnum representation of this coroutine </returns>
     private IEnumerator Initialize() {
         Debug.Log("Initilizing telemetry");
+
+        // By default, enable local data storage
+
+        // Initialize the new local session
+        LocalDataManager.CreateLocalSession();
+        telemetryDestination |= TelemetryDestination.Local; // Enable flag to direct where telemetry will be sent
         
         // Display status message if possible
         telemetryStatusText?.SetText("Connecting to server...");
         enableLocalTelemetryButton?.gameObject.SetActive(false);
         
+        // Attempt to connect online
         using (UnityWebRequest webRequest = UnityWebRequest.Get(TelemetryManager.url + "session/new")) {    // Create a web request
             webRequest.timeout = 3;
             yield return webRequest.SendWebRequest();   // Send the web request, waiting for the response
@@ -133,7 +141,7 @@ public class TelemetryManager : MonoBehaviour {
                 TelemetryManager.session = jsonResponse.data.session;
                 Debug.Log("Telemetry successfully initialized");
 
-                telemetryDestination = TelemetryDestination.Online; // Set flag to indicate successful connection
+                telemetryDestination |= TelemetryDestination.Online; // Set flag to indicate successful connection
 
                 
                 // Display status if possible
@@ -152,32 +160,6 @@ public class TelemetryManager : MonoBehaviour {
                 if (telemetryStatusIcon != null) {
                     telemetryStatusIcon.color = Color.red;
                 }
-
-                // Enable the backup button for the user to decide to save data locally
-                if (enableLocalTelemetryButton != null) {
-                    enableLocalTelemetryButton.gameObject.SetActive(true);
-                    
-                    /// <summary>
-                    /// When the button is pressed, switch to saving data locally.
-                    /// </summary>
-                    enableLocalTelemetryButton.onClick.AddListener( () => {
-
-                        // Destroy button to prevent further clicks
-                        Destroy(enableLocalTelemetryButton.gameObject);
-
-                        // Initialize the new local session
-                        LocalDataManager.CreateLocalSession();
-                        telemetryDestination = TelemetryDestination.Local; // Enable flag to direct where telemetry will be sent
-
-                        // Update display status
-                        telemetryStatusText?.SetText("Saving data locally.");
-                        if (telemetryStatusIcon != null) {
-                            telemetryStatusIcon.color = Color.green;
-                        }
-                    });
-
-                    // enableLocalTelemetryButton.onClick.Invoke();
-                } // End of backup button use
             } // End of try-catch
         } // Delete the web request object
     }
@@ -228,21 +210,16 @@ public class TelemetryManager : MonoBehaviour {
 
         // Every 600 frames, send the current TelemetryEntries either online, locally, or nowhere.
         if (frameCount % 600 == 0)
-            switch (telemetryDestination) {
-                case TelemetryDestination.Online:
-                    StartCoroutine(WebManager.SendPayload());
-                    break;
-                case TelemetryDestination.Local:
-                    LocalDataManager.SendPayload();
-                    break;
-                case TelemetryDestination.Delete:
-                    
-                    // For debugging and looking at telemetry entries without any server, you can use this code
-                    // foreach (TelemetryEntry entry in entries) {
-                    //     Debug.LogWarning(String.Format("{0}: {3}, {4}\n", entry.name, entry.time, entry.vec, entry.textContent, entry.intContent));
-                    // }
-                    entries.Clear();
-                    break;
+
+            if ((telemetryDestination & TelemetryDestination.Local) != 0) {
+                LocalDataManager.SendPayload();
+            }
+
+            if ((telemetryDestination & TelemetryDestination.Online) != 0) {
+                StartCoroutine(WebManager.SendPayload());   // This coroutine will empty the telemetry list
+            } else {
+                // If the data is not sent online, we need to clear the entries manually
+                entries.Clear();
             }
     }
 

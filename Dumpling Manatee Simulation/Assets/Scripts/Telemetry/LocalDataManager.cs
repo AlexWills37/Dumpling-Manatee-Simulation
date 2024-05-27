@@ -69,9 +69,6 @@ public class LocalDataManager
             foreach (TelemetryEntry entry in TelemetryManager.entries) {
                 stream.Write(System.Text.Encoding.UTF8.GetBytes(String.Format("{0},{1},{2},{3},{4}\n", entry.name, entry.time, entry.vec, entry.textContent, entry.intContent)));
             }
-
-            // Empty the entry list for future entries
-            TelemetryManager.entries.Clear();
         }
     }
 
