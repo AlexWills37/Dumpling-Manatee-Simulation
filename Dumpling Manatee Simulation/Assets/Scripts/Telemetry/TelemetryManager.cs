@@ -227,7 +227,7 @@ public class TelemetryManager : MonoBehaviour {
         }
 
         // Every 600 frames, send the current TelemetryEntries either online, locally, or nowhere.
-        if (frameCount % 600 == 0)
+        if (frameCount % 600 == 0) {
             switch (telemetryDestination) {
                 case TelemetryDestination.Online:
                     StartCoroutine(WebManager.SendPayload());
@@ -244,6 +244,7 @@ public class TelemetryManager : MonoBehaviour {
                     entries.Clear();
                     break;
             }
+        }
     }
 
 
