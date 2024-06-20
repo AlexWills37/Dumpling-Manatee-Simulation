@@ -209,8 +209,7 @@ public class TelemetryManager : MonoBehaviour {
         }
 
         // Every 600 frames, send the current TelemetryEntries either online, locally, or nowhere.
-        if (frameCount % 600 == 0)
-
+        if (frameCount % 600 == 0) {
             if ((telemetryDestination & TelemetryDestination.Local) != 0) {
                 LocalDataManager.SendPayload();
             }
@@ -221,6 +220,7 @@ public class TelemetryManager : MonoBehaviour {
                 // If the data is not sent online, we need to clear the entries manually
                 entries.Clear();
             }
+        }
     }
 
 
